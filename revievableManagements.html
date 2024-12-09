@@ -6,44 +6,45 @@
     <title>Receivables Management Infographic</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .infographic-container {
-            width: 1200px;
-            height: 600px;
-            margin: 0 auto;
-            padding: 20px;
+        body {
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f8f9fa;
+        }
+        .infographic-container {
+            max-width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
         .section {
-            background: linear-gradient(45deg, #f3f4f6, #ffffff);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            transform: translateY(0);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.4s ease;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            background: white;
         }
         .section:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            background: linear-gradient(45deg, #ffffff, #f3f4f6);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         .icon-container {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             animation: pulse 2s infinite;
         }
         .icon {
-            font-size: 30px;
+            font-size: 24px;
             color: #2c3e50;
         }
         .content {
@@ -57,39 +58,64 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         h2 {
             margin: 0;
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
         p {
-            font-size: 1.1em;
+            font-size: 1em;
             line-height: 1.4;
             color: #555;
             margin: 5px 0 0 0;
         }
-        @media (max-width: 1200px) {
-            .infographic-container {
-                width: 100%;
-                height: auto;
-            }
-        }
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             .section {
                 flex-direction: column;
                 text-align: center;
-                padding: 15px;
             }
             .icon-container {
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 margin-bottom: 10px;
             }
             .icon {
-                font-size: 25px;
+                font-size: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            p {
+                font-size: 0.95em;
+            }
+        }
+        @media (max-width: 600px) {
+            .infographic-container {
+                padding: 10px;
+            }
+            .section {
+                padding: 12px;
+                margin: 10px 0;
+            }
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 1em;
+            }
+            p {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -138,27 +164,5 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
-    <script>
-        document.querySelectorAll('.section').forEach(section => {
-            section.addEventListener('mouseover', () => {
-                section.style.transform = 'translateY(-15px) scale(1.02)';
-            });
-            section.addEventListener('mouseout', () => {
-                section.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        document.querySelectorAll('.icon-container').forEach(container => {
-            container.addEventListener('mouseover', () => {
-                container.style.transform = 'rotate(360deg)';
-                container.style.transition = 'transform 0.8s ease';
-            });
-            container.addEventListener('mouseout', () => {
-                container.style.transform = 'rotate(0deg)';
-            });
-        });
-    </script>
 </body>
 </html>
