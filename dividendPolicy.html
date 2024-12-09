@@ -188,5 +188,15 @@
             createChart('firmHChart', false);
         });
     </script>
+    <script>
+    window.addEventListener("message", (event) => {
+        if (event.data === "resizeIframe") {
+            const iframe = document.querySelector("iframe");
+            if (iframe) {
+                iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+            }
+        }
+    });
+</script>
 </body>
 </html>
