@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythagorean Theorem</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .theorem-image {
+            display: block;
+            margin: 20px auto;
+            width: 300px;
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.2));
+        }
+        .formula {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            padding: 20px;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+        }
+        .explanation {
+            margin: 20px 0;
+            line-height: 1.6;
+            padding: 20px;
+            background: linear-gradient(45deg, #f3e5f5, #e1bee7);
+            border-radius: 10px;
+        }
+        @keyframes drawTriangle {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        svg line, svg path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawTriangle 2s forwards;
+        }
+        svg:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        li:hover {
+            transform: translateX(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pythagorean Theorem</h1>
+        <svg width="300" height="300" viewBox="0 0 300 300" class="theorem-image">
+            <defs>
+                <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#4CAF50" />
+                    <stop offset="100%" style="stop-color:#8BC34A" />
+                </linearGradient>
+                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#2196F3" />
+                    <stop offset="100%" style="stop-color:#03A9F4" />
+                </linearGradient>
+                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#F44336" />
+                    <stop offset="100%" style="stop-color:#E91E63" />
+                </linearGradient>
+            </defs>
+            <line x1="50" y1="250" x2="50" y2="50" stroke="url(#gradient1)" stroke-width="3" />
+            <line x1="50" y1="250" x2="250" y2="250" stroke="url(#gradient2)" stroke-width="3" />
+            <line x1="50" y1="50" x2="250" y2="250" stroke="url(#gradient3)" stroke-width="3" />
+            <text x="30" y="150" fill="#4CAF50" font-weight="bold">a</text>
+            <text x="150" y="270" fill="#2196F3" font-weight="bold">b</text>
+            <text x="160" y="140" fill="#F44336" font-weight="bold">c</text>
+            <path d="M50,250 L80,250 L80,220 Z" fill="none" stroke="#673AB7" stroke-width="2"/>
+        </svg>
+        <div class="formula">
+            <p>The Pythagorean theorem states that in a right triangle:</p>
+            \[a^2 + b^2 = c^2\]
+            <p>Where:</p>
+            <ul>
+                <li>\(a\) and \(b\) are the lengths of the two legs (the sides adjacent to the right angle)</li>
+                <li>\(c\) is the length of the hypotenuse (the longest side, opposite to the right angle)</li>
+            </ul>
+        </div>
+        <div class="explanation">
+            <h2>Example:</h2>
+            <p>If we have a right triangle with:</p>
+            <ul>
+                <li>leg \(a = 3\) units</li>
+                <li>leg \(b = 4\) units</li>
+            </ul>
+            <p>Then the hypotenuse \(c\) can be calculated as:</p>
+            \[c^2 = 3^2 + 4^2 = 9 + 16 = 25\]
+            \[c = \sqrt{25} = 5\text{ units}\]
+        </div>
+    </div>
+</body>
+</html>
