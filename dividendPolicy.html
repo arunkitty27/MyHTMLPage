@@ -198,5 +198,16 @@
         }
     });
 </script>
+    <script>
+  function sendHeight() {
+    const height = document.body.scrollHeight; // Get content height
+    window.parent.postMessage({ iframeHeight: height }, "*");
+  }
+
+  // Call the function on page load and on resize
+  window.onload = sendHeight;
+  window.onresize = sendHeight;
+</script>
+
 </body>
 </html>
