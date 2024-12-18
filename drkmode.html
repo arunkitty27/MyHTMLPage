@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Toggle</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s, color 0.5s;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 50px 20px 0;
+            box-sizing: border-box;
+            z-index: 1000;
+            gap: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            transition: all 0.5s;
+        }
+
+        .navbar.scrolled {
+            height: 80px;
+            padding: 20px;
+        }
+
+        .quote {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.8rem;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .navbar.scrolled .quote {
+            opacity: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .quote {
+                display: none;
+            }
+            
+            .content-block {
+                flex-direction: column;
+            }
+            
+            .right-block {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .content-block {
+            display: flex;
+            margin-top: 370px;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .content-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-block:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .dark-mode .content-block:nth-child(even) {
+            background-color: #2d2d2d;
+        }
+
+        .content-block:last-of-type {
+            margin-top: 20px;
+        }
+
+        .left-block {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            height: 400px;
+            width: 500px;
+        }
+
+        .right-block {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            height: 400px;
+            width: 500px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .right-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .side-quote {
+            font-size: 3.6rem;
+            text-align: center;
+            font-weight: 500;
+            color: #333;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .side-quote:hover {
+            transform: scale(1.02);
+        }
+
+        .dark-mode .side-quote {
+            background: linear-gradient(45deg, #4ECDC4, #45B7D1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .right-block img {
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .dark-mode .navbar {
+            background: linear-gradient(135deg, #2C3E50, #3498DB, #2980B9);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+
+        .toggle-container {
+            position: relative;
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(45deg, #4a90e2, #ffffff);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dark-mode .toggle-container {
+            background: linear-gradient(45deg, #2c5282, #1a1a1a);
+        }
+
+        .toggle-circle {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 34px;
+            height: 34px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dark-mode .toggle-circle {
+            left: 43px;
+            background-color: #1a1a1a;
+        }
+
+        .sun {
+            font-size: 24px;
+            opacity: 1;
+            transition: 0.3s;
+            animation: glitter 2s infinite;
+            color: #4a90e2;
+        }
+
+        .moon {
+            font-size: 24px;
+            opacity: 0;
+            position: absolute;
+            transition: 0.3s;
+            color: #fff;
+        }
+
+        .dark-mode .sun {
+            opacity: 0;
+        }
+
+        .dark-mode .moon {
+            opacity: 1;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .dark-mode .stars {
+            opacity: 1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            animation: twinkle 1s infinite;
+        }
+
+        .interesting-block {
+            margin-top: 20px;
+            padding: 40px 20px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            background-color: #e9ecef;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .interesting-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dark-mode .interesting-block {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            background-color: #232323;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dark-mode .card {
+            background: #2d3436;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            color: #4ECDC4;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .dark-mode .card-title {
+            color: #fff;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .dark-mode .card-description {
+            color: #aaa;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes glitter {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(100%);
+            }
+            50% { 
+                transform: scale(1.2);
+                filter: brightness(150%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="quote">"Embrace the power of light and dark"</div>
+        <div class="toggle-container" id="darkModeToggle">
+            <div class="toggle-circle">
+                <span class="sun material-icons">light_mode</span>
+                <span class="moon material-icons">dark_mode</span>
+            </div>
+            <div class="stars"></div>
+        </div>
+    </nav>
+
+    <div class="content-block">
+        <div class="left-block">
+            <div class="side-quote">"In the dance of light and shadow, we find our true selves."</div>
+        </div>
+        <div class="right-block">
+            <img src="https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg" alt="Learning Illustration">
+        </div>
+    </div>
+
+    <div class="interesting-block">
+        <div class="cards-container">
+            <div class="card">
+                <span class="card-icon material-icons">psychology</span>
+                <h3 class="card-title">Interactive Learning</h3>
+                <p class="card-description">Engage with dynamic content that adapts to your learning style and pace.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon material-icons">timeline</span>
+                <h3 class="card-title">Progress Tracking</h3>
+                <p class="card-description">Monitor your learning journey with detailed analytics and insights.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon material-icons">group</span>
+                <h3 class="card-title">Community Support</h3>
+                <p class="card-description">Connect with fellow learners and share experiences in our vibrant community.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block" style="margin-top: 20px;">
+        <div class="right-block" >
+            <img src="https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149334862.jpg" alt="Scholar with Books Illustration">
+        </div>        <div class="left-block">
+            <div class="side-quote">"In the dance of light and shadow, we find our true selves."</div>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const starsContainer = document.querySelector('.stars');
+        const navbar = document.querySelector('.navbar');
+
+        // Create stars
+        for (let i = 0; i < 20; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 1 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe all content blocks and interesting blocks
+        document.querySelectorAll('.content-block, .interesting-block').forEach(block => {
+            observer.observe(block);
+        });
+    </script>
