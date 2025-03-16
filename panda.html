@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Hanging on Rope</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .rope-container {
+            position: absolute;
+            right: 50px;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: swing-rope 3s ease-in-out infinite alternate;
+        }
+        .rope {
+            width: 5px;
+            height: 80vh;
+            background-color: #8B4513;
+        }
+        .panda {
+            width: 100px;
+            height: 100px;
+            transform-origin: top center;
+            animation: swing 2s ease-in-out infinite alternate;
+        }
+        @keyframes swing {
+            0% { transform: rotate(15deg); }
+            100% { transform: rotate(-15deg); }
+        }
+        @keyframes swing-rope {
+            0% { transform: rotate(5deg); }
+            100% { transform: rotate(-5deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="rope-container">
+        <div class="rope"></div>
+        <img src="https://static.vecteezy.com/system/resources/previews/020/955/957/non_2x/cute-panda-panda-illustration-animal-cute-animal-animal-illustration-png.png" alt="Panda" class="panda">
+    </div>
+</body>
+</html>
