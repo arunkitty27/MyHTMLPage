@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi Kozhuk Mozhuk! 🥰</title>
+    
+    <!-- Google Fonts: Fredoka for rounded cuteness -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ffe5ec 0%, #ffebf0 35%, #fff0f5 70%, #e8dbfc 100%);
+            --card-bg: rgba(255, 255, 255, 0.55);
+            --card-border: rgba(255, 255, 255, 0.7);
+            --dark-pink: #c9184a;
+            --font-main: 'Fredoka', sans-serif;
+            --text-color: #5e3b4d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        /* Ambient floating backgrounds */
+        .decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 182, 193, 0.4) 60%, rgba(255, 105, 180, 0.1) 100%);
+            border-radius: 50%;
+            box-shadow: inset -5px -5px 12px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(255, 105, 180, 0.1);
+            animation: float-up var(--duration, 12s) ease-in-out infinite;
+            bottom: -100px;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.6;
+            filter: blur(4px);
+            animation: float-horizontal var(--duration, 20s) linear infinite;
+            pointer-events: none;
+        }
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        .cloud::before {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            left: 15px;
+        }
+        .cloud::after {
+            width: 66px;
+            height: 66px;
+            top: -30px;
+            right: 15px;
+        }
+
+        /* Glass container card */
+        .main-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid var(--card-border);
+            border-radius: 40px;
+            /* Fluid padding using clamp */
+            padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2rem);
+            /* Fluid width */
+            width: 90vw;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 
+                0 30px 60px rgba(255, 143, 171, 0.18),
+                inset 0 4px 20px rgba(255, 255, 255, 0.6);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Custom title styling with bouncing letters */
+        .title-container {
+            margin-bottom: clamp(1rem, 4vw, 2rem);
+            width: 100%;
+        }
+
+        .bouncy-title {
+            /* Fluid font size for mobile responsiveness */
+            font-size: clamp(2.2rem, 10vw, 3.2rem);
+            font-weight: 700;
+            color: var(--dark-pink);
+            display: block;
+            text-shadow: 0 4px 10px rgba(201, 24, 74, 0.15);
+            text-align: center;
+        }
+
+        .bouncy-title .word {
+            display: inline-block;
+            white-space: nowrap;
+            margin: 0 0.2rem;
+        }
+
+        .bouncy-title span.char {
+            display: inline-block;
+            animation: bounce-text 1.6s ease-in-out infinite;
+            animation-delay: calc(0.08s * var(--i));
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .bouncy-title span.char:hover {
+            color: #ff4d6d;
+            transform: scale(1.3) rotate(10deg) !important;
+            animation-play-state: paused;
+        }
+
+        /* SVG character section */
+        .character-stage {
+            position: relative;
+            /* Fluid stage size */
+            width: clamp(220px, 65vw, 280px);
+            height: clamp(220px, 65vw, 280px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .character-stage::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            /* Fluid shadow width */
+            width: clamp(130px, 40vw, 170px);
+            height: 18px;
+            background: rgba(255, 143, 171, 0.35);
+            border-radius: 50%;
+            filter: blur(4px);
+            z-index: 1;
+            /* Jump shadow synchronization */
+            animation: shadow-jump 2s infinite;
+        }
+
+        #cute-mochi {
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            transform-origin: bottom center;
+            /* Doll pumping and jumping animation */
+            animation: pump-jump 2s infinite;
+        }
+
+        /* SVG Inner elements transitions & absolute origins */
+        #eye-l {
+            transform-origin: 115px 155px;
+            transition: transform 0.15s ease-out;
+        }
+        #eye-r {
+            transform-origin: 185px 155px;
+            transition: transform 0.15s ease-out;
+        }
+        .eye.blink {
+            transform: scaleY(0.05) !important;
+        }
+        
+        .eye ellipse {
+            transition: transform 0.1s ease-out;
+        }
+
+        .leaf {
+            transform-origin: 130px 48px;
+            animation: leaf-sway 4s ease-in-out infinite;
+        }
+
+        /* --- Keyframes --- */
+        @keyframes float-up {
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes float-horizontal {
+            0% { transform: translateX(-150px); }
+            100% { transform: translateX(110vw); }
+        }
+
+        @keyframes bounce-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes leaf-sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        /* Pumping and Jumping Animation */
+        @keyframes pump-jump {
+            0%, 100% {
+                transform: scale(1, 1) translateY(0);
+                animation-timing-function: ease-out;
+            }
+            15% {
+                /* Pump down (squish heavily to prepare for jump) */
+                transform: scale(1.2, 0.8) translateY(15px);
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            45% {
+                /* Max height of the jump (stretch upwards) */
+                transform: scale(0.9, 1.15) translateY(-50px);
+                animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+            }
+            70% {
+                /* Landing impact squish */
+                transform: scale(1.25, 0.75) translateY(15px);
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            85% {
+                /* Small rebound pop */
+                transform: scale(0.95, 1.05) translateY(-8px);
+                animation-timing-function: ease-in;
+            }
+        }
+
+        /* Shadow scales and fades matching the jump */
+        @keyframes shadow-jump {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+                animation-timing-function: ease-out;
+            }
+            15% { /* Pump down */
+                transform: scale(1.2);
+                opacity: 0.55;
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            45% { /* Max height */
+                transform: scale(0.5);
+                opacity: 0.1;
+                animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+            }
+            70% { /* Landing impact */
+                transform: scale(1.3);
+                opacity: 0.6;
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            85% { /* Rebound */
+                transform: scale(0.9);
+                opacity: 0.3;
+                animation-timing-function: ease-in;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient background decorations -->
+    <div class="decorations" id="bg-decorations"></div>
+
+    <!-- Glassmorphic Content Card -->
+    <main class="main-card">
+        <header class="title-container">
+            <h1 class="bouncy-title" id="title">
+                <span class="word">
+                    <span class="char" style="--i:1">h</span>
+                    <span class="char" style="--i:2">i</span>
+                </span>
+                <span class="word">
+                    <span class="char" style="--i:3">k</span>
+                    <span class="char" style="--i:4">o</span>
+                    <span class="char" style="--i:5">z</span>
+                    <span class="char" style="--i:6">h</span>
+                    <span class="char" style="--i:7">u</span>
+                    <span class="char" style="--i:8">k</span>
+                </span>
+                <span class="word">
+                    <span class="char" style="--i:9">m</span>
+                    <span class="char" style="--i:10">o</span>
+                    <span class="char" style="--i:11">z</span>
+                    <span class="char" style="--i:12">h</span>
+                    <span class="char" style="--i:13">u</span>
+                    <span class="char" style="--i:14">k</span>
+                </span>
+            </h1>
+        </header>
+
+        <!-- Interactive SVG dumpling stage -->
+        <div class="character-stage" id="mochi-stage">
+            <svg id="cute-mochi" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Leaf on top of the head -->
+                <g class="leaf">
+                    <path d="M 148,46 C 148,46 160,20 180,25 C 180,25 180,48 152,50" fill="#4ade80" stroke="#166534" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M 152,50 C 152,50 142,30 148,22 C 148,22 135,35 148,46" fill="#22c55e" stroke="#166534" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="148" y1="46" x2="168" y2="33" stroke="#166534" stroke-width="3" stroke-linecap="round"/>
+                </g>
+                
+                <!-- Little stalk connection -->
+                <path d="M 148,45 Q 150,56 150,60" fill="none" stroke="#854d0e" stroke-width="6" stroke-linecap="round"/>
+
+                <!-- Cute little feet -->
+                <g id="feet">
+                    <!-- Left foot -->
+                    <ellipse cx="105" cy="245" rx="22" ry="14" fill="#ffb7b2" stroke="#e07a5f" stroke-width="6" />
+                    <!-- Right foot -->
+                    <ellipse cx="195" cy="245" rx="22" ry="14" fill="#ffb7b2" stroke="#e07a5f" stroke-width="6" />
+                </g>
+
+                <!-- Chubby dumpling body -->
+                <path id="body-path" d="M 150,60 
+                         C 195,60 255,100 260,165 
+                         C 265,220 225,250 150,250 
+                         C 75,250 35,220 40,165 
+                         C 45,100 105,60 150,60 Z" 
+                      fill="#FFFbf0" stroke="#fbcfe8" stroke-width="8" stroke-linejoin="round" />
+                
+                <!-- Highlight/Shade on the tummy for depth -->
+                <path d="M 60,180 C 70,225 110,242 150,242 C 190,242 230,225 240,180 C 235,232 190,246 150,246 C 110,246 65,232 60,180 Z" fill="#fbcfe8" opacity="0.3" />
+
+                <!-- Cute rosy cheeks/blush -->
+                <g class="blush" id="blushes">
+                    <ellipse cx="85" cy="180" rx="16" ry="10" fill="#fecdd3" opacity="0.9" />
+                    <ellipse cx="215" cy="180" rx="16" ry="10" fill="#fecdd3" opacity="0.9" />
+                </g>
+
+                <!-- Animatable eyes -->
+                <g id="eyes">
+                    <!-- Left Eye Group -->
+                    <g class="eye" id="eye-l">
+                        <ellipse cx="115" cy="155" rx="11" ry="13" fill="#475569" id="left-eyeball" />
+                        <!-- Shiny reflections -->
+                        <circle cx="112" cy="151" r="4" fill="white" />
+                        <circle cx="118" cy="158" r="2" fill="white" />
+                    </g>
+                    <!-- Right Eye Group -->
+                    <g class="eye" id="eye-r">
+                        <ellipse cx="185" cy="155" rx="11" ry="13" fill="#475569" id="right-eyeball" />
+                        <!-- Shiny reflections -->
+                        <circle cx="182" cy="151" r="4" fill="white" />
+                        <circle cx="188" cy="158" r="2" fill="white" />
+                    </g>
+                </g>
+
+                <!-- Animatable mouth (Default cute curve) -->
+                <path id="mouth" d="M 142,174 Q 150,182 158,174" fill="none" stroke="#475569" stroke-width="5" stroke-linecap="round" />
+
+                <!-- Tiny cute hands -->
+                <g id="hands">
+                    <path class="hand" id="hand-l" d="M 56,180 C 42,185 40,200 52,202 C 62,203 68,192 68,185" fill="#FFFbf0" stroke="#fbcfe8" stroke-width="5" stroke-linecap="round" />
+                    <path class="hand" id="hand-r" d="M 244,180 C 258,185 260,200 248,202 C 238,203 232,192 232,185" fill="#FFFbf0" stroke="#fbcfe8" stroke-width="5" stroke-linecap="round" />
+                </g>
+            </svg>
+        </div>
+    </main>
+
+    <script>
+        // --- Background Decor Maker ---
+        const bgContainer = document.getElementById('bg-decorations');
+        const numBubbles = 14;
+        const numClouds = 4;
+
+        for (let i = 0; i < numBubbles; i++) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            const size = Math.random() * 45 + 15;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 8}s`;
+            bubble.style.duration = `${Math.random() * 10 + 8}s`;
+            bubble.style.opacity = (Math.random() * 0.4 + 0.1).toFixed(2);
+            bgContainer.appendChild(bubble);
+        }
+
+        for (let i = 0; i < numClouds; i++) {
+            const cloud = document.createElement('div');
+            cloud.classList.add('cloud');
+            const width = Math.random() * 100 + 100;
+            cloud.style.width = `${width}px`;
+            cloud.style.height = `${width * 0.35}px`;
+            cloud.style.top = `${Math.random() * 60 + 5}%`;
+            cloud.style.animationDelay = `${Math.random() * -20}s`;
+            cloud.style.duration = `${Math.random() * 25 + 20}s`;
+            bgContainer.appendChild(cloud);
+        }
+
+        // --- DOM Elements & Character states ---
+        const mochiStage = document.getElementById('mochi-stage');
+        const eyeL = document.getElementById('eye-l');
+        const eyeR = document.getElementById('eye-r');
+        const leftEyeball = document.getElementById('left-eyeball');
+        const rightEyeball = document.getElementById('right-eyeball');
+
+        const eyeballOffsetMax = 3; 
+
+        // --- Mouse Tracking Eyes ---
+        document.addEventListener('mousemove', (e) => {
+            if (!leftEyeball || !rightEyeball) return;
+
+            const stageRect = mochiStage.getBoundingClientRect();
+            // Using stage coordinates directly instead of center to feel more natural while jumping
+            const characterCenterX = stageRect.left + stageRect.width / 2;
+            const characterCenterY = stageRect.top + stageRect.height / 2;
+
+            const angle = Math.atan2(e.clientY - characterCenterY, e.clientX - characterCenterX);
+            const dist = Math.min(eyeballOffsetMax, Math.hypot(e.clientX - characterCenterX, e.clientY - characterCenterY) / 100);
+
+            const moveX = Math.cos(angle) * dist;
+            const moveY = Math.sin(angle) * dist;
+
+            leftEyeball.setAttribute('transform', `translate(${moveX}, ${moveY})`);
+            rightEyeball.setAttribute('transform', `translate(${moveX}, ${moveY})`);
+        });
+
+        // Auto Blink cycle using non-destructive CSS class toggle
+        setInterval(() => {
+            eyeL.classList.add('blink');
+            eyeR.classList.add('blink');
+            
+            setTimeout(() => {
+                eyeL.classList.remove('blink');
+                eyeR.classList.remove('blink');
+            }, 150);
+        }, 4000);
+
+    </script>
+</body>
+</html>
