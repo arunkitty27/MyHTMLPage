@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LawWorld Spark Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .08)
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1d3557
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 18px 0 6px
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: #1d4ed8;
+      color: #fff;
+      cursor: pointer
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 10px;
+      box-sizing: border-box
+    }
+
+    .footer {
+      text-align: right;
+      margin-top: 20px
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>LawWorld Spark Automation Test</h2>
+
+    <label>Judgment ID</label>
+    <div id="jid"></div>
+
+    <label>Judgment Text</label>
+    <button onclick="copyJudgment()">Copy Judgment Text</button>
+
+    <label>Paste Generated Headnote JSON</label>
+    <textarea id="headnote" placeholder='Paste Headnote JSON here'></textarea>
+
+    <label>Paste Generated Commentary JSON</label>
+    <textarea id="commentary" placeholder='Paste Commentary JSON here'></textarea>
+
+    <label>Paste Generated Case Information JSON</label>
+    <textarea id="caseinfo" placeholder='Paste Case Information JSON here'></textarea>
+
+    <label>Paste Generated Citations JSON</label>
+    <textarea id="citations" placeholder='Paste Citations JSON here'></textarea>
+
+    <div class="footer">
+      <button onclick="submitNext()">Submit & Next</button>
+    </div>
+  </div>
+
+  <script>
+    const judgments = [
+      {
+        id: "LAWWORLD 2024 KAR 0614", text: `IN THE HIGH COURT OF KARNATAKA AT BENGALURU
+DATED THIS THE 4TH DAY OF JUNE, 2024
+BEFORE
+THE HON'BLE MR JUSTICE M.NAGAPRASANNA
+CRIMINAL PETITION NO. 1995 OF 2022
+BETWEEN:
+ALLA BAKSHA PATEL @ A B PATEL
+S/O LATE IMAM HUSSAIN
+AGED ABOUT 38 YEARS,
+R/AT NO. 2058/1, C/O. LATHA HOUSE,
+MANJUNATHA NILAYA, KSRTC DEPO ROAD,
+NEAR GURUKUL SCHOOL,
+CHITRADURGA TOWN AND DISTRICT - 515 281.
+...PETITIONER
+
+(BY SRI. TEJAS N., ADVOCATE)
+
+AND:
+1. STATE OF KARNATAKA
+BY UPPARPET POLICE
+BANGALORE - 560 053.
+
+(REPRESENTED BY LEARNED
+STATE PUBLIC PROSECUTOR HCK,
+BANGALORE-01)
+
+2. SMT. HASEENA BI
+W/O DADAPEER,
+AGED 32 YEARS
+R/AT: BHARAMANNA NAYAKANADURGA
+(B DURGA) VILLAGE
+HOLALKERE TALUK
+CHITRADURGA - 577 518.
+...RESPONDENTS
+
+(BY SRI. B. N. JAGADEESH, ADDL. SPP FOR R1;SRI. R GOPALA KRISHNAN, ADVOCATE FOR R2)
+
+THIS CRL.P FILED U/S.482 CR.P.C PRAYING TO QUASH THE PROCEEDINGS IN C.C.NO.16321/2020, WHCIH IS PENDING ON THE FILE OF V ADDITIONAL CHIEF METROPOLITAN MAGISTRATE COURT, BENGALURU AS AN ABUSE OF PROCESS OF LAW, WHICH IS ARISING OUT OF CRIME NO. 60/2020 OF UPPARPET POLICE STATION, BANGALORE FOR THE OFFENCES PUNISHBALE U/S 501, 504, 507 AND 509 OF IPC.
+
+THIS PETITION, COMING ON FOR ADMISSON, THIS DAY, THE COURT MADE THE FOLLOWING:
+
+ORDER
+The petitioner/accused No.1 is before this Court calling in question proceedings in C.C.No.16321 of 2020, arising out of a crime in Crime No.60 of 2020 pending before the V Additional Chief Metropolitan Magistrate Court, Bengaluru, for the offences under Sections 501, 504, 507 and 509 of IPC.
+
+2. Facts, adumbrated, are as follows:-
+
+A complaint comes to be registered on 19-03-2020 by the 2nd respondent/complainant, a married woman alleging that she was working as a Junior Health Assistant at a Primary Health Centre, Muttugaduru Village, Holalkere Taluk, Chitradurga District and while discharging her duty had given her mobile number to the officers at the Centre. She began getting unexpected calls at odd hours from various numbers who also threatened to her life. When she made enquires about the phone calls received, it is informed that her mobile number was displayed on the walls of gents toilet at Majestic bus stand, Bangalore calling her “a call girl”. The complaint further alleged that some staff known to her and being with her had done this and sought investigation to be conducted through a complaint. The crime comes to be registered by CEN Crime Police Station in Crime No.60 of 2020.
+
+3. The Police conduct investigation and file a charge sheet against the petitioner and another for offences punishable under Sections 501, 504, 507 and 509 of the IPC. The filing of the charge sheet drives the petitioner to this Court in the subject petition. This Court in terms of its order dated 09.03.2022 grants an interim order of stay on the score that the offences registered at the time of registration of crime were the ones punishable under Sections 504 and 506 of the IPC, both of which were non-cognizable offences and for non-cognizable offences permission of the learned Magistrate to register the FIR was imperative and such permission was granted in the case at hand by the word "permitted". Therefore, all further proceedings were interdicted and the said interim order is in subsistence even to-day and no further trial has taken place against the petitioner.
+
+4. Heard Sri Tejas N., learned counsel appearing for the petitioner, Sri B.N. Jagadeesh, learned Additional Special Public Prosecutor appearing for respondent No.1 and Sri R. Gopala Krishnan, learned counsel appearing for respondent No.2 / complainant.
+
+5. The learned counsel appearing for the petitioner would vehemently contend that what was registered as a crime in Crime No.60 of 2020 was for offences punishable under Sections 504 and 506 of the IPC. They are admittedly non-cognizable offences. Therefore, the learned Magistrate ought to have applied his mind prior to grant of any permission to register the FIR. He would submit that the lis stands covered by plethora of judgments rendered by this Court with particular reference to the decision reported in VAGGEPPA GURULINGA JANGALIGI v. STATE OF KARNATAKA reported in ILR 2020 Kar 630. On the merit of the matter, the learned counsel would submit that there is no independent evidence against the petitioner. CW-5 at the time of investigation reveals the name of the petitioner. The allegation against the petitioner is that, he was asked to write on the walls of a toilet for men at the Majestic Bus stand, Bangalore, that the complainant was a 'call girl'. It is only that has led the petitioner into these proceedings. He would submit that voluntary statement of another cannot be taken as evidence to pin down the petitioner. He would seek quashment of the entire proceedings.
+
+6. Per contra, the learned counsel representing the complainant submits that the complainant was not aware of what offences should be alleged when she registers the complaint. It was the duty of the Station House Officer or the Officer in-charge of the Police Station to have registered appropriate crime looking at the facts of the complaint as the complainant had produced all the necessary material to the Police Superintendent at Chitradurga District. It is the petitioner who has written on the walls at the Majestic Bus Stop, Bangalore taking the name of the complainant as a 'call girl' due to which, the complainant started getting innumerable calls from all quarters and, therefore, it was a clear case where it was an offence punishable under Section 509 of the IPC. Section 509 of the IPC being a cognizable offence whether the Magistrate has granted appropriate permission or not would not become relevant in the case at hand. He takes this Court through the application seeking vacation of the interim order and the documents appended thereto to demonstrate that about 20 pages of call records were taken prior to registration of crime. They were all put in a compact disc and given to the Station House Officer. All these led to the crime committed by the petitioner. He would submit that Section 509 of the IPC completely gets attracted in the case at hand and the interim order has caused grave prejudice to the victim. He would seek dismissal of the petition.
+
+7. The learned Additional Special Public Prosecutor, Sri B.N.Jagadeesh, representing the State would also vehemently contend that while filing the charge sheet complete documents are collected, which clearly pin down the petitioner to be guilty of writing on the walls, as observed hereinabove. Therefore, it is his submission, that it is a matter of trial for the petitioner to come out clean.
+
+8. I have given my anxious consideration to the submissions made by the respective learned counsel and have perused the material on record.
+
+9. The afore-narrated facts are a matter of record. The genesis of the issue appears to be at a Primary Health Centre in Chitradurga District. CW-5, Smt. Shilpa, the complainant and another Smt. Kamalamma were all colleagues working in the Primary Health Centre. It is the case of the complainant that she began to get frantic calls at odd hours asking questions that were inappropriate and also hurling threats to her life. The complainant then collects the root of the problem and seeks to register a crime before the Police Superintendent, Chitradurga Town, Chitradurga District. The compliant so registered before the jurisdictional Police Station at Chitradurga, which reads as follows:
+
+“ …              …                  …
+
+5. ಸಂದರ್ಶನದ ಉದ್ದೇಶ:- ದಿನಾಂಕ:05.02.2020 ರಂದು ಮದ್ಯಾಹ್ನ
+2.30 ಗಂಟೆಯ ಸಮಯದಲ್ಲಿ ಪಿರ್ಯಾದಿ ಠಾಣೆಗೆ ಹಾಜರಾಗಿ ನೀಡಿದ ದೂರನ್ನು ಸ್ವೀಕರಿಸಿ ನೋಡಲಾಗಿ ಹೊಳಲ್ಕೆರೆ ತಾಲ್ಲೂಕಿನ ಮುಉತ್ತುಗದೂರು ಗ್ರಾಮದಲ್ಲಿನ ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಹಿರಿಯ ಮತ್ತು ಕಿರಿಯ ಸಹಾಯಕಿಯರಾಗಿ ಕೆಲಸ ಮಾಡಿಕೊಂಡಿದ್ದು, ಇವರಿಗೆ : 1) 8277508992 & 2) 9886614868 2 ನಂಬರ್‌ಗಳನ್ನು ನೀಡಿದ್ದು, ನಂತರ ಆ ನಂಬರ್‌ಗಳಿಗೆ ಕರೆ ಮಾಡಿ ವಿಚಾರ ಮಾಡಿದಾಗ ಮೆಜೆಸ್ಟಿಕ್ ಬಸ್ ನಿಲ್ದಾಣದ ಶೌಚಾಲಯದಲ್ಲಿ ಯಾರೋ ಅಪರಿಚಿತರು ಬರೆದಿರುತ್ತಾರೆ. ಇದರಿಂದ ಪಿರ್ಯಾದುದಾರರ ಮೇಲ್ಕಂಡ ನಂಬರ್‌ಗಳಿಗೆ ಇದುವರೆಗೂ ಕೂಡ ಗೊತ್ತಿಲ್ಲದ ನಂಬರ್‌ಗಳಿಂದ ಕರೆ ಮಾಡಿ ಕೆಟ್ಟದಾಗಿ ಮಾತನಾಡುತ್ತಿದ್ದಾರೆ. ಎಂತಾ ತಿಳಿಸಿದ ಮೇರೆಗೆ ಇದನ್ನು ಗಮನಿಸಿದರೆ ಮುತ್ತುಗದೂರು ಗ್ರಾಮದಲ್ಲಿರುವ ತಮ್ಮ ಕಛೇರಿಯಲ್ಲಿ ಕೆಲಸ ಮಾಡುವ ಸಿಂಬಂಧಿಗಳ ಮೇಲೆ ಅನುಮಾನವಿದ್ದು, ಇವರಾಗಲಿ ಅಥವಾ ಬೇರೆ ಅಪರಿಚಿತರನ್ನು ಸಂಬಂಧಪಟ್ಟವರನ್ನು ಪತ್ತೆ ಮಾಡಬೇಕೆಂದು ನೀಡಿದ ದೂರಿನ ಮೇರೆಗೆ ಠಾಣಾ ಡಿ.ಪಿ ನಂ:-02/2020 ರಲ್ಲಿ ನೋಂದಾಯಿಸಿರುತ್ತೆ."
+
+The jurisdictional police at Chitradurga registers a crime in Crime No.22/2020, for the offences punishable under Sections 504 and 506 of the IPC after obtaining the permission from the learned Magistrate of the jurisdiction. On noticing the fact that the narration in the complaint is with regard to the writing on the wall of toilet for men in the Majestic Bus Stop, Bangalore. The case is transferred to Upparpet Police Station, Bangalore, by a requisition from the jurisdictional police at Chitradurga. The requisition reads as follows:
+
+“ಇವರಿಗೆ,
+ಮಾನ್ಯ ಪೊಲೀಸ್ ಅಧಿಕಾರಿ,
+ಚಿತ್ರದುರ್ಗ ಜಿಲ್ಲೆ,
+ಚಿತ್ರದುರ್ಗ.
+
+ಮಾನ್ಯರೆ,
+
+    ವಿಷಯ:- ಸದರಿ ಪ್ರಕರಣವನ್ನು ಕೃತ್ಯ ನಡೆದ ಸ್ಥಳದ ಆಧಾರದ ಮೇರೆಗೆ ಬೆಂಗಳೂರು ಉಪ್ಪಾರಪೇಟೆ ಪೊಲೀಸ್ ಠಾಣೆಗೆ ವರ್ಗಾವಣೆ ನೀಡಲು ಅನುಮತಿ ನೀಡುವ ಬಗ್ಗೆ.
+
+ಉಲ್ಲೇಖ: ಚಿತ್ರದುರ್ಗ ಸಿಇಎನ್ ಅಪರಾಧ ಪೊಲೀಸ್ ಠಾಣೆಯ ಮೊ.ನಂ:-22/2020 - 504, 506 ಐಪಿಸಿ.
+
+****
+
+ಮೇಲ್ಕಂಡ ವಿಷಯ ಹಾಗೂ ಉಲೆಖ್ಯಕೆ ಸಂಬಂಧಿಸಿದಂತೆ ತಮ್ಮಲಿ ನಿವೇದಿಸಿಕೊಳ್ಳುವುದೇನೆಂದರೆ, ದಿನಾಂಕ:-19.03.2020 ರಂದು 07.30 PM ಗಂಟೆಗೆ ಪಿರ್ಯಾದಿ ಠಾಣೆಗೆ ಹಾಜರಾಗಿ ನೀಡಿದ ದೂರಿನ ಸಾರಾಂಶವೇನೆಂದರೆ, ಪಿರ್ಯಾದಿಯವರು ಹೊಳಲ್ಕೆರೆ ತಾಲ್ಲೂಕು ಮುತ್ತಗದೂರು ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಕಿರಿಯ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸುವ ಸಲುವಾಗಿ ಮೊ.ನಂಬರ್:- 9886614868ನ್ನು ನೀಡಿದ್ದು ಹಾಗೂ ಹಿರಿಯ ಮಹಿಳಾ ಸಹ ಸಿಬ್ಬಂದಿಯವರ ಮೊಬೈಲ್ ನಂಬರ್:- 8277508992 ನೇ ನಂಬ‌ರ್ ಗಳಿಗೆ ವಿವಿಧ ಅನಾಮಧೇಯ ನಂಬ‌ರ್ ಗಳಿಂದ ಕರೆ ಮಾಡಿ ಅವಾಚ್ಯ ಶಬ್ದಗಳಿಂದ ಬೈದು ನೀನು ನನಗೆ ಗೊತು ನೀನು ಬರದಿದ್ದರೆ ಸಿಕ್ಕಾಗ ಪ್ರಾಣ ತೆಗೆಯುತೇನೆಂತಾ ಪ್ರಾಣ ಬೆದರಿಕೆ ಹಾಕಿರುತ್ತಾರೆ. ನಮಗೆ ಫೋನ್ ಮಾಡಿದ ನಂಬರ್ ಗಳಿಗೆ ವಿಚಾರ ಮಾಡಿ ಕೇಳಲಾಗಿ ಬೆಂಗಳೂರಿನ ಮೆಜೆಸ್ಟಿಕ್ ಬಸ್ ನಿಲ್ದಾಣದಲ್ಲಿರುವ ಶೌಚಾಲಯಗಳ ಗೋಡೆಯ ಮೇಲೆ ನಿಮ್ಮಗಳ ಮೊಬೈಲ್ ನಂಬರ್ ಗಳನ್ನು ಬರೆದು ಕಾಲ್ ಗರ್ಲ್ಸ್ ಎಂತಾ ಬರೆದಿರುತ್ತದೆ ಎಂತಾ ತಿಳಿಸಿರುತ್ತಾರೆ. ನಮ್ಮ ಜೊತೆಯಲ್ಲಿ ಕರ್ತವ್ಯ ನಿರ್ವಹಿಸುತ್ತಿರುವ ಯಾರೋ ಸಿಬ್ಬಂದಿಗಳು ನಮಗೆ ತೊಂದರೆ ಕೊಡುವ ಉದ್ದೇಶದಿಂದ ರೀತಿ ಮಾಡಿರುತ್ತಾರೆ. ಆದುದರಿಂದ ಸದರಿ ಆರೋಪಿತರನ್ನು ಪತ್ತೆಮಾಡಿ ಕಾನೂನು ಕ್ರಮ ಜರುಗಿಸಿ ಎಂತಾ ಇದ್ದ ಮೇರೆಗೆ ಉಲ್ಲೇಖದಲ್ಲಿ ಕಂಡಂತೆ ಕೇಸು ದಾಖಲಿಸಿ ತನಿಖೆ ಕೈಗೊಂಡಿರುತ್ತದೆ.
+
+ಸದರಿ ಪ್ರಕರಣದಲ್ಲಿ ಕೃತ್ಯ ನಡೆದ ಸ್ಥಳವು ಬೆಂಗಳೂರು ನಗರದ ಮೆಜೆಸ್ಟಿಕ್ ನಲ್ಲಿರುವ ಶೌಚಾಲಯದ ಬಳಿ ಆಗಿರುವುದರಿಂದ ಸದರಿ ಕೇಸಿನ ಕಡತವನ್ನು ಮುಂದಿನ ತನಿಖೆಯ ಬಗ್ಗೆ ಬೆಂಗಳೂರು ಉಪ್ಪಾರಪೇಟೆ ಪೊಲೀಸ್ ಠಾಣೆಗೆ ವರ್ಗಾವಣೆ ನೀಡಲು ಆದೇಶವಾಗಲು ಕೋರಿಕೊಂಡಿರುತ್ತೇನೆ.
+​
+ಲಗತ್ತುಗಳು:- 1. ಗು.ನಂ.22/2020 ರ ಪ್ರ.ವ.ವರದಿ ನಕಲು
+  2. ಪ್ರ.ವ.ವರದಿ ದಾಖಲು ಮಾಡಲು ಮಾನ್ಯ ನ್ಯಾಯಾಲಯ ದಿಂದ ಪಡೆದ ಅನುಮತಿ,
+3. ಎಲ್.ಟಿಒನ ನಂ.01/2020 ರ ಪ್ರತಿ,
+4. ಪಿಯೋಗದಿನಿ ನೊದೆದ ದೂರು ಪ್ರತಿ.
+5. ಕ್ರೈಂ ಸಂಬಂಧಿಸಿದ ಸಿಶದ ಅಧಾರದ ಪತ್ಯದ ವಗಾದನೆ ಮಾಡಿದ ಮಾನ್ಯ ನ್ಯಾಯಾಲಯದಿಂದ ಪಟ್ಟದ ಅನುಮತಿ ಪತ್ರ,
+6. ಸೀಡಿ ಭಾಗ-1, ದಿನಾಂಕ: 19.03.2020
+7. ಸೀಡಿ ಭಾಗ-2, ದಿನಾಂಕ: 21.03.2020
+8. ಸೀಡಿ ಭಾಗ-3, ದಿನಾಂಕ: 23.03.2020"
+
+It then becomes a crime here in Crime No.60 of 2020 - the subject crime, it is registered on 24-07-2020 for offences punishable under Sections 504 and 506 of the IPC. Since the crime had already been registered, no prior permission again was necessary to be taken from the hands of the learned Magistrate.
+
+10. The issue then was, who was responsible for the writing on the walls, as the crime was registered against unknown persons. The Investigating Officer conducts investigation. The investigation leads to the accused. How it led to the accused is germane to be noticed. The complainant was examined on 06-08-2020. The statement of the complainant assumes significance and it reads as follows:
+
+“ಶ್ರೀಮತಿ ಹಸೀನಾ ಬೀ ಕೋಂ ದಾದಾಫೀರ್, 33 ವರ್ಷ, ವಾಸ: ಭರಮಣ್ಣನಾಯಕನದುರ್ಗಾ ಗ್ರಾಮ ಮತ್ತು ಆಂಚೆ ಹಾಗೂ ಹೋ, ಹೊಳಲ್ಕೆರೆ ತಾಲ್ಲೂಕು, ಚಿತ್ರಮರ್ಗಾ ಜಿಲ್ಲೆ.
+​
+ಮೊ.ನಂ.9880335138
+
+ದಿನಾಂಕ:-06-08-2020.
+
+****
+
+ನಾನು ಈ ಮೇಲಿನ ವಿಳಾಸದಲ್ಲಿ ವಾಸವಿದ್ದುಕೊಂಡು, ಭರಮ್ಮಣ್ಣನಾಯಕನದುರ್ಗಾ ಗ್ರಾಮದಲ್ಲಿರುವ ಸಮುದಾಯ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಕಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಕೆಲಸ ಮಾಡಿಕೊಂಡಿರುತ್ತೇನೆ. ನಾನು ಈ ಹಿಂದೆ 9886614868 ಮೊಬೈಲ್ ನಂಬರ್ ಅನ್ನು ಉಪಯೋಗಿಸುತ್ತಿದ್ದೆನು. ಮುತ್ತುಗನೂರು ಗ್ರಾಮದಲ್ಲಿರುವ ಸಮುದಾಯ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಹಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಶ್ರೀಮತಿ. ಕಮಲಮ್ಮ ಎಂಬುವರು ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದು, ಇವರು ಈ ಹಿಂದೆ ಮೊ.ನಂ.8277508992 ಅನ್ನು ಉಪಯೋಗಿಸುತ್ತಿದ್ದು, ನಾವಿಬ್ಬರು ಸ್ನೇಹಿತೆಯರಾಗಿರುತ್ತೇವೆ. ದಿನಾಂಕ:-31-01-2020 ರಿಂದ ಈ ನಮ್ಮ 2 ನಂಬರ್‌ಗಳಿಗೆ  ​9731370916,9986368521,9844675964,8970662347,9008122359, 7892615801,8880859574,9916346709,7892615809,9980338542,7604844072,7483130572,9141151398,9986368521,7338063797,
+9482539858,8431128454,9148330149,6364676745,7975871724ಗಳಿಂದ ಹಲವಾರು ಬಾರಿ ಒಂದು ವಾರದ ಕಾಲ ಕರೆ ಬರುತ್ತಿದ್ದು, ನಾವು ಕರೆ ಸ್ವೀಕರಿಸಿದಾಗ ಅನಾಮಧೇಯ ವ್ಯಕ್ತಿಗಳು ನಮ್ಮ ಜೊತೆ ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡಿ ನೀನು ನಮ್ಮ ಜೊತೆ ಬಾ, ಬರದಿದ್ದರೆ ನಿಮ್ಮ ಪ್ರಾಣ ತೆಗೆಯುತ್ತೇನೆಂದು ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದ್ದರು. ಆ ಸಮಯದಲ್ಲಿ ನಾವು ನೀವು ಯಾರು ಎಲ್ಲಿಂದ ಮಾತನಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ಕೇಳಿದಾಗ ಅವರುಗಳು ಬೆಂಗಳೂರಿನ ಮೆಜೆಸ್ಟಿಕ್ ಬಸ್‌ ನಿಲ್ದಾಣದ ಟರ್ಮಿನಲ್ 1 ರಲ್ಲಿರುವ ಶೌಚಲಯದ ಬಳಿಯಿಂದ ಎಂದು ತಿಳಿಸಿದ್ದರು ಆ ನಂತರದ ದಿನಗಳಲ್ಲಿ ನಾನು ಮತ್ತು ಕಮಲಮ್ಮ ಇಬ್ಬರು ಮೆಜೆಸ್ಟಿಕ್ ಗೆ ಬಂದು ಕೆ.ಎಸ್.ಆರ್.ಟಿ.ಸಿ. ಬಸ್‌ ನಿಲ್ದಾಣದ ಟರ್ಮಿನಲ್-1 ರಲ್ಲಿರುವ ಸಾರ್ವಜನಿಕ ಶೌಚಾಲಯದ ಬಳಿ ಬಂದು ನೋಡಲಾಗಿ ಪುರುಷರ ಶೌಚಾಲಯದ ಕಡೆ ಇರುವ ಬಾಗಿಲು ಮತ್ತು ಗೋಡೆಯ ಮೇಲೆ ನಮ್ಮ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಬರೆದು ಜೊತೆಗೆ ಕಾಲ್‌ಗರ್ಲ್ಸ್ ಎಂದು ಬರೆದಿದ್ದುದು ಕಂಡು ಬಂದಿತ್ತು. ಆ ಸಮಯದಲ್ಲಿ ನಾವು ನಮ್ಮ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳು ಕಾಣದಂತೆ ಸ್ಮಾಚ್ ಮಾಡಿಸಿದ್ದವು. ಆ ನಂತರ ಮೇಲ್ಕಂಡ ನಂಬರ್‌ಗಳಿಂದ ಮೇಲಿಂದ ಮೇಲೆ ಕರೆ ಬರುತ್ತಿದ್ದರಿಂದ ನಾವು ನಮ್ಮ ಮೊಬೈಲ್ ಸಿಮ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಿದೆವು. ದಿನಾಂಕ:-19-03-2020 ರಂದು ಚಿತ್ರದುರ್ಗಾ ಜಿಲ್ಲೆಯ ಸಿ.ಇ.ಎನ್‌. ಅಪರಾಧ ಪೊಲೀಸ್‌ ಠಾಣೆಯಲ್ಲಿ ನಾನು ದೂರು ನೀಡಿದ್ದೆನು.
+​
+ಈ ಬಗ್ಗೆ ನನಗೆ ಹಾಗೂ ಶ್ರೀಮತಿ. ಕಮಲಮ್ಮ ಇಬ್ಬರಿಗೂ ನಮ್ಮ ಕಛೇರಿಯಲ್ಲಿ ಕೆಲಸ ಮಾಡುವ ಕಿರಿಯ ಸಹಾಯಕಿಯಾದ ಶ್ರೀಮತಿ ಶಿಲ್ಪಾ ಎಂಬಾಕೆಯ ಮೇಲೆ ಅನುಮಾನ ಬಂದು ಆಕೆಯನ್ನು ವಿಚಾರ ಮಾಡಲಾಗಿ ಆಕೆಯು ಕೆಲಸದ ಸ್ಥಳದಲ್ಲಿ ನಿಮ್ಮಿಂದ ನನಗೆ ಆಗುತ್ತಿದ್ದ ಕಿರಿಕಿರಿಯನ್ನು ತಪ್ಪಿಸಲು ನಾನು ಹಿರಿಯ ಅಧಿಕಾರಿಗಳಿಂದ ಫೋನ್ ಮಾಡಿಸು ಎಂದು ನನ್ನ ಸ್ನೇಹಿತನಾದ ಎ.ಬಿ. ಪಾಟೀಲ್ ಎಂಬುವರಿಗೆ ನಿಮ್ಮಗಳ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಕೊಟ್ಟಿದ್ದು, ಆತನೇನಾದರೂ ನಿಮ್ಮಗಳ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಶೌಚಾಲಯದ ಗೋಡೆಗಳ ಮೇಲೆ  ಬರೆದಿರುಬಹುದೆಂದು ಇದರಲ್ಲಿ ನನ್ನ ದುರುದ್ದೇಶವಿಲ್ಲ. ನಾನು ಆತನಿಗೆ ನಿಮ್ಮ ನಂಬರ್‌ಗಳನ್ನು ಕೊಟ್ಟಿದ್ದು ತಪ್ಪಾಯಿತೆಂದು ಹೇಳಿ ನಮ್ಮಗಳ ಬಳಿ ಕ್ಷಮೆ ಕೇಳಿರುತ್ತಾಳೆ.
+
+ಕೃತ್ಯ ನಡೆದ ಸ್ಥಳದ ಆಧಾರದ ಮೇಲೆ ಸಿ.ಇ.ಎನ್. ಅಪರಾಧ ಪೊಲೀಸ್ ಠಾಣೆಯವರು ಉಪ್ಪಾರಪೇಟೆ ಪೊಲೀಸ್ ಠಾಣೆಗೆ ನಮ್ಮ ದೂರಿನ ಕಡತವನ್ನು ವರ್ಗಾವಣೆ ನೀಡಿರುವ ವಿಚಾರವಾಗಿ ತನಿಖೆಗೆ ಹಾಜರಾಗುವಂತೆ ಉಪ್ಪಾರಪೇಟೆ ಪೊಲೀಸರ ದೂರವಾಣಿ, ಕರೆಯ ಮೇರೆಗೆ ಈ ದಿನ ನಾನು ಮತ್ತು ಕಮಲಮ್ಮ ಇಬ್ಬರು ಉಪ್ಪಾರಪೇಟೆ ಠಾಣೆಗೆ ಹಾಜರಾಗಿದ್ದು, ಆ ನಂತರ ಕೃತ್ಯ ನಡೆದ ಸ್ಥಳವಾದ ಕೆ.ಎಸ್.ಆರ್.ಟಿ.ಸಿ. ಟರ್ಮಿನಲ್-1 ರ ಸಾರ್ವಜನಿಕ ಶೌಚಾಲಯದ ಸ್ಥಳವನ್ನು ಪೊಲೀಸರಿಗೆ ತೋರಿಸಿದ್ದು, ಪೊಲೀಸರು ಪಂಚರ ಸಮಕ್ಷಮ ಸ್ಥಳ ಪಂಚನಾಮೆಯನ್ನು ನಡೆಸಿರುತ್ತಾರೆ. ಸದರಿ ಶೌಚಾಲಯದ ಗೋಡೆ ಮತ್ತು ಬಾಗಿಲ ಮೇಲೆ ಬರೆದಿದ್ದ ನಮ್ಮ ಮೊಬೈಲ್ ನಂಬರ್ ಳ ಮೇಲೆ ಬಣ್ಣ ಹೊಡೆದಿರುವುದು ಈ ಸಮಯದಲ್ಲಿ ಕಂಡು ಬಂದಿರುತ್ತೆ.
+
+ಆದ್ದರಿಂದ ಸದರಿ ಶಿಲ್ಪಾಳನ್ನು ಹೊರತುಪಡಿಸಿ, ನಮ್ಮ ನಂಬರ್‌ಗಳನ್ನು ಶೌಚಾಲಯದ ಗೋಡೆಗಳ ಮೇಲೆ ಬರೆದವರನ್ನು ಹಾಗೂ ಸದರಿ ನಮ್ಮಗಳ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳಿಗೆ ಸಾರ್ವಜನಿಕರು ಕರೆ ಮಾಡಿ ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡಿ ಪ್ರಾಣ ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದ್ದ ಆರೋಪಿತರನ್ನು ಪತ್ತೆ ಮಾಡಿ ಕಾನೂನು ಕ್ರಮ ಜರುಗಿಸಲು ಕೋರುತ್ತೇನೆ."
+
+The complainant narrates in detail that she had given her mobile number to Shilpa, and Shilpa had revealed that she had given the number of the complainant to one Alla Baksh Patel @ A.B. Patel, the petitioner, to do the job of writing on the walls of gents’ toilet at Majestic bus stand, Bangalore. The statement of Shilpa is recorded on 13-08-2020 as by then, Shilpa confessed and had also sought pardon for the act she has done. The statement of Shilpa reads as follows:
+
+"ಶ್ರೀಮತಿ ಶಿಲ್ಪಾ ಕೋಚಆನಂದ ಮೂರ್ತಿ ರವರ ಪುತ್ರ , 30 ವರ್ಷ, ವಾಸ: ಬರಮ್ಮನ ನಾಯಕನ ದುರ್ಗ ಗ್ರಾಮ, ಈಶ್ವರ ದೇವಸ್ಥಾನದ ಹತ್ತಿರ, ಬರಮ್ಮಣ್ಣನ ನಾಯಕನ ದುರ್ಗ ಹೋಬಳಿ, ಹೊಳಲ್ಕೆರೆ ತಾಲೂಕು, ಚಿತ್ರದುರ್ಗ ಜಿಲ್ಲೆ: ಮೊ.9148063045. 
+
+ದಿನಾಂಕ:-13-08-2020.
+
+*****
+ನಾನು ಈ ಮೇಲಿನ ವಿಳಾಸದ ಹಾಲೇಶಪ್ಪ ಎಂಬುವರ ಮನೆಯಲ್ಲಿ ಈಗ್ಗೆ ಸುಮಾರು 2 ವರ್ಷದಿಂದ ನಮ್ಮ ಯಜಮಾನರು ಹಾಗೂ ಮಕ್ಕಳಾದ 10 ವರ್ಷದ ಅರ್ಚನಾ, 7 ವರ್ಷದ ನಮಿತಾ ರವರೊಂದಿಗೆ ಬಾಡಿಗೆಗೆ ವಾಸವಿದ್ದುಕೊಂಡು, ಮುತ್ತುಗದೂರಿನ ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಕಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ 2018ನೇ ಸಾಲಿನ ನವೆಂಬರ್ ಮಾಹೆಯಿಂದ ಕೆಲಸ ಮಾಡಿಕೊಂಡಿರುತ್ತೇನೆ. ನಮ್ಮ ಯಜಮಾನರು ನಮ್‌ಮ ಊರಿನಲ್ಲಿಯೇ ಬ್ಯಾಂಗಲ್ ಸ್ಟೋರ್ ಇಟ್ಟುಕೊಂಡು ವ್ಯವಹರಿಸಿಕೊಂಡಿರುತ್ತಾರೆ. ನನ್ನ ಇಬ್ಬರು ಮ್ಮಕಳು ಚಿಕ್ಕಜಾಜೂರಿನ ಅಕ್ಷರ ವಿದ್ಯಾನಿಕೇತನ ಎಂಬ ಶಾಲೆಯಲ್ಲಿ ವ್ಯಾಸಂಗ ಮಾಡಿಕೊಂಡಿರುತ್ತಾರೆ. ನಾನು ಪಿ.ಯು.ಸಿ. ವಿದ್ಯಾಭ್ಯಾಸ ಮಾಡಿರುತ್ತೇನೆ.
+
+ನಾನು ಕೆಲಸ ಮಾಡುವ ಮುತ್ತಗದೂರಿನ ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಹೊಳಲ್ಕೆರೆಯ ವಾಸಿ ಕಮಲಮ್ಮ ಎಂಬುವರು ಹಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಹಾಗೂ ನಮ್ಮ ಊರಿನ ವಾಸಿಯಾದ ಶ್ರೀಮತಿ. ಹಸೀನಾ ಬೀ ಎಂಬುವರು ಕಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಕೆಲಸ ಮಾಡಿಕೊಂಡಿದ್ದರು. ನಾನು 2018ನೇ ಸಾಲಿನ ನವೆಂಬ‌ರ್ ಮಾಹೆಯಲ್ಲಿ ಕೆಲಸಕ್ಕೆ ಸೇರಿಕೊಂಡು 2-3 ತಿಂಗಳ ಬಳಿಕ ಕಮಲಮ್ಮ ರವರು ನನ್ನ ಮೇಲೆ ಕೆಲಸದ ವಿಚಾರವಾಗಿ ದೌರ್ಜನ್ಯವೆಸಗಲು ಹಾಗೂ ಸಣ್ಣಪುಟ್ಟ ವಿಚಾರಗಳಿಗೂ ತೊಂದರೆ ಕೊಡಲು ಶುರು ಮಾಡಿದರು. ಕಮಲಮ್ಮ ಮತ್ತು ಹಸೀನಾ ಬೀ ಇಬ್ಬರು ತುಂಬಾ ಅನ್ನೋನ್ಯವಾಗಿದ್ದರಿಂದ ಹಸೀನಾ ಬೀ ಸಹ ಕಮಲಮ್ಮನ ಜೊತೆ ಸೇರಿ ನನಗೆ ತೊಂದರೆ ಕೊಡಲು ಪ್ರಾರಂಭಿಸಿ ಇಬ್ಬರು ಹಿರಿಯ ಅಧಿಕಾರಿಗಳ ಬಳಿ ನನ್ನ ಮೇಲೆ ಇಲ್ಲಸಲ್ಲದ ಆರೋಪಗಳನ್ನು ಮಾಡತ್ತಿದ್ದರು. ಈ ಸಂಬಂಧ ಹಿರಿಯ ಅಧಿಕಾರಿಗಳು ನನಗೆ ಎಚ್ಚರಿಕೆ ಕೊಡುತ್ತಿದ್ದರು.
+
+ನಾನು ಎಷ್ಟೇ ಸೌಜನ್ಯದಿಂದ ನನ್ನ ಕೆಲಸವನ್ನು ನಾನು ಮಾಡಿಕೊಂಡು ಹೋಗುತ್ತಿದ್ದರು ಸಹ ಇವರಿಬ್ಬರು ನನಗೆ ತೊಂದರೆ ಕೊಡುವುದನ್ನು ಬಿಡಲಿಲ್ಲ. ಈ ವಿಚಾರವನ್ನು ನಾನು ನನ್ನ ಸ್ನೇಹಿತನಾದ ಚಿತ್ರದುರ್ಗಾದ ಐ.ಯು.ಡಿ.ಪಿ. ಲೇಔಟ್‌ನ ವಾಸಿ ಎ.ಬಿ. ಪಾಟೇಲ್ ಎಂಬುವರನ್ನು 2020ನೇ ಜನವರಿ ಮಾಹೆಯಲ್ಲಿ ಭೇಟಿ ಮಾಡಿ ನನ್ನ ಕೆಲಸದ ಸ್ಥಳದಲ್ಲಿ ಇವರಿಬ್ಬರಿಂದ ಆಗುತ್ತಿರುವ ತೊಂದರೆಯನ್ನು ತಪ್ಪಿಸುವಂತೆ ಹೇಳಿಕೊಂಡೆನು. ಆಗ ಆತನು ಅವರಿಬ್ಬರ ಮೊಬೈಲ್ ನಂಬ‌ರ್ ಅನ್ನು ಕೊಡು ದೊಡ್ಡವರಿಂದ ಅವರಿಗೆ ಪೋನ್ ಮಾಡಿಸಿ ನಿನ್ನ ತಂಟೆಗೆ ಬಾರದಂತೆ ಎಚ್ಚರಿಕೆ ಕೊಡಿಸುತ್ತೇನೆಂದು ಹೇಳಿದನು. ಆಗ ನಾನು ಹಸೀನಾ ಬೀ ರವರ ಮೊಬೈಲ್ ನಂ.9886614868 ಅನ್ನು ಹಾಗೂ ಕಮಲಮ್ಮ ರವರ ಮೊಬೈಲ್ ನಂ.8277508992 ಅನ್ನು ಆತನಿಗೆ ಕೊಟ್ಟಿದ್ದೆನು.
+
+ಇದಾದ ಬಳಿಕ ಕಮಲಮ್ಮ ಮತ್ತು ಹಸೀನಾ ಬೀ ರವರ ಮೇಲ್ಕಂಡ ಮೊಬೈಲ್‌ ನಂಬ‌ರ್ ಗಳಿಗೆ ಮೆಜೆಸ್ಟಿಕ್ ಬಸ್ ನಿಲ್ದಾಣದ ಶೌಚಾಲಯದ ಬಳಿಯಿಂದ ಸುಮಾರು ಜನ ಸಾರ್ವಜನಿಕರು ಕಾಲ್ ಮಾಡಿ ತಮ್ಮ ಜೊತೆಯಲ್ಲಿ ಬರುವಂತೆ, ಬರೆದಿದ್ದರೆ ಪ್ರಾಣ ತೆಗೆಯುವುದಾಗಿ ಬೆದರಿಕೆ ಹಾಕಿ ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡುತ್ತಿದ್ದ ವಿಚಾರವು ನಾನು ಕೆಲಸ ಮಾಡುವ ಸ್ಥಳದಲ್ಲಿ ಕಮಲಮ್ಮ ಮತ್ತು ಹಸೀನಾ ಬೀ ರವರು ಮಾತನಾಡಿಕೊಳ್ಳುವಾಗ ನನಗೆ ತಿಳಿದು ಬಂತು. ಬಳಿಕ ಹಸೀನಾ ಬೀ ರವರು ಈ ವಿಚಾರವಾಗಿ ಚಿತ್ರದುರ್ಗಾದ ಸಿ.ಇ.ಎನ್. ಅಪರಾಧ ಪೊಲೀಸ್ ಠಾಣೆಯಲ್ಲಿ ದೂರು ನೀಡಿದ ವಿಚಾರ ಗೊತ್ತಾಗಿ ಕೂಡಲೇ ಎ.ಬಿ. ಪಾಟೀಲ್ ನನ್ನು ಭೇಟಿ ಮಾಡಿ ಬೆಂಗಳೂರು ನಗರದ, ಮೆಜಿಸ್ಟಿಕ್ ಬಸ್‌ ನಿಲ್ದಾಣದ ಶೌಚಾಲಯದ ಗೋಡೆಗಳ ಮೇಲೆ ಹಸೀನಾ ಬೀ ಮತ್ತು ಕಮಲಮ್ಮ ರವರ ಮೊಬೈಲ್ ನಂಬರಗಳನ್ನು ಕಾಲ್ ಗರ್ಲ್ ಎಂದು ಬರೆದಿದ್ದರಿಂದ ಸುಮಾರು ಜನ ಸಾರ್ವಜನಿಕರು ಹಸೀನಾ ಬೀ ಮತ್ತು ಕಮಲಮ್ಮ ರವರಿಗೆ ಕಾಲ್ ಮಾಡಿ ಮಾತನಾಡುತ್ತಿದ್ದಾರಂತೆ ನಾನು ನಿನಗೆ ಅವರುಗಳ ಮೊಬೈಲ್ ಫೋನ್ ನಂಬ‌ರ್ ಕೊಟ್ಟಿದ್ದೆನಲ್ಲ ನೀನೇನಾದೂ ರೀತಿ ಮಾಡಿರುವೆಯಾ ಎಂದು ವಿಚಾರ ಮಾಡಲಾಗಿ ಆತನು ನನಗೇನು ಅದರ ಬಗ್ಗೆ ಗೊತ್ತಿಲ್ಲವೆಂದು, ತಿಳಿಸಿದನು. ಆದರೆ ಎ.ಬಿ, ಪಾಟೀಲನೇ ನಾನು ಕೊಟ್ಟಿದ್ದ ಹಸೀನಾ ವೀ ಮತ್ತು ಕಮಲಮಗೆ ರವರ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಕಾಲ್ ಗರ್ಲ್ ಎಂದು ಬೆಂಗಳೂರಿನ ಮೆಜೆಸ್ಟಿಕ್, ಬಸ್‌ ನಿಲ್ದಾಣದ ಶೌಚಾಲಯದ ಗೋಡೆಗಳ ಮೇಲೆ ಬರೆದಿರುವುದು ಬೇರೆಯವರಿಂದ ನನಗೆ ಗೊತ್ತಾಯಿತು.
+
+ಇದಾದ ಬಳಿಕ ಹಸೀನಾ ಬೀ ಮತ್ತು ಕಮಲಮ್ಮ ರವರು ನನ್ನ ಮೇಲೆ ಅನುಮಾನ ಬಂದು ಈ ವಿಚಾರವಾಗಿ ನನ್ನನ್ನು ವಿಚಾರ ಮಾಡಲು ಶುರು ಮಾಡಿದರು. ಆದರೆ ನನ್ನ ಸ್ನೇಹಿತನಾದ ಎ.ಬಿ. ಪಾಟೀಲನು ಕಮಲಮ್ಮ ಮತ್ತು ಹಸೀನಾ ಬೀ ರವರಿಗೆ ದೊಡ್ಡವರಿಂದ ಪೋನ್ ಮಾಡಿಸಿ ಅವರು ನಿನ್ನ ತಂಟೆಗೆ ಬಾರದಂತೆ ಎಚ್ಚರಿಕೆ ಕೊಡಿಸುತ್ತೇನೆಂದು ಹೇಳಿ ನನ್ನಿಂದ ಅವರುಗಳ ನಂಬರ್‌ಗಳನ್ನು ಪಡೆದುಕೊಂಡವನು ಆ ರೀತಿ ಮಾಡದೆ, ಅಡ್ಡದಾರಿ ಹಿಡಿದು ಬೆಂಗಳೂರಿನ ಮೆಜೆಸ್ಟಿಕ್ ಶೌಚಾಲಯ ಗೋಡೆಗಳ ಮೇಲೆ ಕಾಲ್‌ಗರ್ಲ್ ಎಂದು ಸದರಿ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಬರೆದು ಸಾರ್ವಜನಿಕರು ಆ ನಂಬರ್ ಗಳಿಗೆ ಕಾಲ್ ಮಾಡಿ ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡಿ ಪ್ರಾಣ ಬೆದರಿಕೆ ಹಾಕಲು ಕಾರಣಕರ್ತನಾಗಿರುತ್ತಾನೆ. ಇದರಲ್ಲಿ ನನ್ನ ದುರುದ್ದೇಶವೇನು ಇರುವುದಿಲ್ಲ. ನಾನು ಎ.ಬಿ. ಪಾಟೀಲನಿಗೆ ಈ ರೀತಿ ಮಾಡು ಎಂದು ಹೇಳಿರಲಿಲ್ಲ. ನಾನು ಯಾವತ್ತು ಕಮಲಮ್ಮ ಮತ್ತು ಹಸೀನಾ ಬೀ ರವರಿಗೆ ತೊಂದರೆ ಕೊಟ್ಟಿರುವುದಿಲ್ಲ. ಇನ್ನು ಮುಂದೆಯೂ ಸಹ ಯಾವುದೇ ರೀತಿಯಲ್ಲೂ ತೊಂದರೆ ಕೊಡುವುದಿಲ್ಲ. ನಾನು ಸದರಿಯವರಿಬ್ಬರ ನಂಬರ್ ಗಳನ್ನು ಎ.ಬಿ. ಪಾಟೀಲ್ ಗೆ ಕೊಟ್ಟಿದ್ದ ಬಗ್ಗೆ ನಾನು ಈಗಾಗಲೇ ಸದರಿಯವರಲ್ಲಿ ಕ್ಷಮೆ ಕೇಳಿರುತ್ತೇನೆ.
+
+ಓದಿ ನೋಡಲಾಗಿ ಸರಿಯಿದೆ.
+ಸಹಿ/-
+ನನ್ನ ಸಮಕ್ಷಮ
+ಸಹಿ/-
+(ಮಾರುತಿ ಅಗಸಿಬಾಗಿಲ)
+ಪಿ.ಎಸ್.ಐ."
+(Emphasis added)
+
+The statement of Shilpa is that, she and the petitioner are close friends and she had instructed the petitioner to write on the wall of the toilet of men, in the Majestic bus stand, depicting the complainant to be a call girl along with her number. The reason for such writing was resentment against the complainant due to a squabble between Shilpa and the complainant, at the Primary Health Centre in Chitradurga. The statement clearly narrates as to how the petitioner was directed and how the direction was complied with by the petitioner. After effect of the statement and the direction is, filing of the charge sheet by the jurisdictional Police. Column No.7 of the charge sheet which depicts the summary, reads as follows:
+
+"ಈ ದೋಷಾರೋಪಣ ಪಟ್ಟಿಯ ಕಾಲಂ ನಂ.6 ರಲ್ಲಿ ನಮೂದಿಸಿರುವ ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ -5 ರವರು ಚಿತ್ರದುರ್ಗ ಜಿಲ್ಲೆಯ ಮುತ್ತಗದೂರಿನ ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರದಲ್ಲಿ ಕಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯರಾಗಿ, ಸಾಕ್ಷಿ-2 ರವರು ಹಿರಿಯ ಮಹಿಳಾ ಆರೋಗ್ಯ ಸಹಾಯಕಿಯಾಗಿ ಕೆಲಸ ಮಾಡಿ ಕೊಂಡಿದ್ದು, ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ-2 ರವರು 2019 ನೇ ಜನವರಿ ಮಾಹೆಯಿಂದೀಚೆಗೆ ಆಫೀಸ್ ಕೆಲಸದ. ವಿಚಾರವಾಗಿ ಸಾಕ್ಷಿ-5 ರವರಿಗೆ ಇಲ್ಲ ಸಲ್ಲದ ತೊಂದರೆ ಕೊಡುತ್ತಿದ್ದು, ಸಾಕ್ಷಿ-5 ರವರು ಈ ವಿಚಾರವನ್ನು 2020 ನೇ ಜನವರಿಯಲ್ಲಿ ತನ್ನ ಸ್ನೇಹಿತನಾದ ಕಾಲಂ ನಂ 4 ರಲ್ಲಿ ಕಂಡ ಎ-1 ಆರೋಪಿಯ ಜೊತೆ ಹಂಚಿಕೊಂಡಿದ್ದು, ಆಗ ಎ-1 ಆರೋಪಿಯು ಅವರಿಬ್ಬರ ಮೊಬೈಲ್ ನಂಬರ್ ಕೊಡು ದೊಡ್ಡವರಿಂದ ಅವರಿಗೆ ಪೋನ್ ಮಾಡಿಸಿ ನಿನ್ನ ತಂಟೆಗೆ ಬಾರದಂತೆ ಎಚ್ಚರಿಕೆ ಕೊಡಿಸುತ್ತೇನೆಂದು ಹೇಳಿ ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ-2 ರವರ ಮೊಬೈಲ್ ನಂಬರ್ ಗಳಾದ 9886614868, 8277508992 ಅನ್ನುಸಾಕ್ಷಿ-5 ರವರಿಂದ ಪಡೆದುಕೊಂಡವನು, ಯಾರಿಂದಲೂ ಅವರಿಗೆ ಪೋನ್ ಮಾಡಿಸದೆ, ಅನ್ಯ ಮಾರ್ಗವನ್ನು ಹಿಡಿದು, ಮಹಿಳೆಯ ಮಾನಹಾನಿಕರವೆಂದು ತಿಳಿದೂ ಸಹ ಎ-1 ಆರೋಪಿಯು ಬೆಂಗಳೂರಿನ ಉಪ್ಪಾರಪೇಟೆ ಪೊಲೀಸ್‌ ಠಾಣಾ ಸರಹದ್ದಿನ ಮೆಜೆಸ್ಟಿಕ್ ಕೆ,ಎಸ್,ಆರ್.ಟಿ.ಸಿ ಬಸ್ ನಿಲ್ದಾಣದ ಟರ್ಮಿನಲ್ 1 ರ ಸಾರ್ವಜನಿಕ ಶೌಚಾಲಯದ ಗೋಡೆ ಮತ್ತು ಬಾಗಿಲ ಮೇಲೆ ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ-2 ರವರ ಮೇಲ್ಕಂಡ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಹಾಗೂ ಕಾಲ್ ಗರ್ಲ್ ಎಂದು ಇದೇ ವರ್ಷ ಜನವರಿ ತಿಂಗಳಲ್ಲಿ ಬರೆದು ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ-2 ರವರ ಮಾನಕ್ಕೆ ದಕ್ಕೆಯನ್ನು ತಂದಿದ್ದು, ಅಂದಿನಿಂದ ಸದರಿ ಶೌಚಾಲಯಕ್ಕೆ ಬರುವ ಸುಮಾರು ಜನ ಪುರುಷ ಸಾರ್ವಜನಿಕರು ಬೇರೆ ಬೇರೆ ನಂಬ‌ರ್ ಗಳಿಂದ ಸಾಕ್ಷಿ-1 ಮತ್ತು ಸಾಕ್ಷಿ-2 ರವರ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳಿಗೆ ಕಾಲ್ ಮಾಡಿ ತಮ್ಮ ಹೆಸರು ಹೇಳಿ ಕೊಳ್ಳದೆ, ನಮ್ಮ ಜೊತೆಯಲ್ಲಿ ಬರುತ್ತೀಯಾ ಎಂದು ಕೇಳಿ ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡಿ ಬೆದರಿಕೆ ಹಾಕುತ್ತಿದ್ದು, ಇದೇ ರೀತಿ ಎ-2 ಆರೋಪಿಯು ದಿನಾಂಕ:-20-02-2020 ರಂದು ಬೆಳಿಗ್ಗೆ ಸದರಿ ಶೌಚಾಲಯಕ್ಕೆ ಬಂದಾಗ ಈ ಮೊಬೈಲ್ ನಂಬರ್‌ಗಳನ್ನು ಪೀಡ್ ಮಾಡಿಕೊಂಡು ಅದೇ ದಿನ ಬೆಳಿಗ್ಗೆ ಸುಮಾರು 08-20 ಗಂಟೆಯಲ್ಲಿ ತನ್ನ ಮೊಬೈಲ್ ನಂಬರ್ 9731370916 ರಿಂದ ಸಾಕ್ಷಿ-1 ರವರ ಮೊಬೈಲ್ ನಂಬರ್ 9886614868 ಗೆ ಕಾಲ್ ಮಾಡಿ ನನ್ನ ಜೊತೆ ಬರುತ್ತೀಯಾ ಎಂದು ಕೇಳಿ, ಅಶ್ಲೀಲವಾಗಿ ಮಾತನಾಡಿ ಬರಲಿಲ್ಲವೆಂದರೆ ನಿನ್ನನ್ನು ಮುಗಿಸಿಬಿಡುತ್ತೇನೆಂದು. ಪ್ರಾಣ ಬೆದರಿಕೆ ಹಾಕಿ ಮಹಿಳೆಯ ಮಾನಕ್ಕೆ ಕುಂದುಂಟುಮಾಡಿ ಈ ಮೇಲ್ಕಂಡ ಕಲಂಗಳಯ ಅನ್ವಯ ಶಿಕ್ಷಾರ್ಹ ಅಪರಾಧವೆಸಗಿರುತ್ತಾರೆ.
+
+
+ಆದ್ದರಿಂದ ಆರೋಪಿಗಳ ವಿರುದ್‌ಧ ಈ ದೋಷಾರೋಪಣ ಪಟ್ಟಿ ಸಲ್ಲಿಸಿರುತ್ತೆ.”
+
+A perusal at the summary of the charge sheet supra would clearly indicate, albeit, prima facie, that the offence so alleged would be met. The charge sheet is filed for offences punishable under Sections 501, 504, 507 and 509 of the IPC. I therefore, deem it appropriate to notice the said provisions. They read as follows:
+
+"501. Printing or engraving matter known to be defamatory. - Whoever prints or engraves any matter, knowing or having good reason to believe that such matter is defamatory of any person, shall be punished with simple imprisonment for a term which may extend to two years, or with fine, or with both.
+
+...           ...          ...
+
+504. Intentional insult with intent to provoke breach of the peace. -Whoever intentionally insults, and thereby gives provocation to any person, intending or knowing it to be likely that such provocation will cause him to break the public peace, or to commit any other offence, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.
+
+...                     ...                 ...
+
+507. Criminal intimidation by an anonymous communication.—Whoever commits the offence of criminal intimidation by an anonymous communication, or having taken precaution to conceal the name or abode of the person from whom the threat comes, shall be punished with imprisonment of either description for a term which may extend to two years, in addition to the punishment provided for the offence by the last preceding section.
+...                     ...                 ...
+
+“509. Word, gesture or act intended to insult the modesty of a woman.—Whoever, intending to insult the modesty of any woman, utters any word, makes any sound or gesture, or exhibits any object, intending that such word or sound shall be heard, or that such gesture or object shall be seen, by such woman, or intrudes upon the privacy of such woman, shall be punished with simple imprisonment for a term which may extend to three years, and also with fine.”
+(Emphasis supplied)
+
+Section 501 of the IPC deals with printing or engraving matter known to be defamatory. Section 504 of the IPC deals with intentional insult with intent to provoke breach of peace. Section 507 of the IPC deals with criminal intimidation by an anonymous communication. Section 509 of the IPC deals with word, gesture or act intended to insult the modesty of a woman. The allegation is engraving on the wall of men's toilet at the Majestic bus stand that the complainant is a call girl and also gives the mobile number of the complainant. It would clearly attract the ingredients of Section 509 of the IPC as Section 509 of the IPC makes it an offence against the accused whoever intends to insult the modesty of any woman, utters any word or makes any sound or gesture or intrusion to the privacy of such woman would be punished with a term which would extend upto three years.
+
+11. The facts obtaining the case at hand would clearly fit into the ingredients of the allegations of the offences so alleged, more so, in the light of the fact of documents produced by the learned counsel representing respondent No.2 / complainant that innumerable calls coming to the complainant as she had been depicted to be a call girl with all sorts of questions being asked, which would be clearly intrusion of privacy of the complainant and insult to the modesty of a woman.
+
+12. The case projected by the learned counsel for the petitioner is twofold – one being that the permission of the learned Magistrate is by the word “permitted” which would run foul of the judgment of the coordinate Bench in the case of Vaggeppa Gurulinga Jangaligi supra. No doubt, the coordinate Bench has held that if permission granted by the Magistrate is by the word “permitted”, it would vitiate entire proceedings. The said judgment is distinguishable to the facts obtaining in the case at hand without much ado. The narration in the complaint was very clear that it would touch upon the modesty of a woman. If the Officer at the Police Station or one who registers the complaint does not look into the contents of the complaint and registers appropriate offence, the victim cannot be put to jeopardy. If acts of the Police in not registering appropriate offence based upon the facts in the complaint, it is the folly of the Police and the victim cannot be asked to suffer. Justice to the victim is the soul of the procedure depicted under the Code of Criminal Procedure, 1973. Same goes with the order of the learned Magistrate. The learned Magistrate permits registration of the crime by the sole word "permitted". In plethora of cases, this Court has cautioned those Magistrates not to play with the life of the victims by non-application of mind. This is another classic illustration where the victim has suffered as the order of the learned Magistrate does not have semblance of application of mind. However, that would not mean that the accused would get away with the crime, as the crime is registered by the Police after conduct of investigation and the investigation has led to filing of charge sheet and drawing up of the names of the accused. The petitioner was not an accused at the time of registration of crime. He springs in, only in the charge sheet. It would not lie in the mouth of the petitioner to contend that the learned Magistrate has not applied his mind while granting permission. In any event that would not vitiate entire proceedings, in the peculiar facts of this case.
+
+13. The allegation, as observed hereinabove, is intending to insult the modesty of a woman. Modesty of a woman cannot be treated so casually, as is done in the case at hand. The Apex Court in the case of RUPAN DEOL BAJAJ v. KANWAR PAL SINGH GILL [(1995) 6 SCC194] while considering the interplay between Sections 354 and 509 of the IPC has held as follows:
+
+"....                     ....                 ...."
+13. Coming now to the moot point as to whether the above allegations constitute any or all of the offences for which the case was registered, we first turn to Sections 354 and 509 IPC, both of which relate to modesty of woman. These sections read as under:
+    "354. Whoever assaults or uses criminal force to any woman, intending to outrage or knowing it to be likely that he will thereby outrage her modesty, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.
+***
+
+509. Whoever, intending to insult the modesty of any woman, utters any word, makes any sound or gesture, or exhibits any object, intending that such word or sound shall be heard, or that such gesture or object shall be seen, by such woman, or intrudes upon the privacy of such woman, shall be punished with simple imprisonment for a term which may extend to one year, or with fine, or with both."
+
+14. Since the word 'modesty' has not been defined in the Penal Code, 1860 we may profitably look into its dictionary meaning. According to Shorter Oxford English Dictionary (3rd Edn.) modesty is the quality of being modest and in relation to woman means "womanly propriety of behaviour; scrupulous chastity of thought, speech and conduct". The word 'modest' in relation to woman is defined in the above dictionary as "decorous in manner and conduct; not forward or lewd; shamefast". Webster's Third New International Dictionary of the English Language defines modesty as "freedom from coarseness, indelicacy or indecency; a regard for propriety in dress, speech or conduct". In the Oxford English Dictionary (1933 Edn.) the meaning of the word 'modesty' is given as "womanly propriety of behaviour; scrupulous chastity of thought, speech and conduct (in man or woman); reserve or sense of shame proceeding from instinctive aversion to impure or coarse suggestions".
+
+15. In State of Punjab v. Major Singh [AIR 1967 SC 63 : 1967 Cri LJ 1 : 1966 Supp SCR 286] a question arose whether a female child of seven and a half months could be said to be possessed of 'modesty' which could be outraged. In answering the above question Mudholkar, J., who along with Bachawat, J. spoke for the majority, held that when any act done to or in the presence of a woman is clearly suggestive of sex according to the common notions of mankind that must fall within the mischief of Section 354 IPC. Needless to say, the "common notions of mankind" referred to by the learned Judge have to be gauged by contemporary societal standards. The other learned Judge (Bachawat, J.) observed that the essence of a woman's modesty is her sex and from her very birth she possesses the modesty which is the attribute of her sex. From the above dictionary meaning of 'modesty' and the interpretation given to that word by this Court in Major Singh case [AIR 1967 SC 63 : 1967 Cri LJ 1 : 1966 Supp SCR 286] it appears to us that the ultimate test for ascertaining whether modesty has been outraged is the action of the offender such as could be perceived as one which is capable of shocking the sense of decency of a woman. When the above test is applied in the present case, keeping in view the total fact situation, it cannot but be held that the alleged act of Mr Gill in slapping Mrs Bajaj on her posterior amounted to "outraging of her modesty" for it was not only an affront to the normal sense of feminine decency but also an affront to the dignity of the lady — "sexual overtones" or not, notwithstanding."
+
+(Emphasis supplied)
+
+The Apex Court holds that modesty has not been defined under the Code, but the modesty is the quality of being modest and in relation to woman means "womanly propriety of behavior; scrupulous chastity of thought, speech and conduct". The Apex Court again in the case of RAJU PANDURANG MAHALE v. STATE OF MAHARASHTRA [(2004) 4 SCC 371] considered modesty qua the woman while interpreting Section 509 of the IPC. It holds as follows:
+
+"....                 ....             ....
+
+12. What constitutes an outrage to female modesty is nowhere defined. The essence of a woman's modesty is her sex. The culpable intention of the accused is the crux of the matter. The reaction of the woman is very relevant, but its absence is not always decisive. Modesty in this section is an attribute associated with female human beings as a class. It is a virtue which attaches to a female owing to her sex. The act of pulling a woman, removing her saree, coupled with a request for sexual intercourse, is such as would be an outrage to the modesty of a woman; and knowledge, that modesty is likely to be outraged, is sufficient to constitute the offence without any deliberate intention having such outrage alone for its object. As indicated above, the word "modesty" is not defined in IPC. The Shorter Oxford Dictionary (3rd Edn.) defines the word "modesty" in relation to a woman as follows:
+
+"Decorous in manner and conduct; not forward or lewd; Shamefast; Scrupulously chaste."
+
+13. Modesty is defined as the quality of being modest; and in relation to a woman, "womanly propriety of behaviour; scrupulous chastity of thought, speech and conduct". It is the reserve or sense of shame proceeding from instinctive aversion to impure or coarse suggestions. As observed by Justice Patteson in R. v. James Lloyd [(1836) 7 C&P 317 : 173 ER 141] :
+
+In order to find the accused guilty of an assault with intent to commit a rape, court must be satisfied that the accused, when he laid hold of the prosecutrix, not only desired to gratify his passions upon her person but that he intended to do so at all events, and notwithstanding any resistance on her part.
+
+The point of distinction between an offence of attempt to commit rape and to commit indecent assault is that there should be some action on the part of the accused which would show that he was just going to have sexual connection with her.
+
+14.Webster's Third New International Dictionary of the English language defines modesty as “freedom from coarseness, indelicacy or indecency : a regard for propriety in dress, speech or conduct”. In the Oxford English Dictionary (1933 Edn.), the meaning of the word “modesty” is given as “womanly propriety of behaviour; scrupulous chastity of thought, speech and conduct (in man or woman); reserve or sense of shame proceeding from instinctive aversion to impure or coarse suggestions”.
+
+Long before the aforementioned two judgments rendered by the Apex Court, the Apex Court in the case of STATE OF PUNJAB v. MAJOR SINGH [1966 SCC OnLine SC 51] has considered the importance of Section 509 of the IPC therein and has held as follows:
+
+“....                     ....                     ....
+
+4. Intention and knowledge are of course states of mind. They are nonetheless facts which can be proved. They cannot be proved by direct evidence. They have to be inferred from the circumstances of each case. Such an inference, one way or the other, can only be made if a reasonable man would, on the facts of the case, make it. The question in each case must, in my opinion, be : will a reasonable man think that the act was done with the intention of outraging the modesty of the woman or with the knowledge that it was likely to do so? The test of the outrage of modesty must, therefore, be whether a reasonable man will think that the act of the offender was intended to or was known to be likely to outrage the modesty of the woman. In considering the question, he must imagine the woman to be a reasonable woman and keep in view all circumstances concerning her, such as, her station and way of life and the known notions of modesty of such a woman. The expression "outrage her modesty" must be read with the words "intending to or knowing it to be likely that he will". So read, it would appear that though the modesty to be considered is of the woman concerned, the word "her" was not used to indicate her reaction. Read all together, the words indicate an act done with the intention or knowledge that it was likely to outrage the woman's modesty, the emphasis being on the intention and knowledge.
+
+10. It has been found as a fact by the courts below that the respondent had caused injuries to the vagina of a seven and a half month old child by fingering. He has been held guilty of an offence under Section 323 of the Indian Penal Code. The contention on behalf of the State who is the appellant before us is that the offence amounts to outraging the modesty of a woman and is thus punishable under Section 354 of the Indian Penal Code. The learned Sessions Judge and two of the three learned Judges of the High Court who heard the appeal against the decision of the Sessions Judge were of the view that a child seven and a half month old being incapable of having a developed sense of modesty, the offence was not punishable under Section 354. The third learned Judge, Gurdev Singh, J., however, took a different view, behaviour, scrupulous chastity of thought, speech and conduct (in men or women) reserve or sense of shame proceeding from instinctive aversion to impure or coarse suggestions - and observed:"This obviously does not refer to a particular woman but to the accepted notions of womanly behaviour and conduct. It is in this sense that the modesty appears to have been used in Section 354 of the Indian Penal Code". The learned Judge then referred to Section 509 of the Penal Code
+
+in which also the word “modesty” appears and then proceeded to say:
+
+“The object of this provision seems to have been to protect women against indecent behaviour of others which is offensive to morality. The offences created by Section 354 and Section 509 of the Indian Penal Code are as much in the interest of the woman concerned as in the interest of public morality and decent behaviour. These offences are not only offences against the individual but against public morals and society as well, and that object can be achieved only if the word 'modesty' is considered to be an attribute of a human female irrespective of fact whether the female concerned has developed enough understanding as to appreciate the nature of the act or to realise that it is offensive to decent female behaviour or sense of propriety concerning the relations of a female with others.”
+
+...                ...                ...”
+
+(Emphasis supplied)
+
+In the light of the judgments of the Apex Court, the plea put forth by the petitioner that it was only a writing on the wall and no offence can be made out or CW-5’s statement that led the offence having committed by him are all factors, which cannot be considered in exercise of jurisdiction under Section 482 of the Cr.P.C. It is for the petitioner to come out clean in a full blown trial.
+
+14. It needs no emphasis that sexual violence against a woman apart from being a de-humanising act is intrusion into the right to privacy of the said woman, which can by no stretch of imagination be construed to be lawful. It leaves the woman to undergo traumatic experience. Therefore, such cases which are brought before the Court needs to be dealt sternly. Causing physical harm on a woman is altogether different circumstance and punishable with different offences but intruding into the victim’s privacy, personal integrity would cause a serious psychological harm which sometimes generates much pain to a woman than causing physical harm, as it scars the soul. Therefore, any scatological or salacious statements made against a woman either by gesture, writing or speaking, would undoubtedly amount to insulting the modesty of a woman. In today’s digital age one need not cause physical harm, a woman’s modesty can be railroaded by sheer circulation of pejorative statements, pictures or videos in the social media. It is therefore, when such cases are projected before this Court seeking quashment, it should not be interfered with, but be dealt with a stern manner. The petitioner has indulged in one of the ingredients of such insult by fresco or a writing on the wall. He, therefore, cannot get away with making such belitting comments on a woman in public.
+
+15. It is open to the prosecution to invoke Section 319 of the Cr.P.C. to include CW-5 into the array of accused after following due process of law. In the light of preceding analysis, the ingredients of Section 509 of the IPC are clearly met. Same goes with Sections 501, 504 and 507 of the IPC.
+
+16. For the aforesaid reasons, finding no merit in the petition, the petition stands rejected.
+
+Pending I.A.s' also stand disposed, as a consequence.` },
+      {
+        id: "LAWWORLD 2024 KAR 0833", text: `IN THE HIGH COURT OF KARNATAKA AT BENGALURU
+DATED THIS THE 09TH DAY OF AUGUST, 2024
+
+BEFORE
+
+THE HON'BLE MR. JUSTICE M. NAGAPRASANNA
+CRIMINAL PETITION No.9707 OF 2023
+BETWEEN:
+MAYUKH MUKHERJEE
+AGED ABOUT 31 YEARS
+S/O DEBABRATA MUKHERJEE
+RESIDING AT NO.76/1B-76/2
+GEAR ROAD, KAVERAPPA LAYOUT
+KADUBISANAHALLI
+PANATHUR, BENGALURU - 67.
+
+PRESENTLY RESIDING AT
+NO.78, WEST WIND FLAT-13B
+BLOCK-4, RAJA S. C.,
+MALLICK ROAD, GARIA
+SOUTH-24, PARGANAS
+WEST BENGAL - 700 084.
+
+                                                                                    ... PETITIONER
+
+(BY SRI SANDESH J.CHOUTA, SR. ADVOCATE A/W
+SRI PRATHEEP K. C., ADVOCATE) 
+
+AND:
+1. THE STATE OF KARNATAKA
+REPRESENTED BY
+MARATHAHALLI POLICE STATION
+BENGALURU CITY
+REPRESENTED BY ITS
+STATE PUBLIC PROSECUTOR
+HIGH COURT OF KARNATAKA
+BENGALURU – 01.
+
+2. PRONAB KUMAR SHARMA
+S/O LATE DEBENDRA KUMAR SHARMA
+AGED ABOUT 70 YEARS
+RESIDING AT SETTLEMENT LINK ROAD
+WARD NO.5, KMB, POST P.S.,
+KARIMGANJ
+STATE OF ASSAM – 788 710.
+
+                                                                             … RESPONDENTS
+
+(BY SRI THEJESH P., HCGP FOR R1;
+SMT DEEPA J., ADVOCATE FOR R2)
+                                                      *******
+
+THIS CRIMINAL PETITION IS FILED UNDER SECTION 482 OF CR.P.C., PRAYING TO QUASH THE ENTIRE PROCEEDINGS IN S.C.NO.859/2023 ON THE FILE OF XLV ADDITIONAL CITY CIVIL AND SESSIONS JUDGE (CCH-46) AT BENGALURU FOR THE OFFENCE P/U/S 498A, 306 OF IPC.
+
+THIS CRIMINAL PETITION HAVING BEEN HEARD AND RESERVED FOR ORDERS ON 19.07.2024, COMING ON FOR PRONOUNCEMENT THIS DAY, THE COURT MADE THE FOLLOWING:-
+
+CORAM: THE HON'BLE MR JUSTICE M.NAGAPRASANNA
+CAV ORDER
+The petitioner, sole accused in S.C.No.859 of 2023 pending before the XLV Additional City Civil and Sessions Judge, Bengaluru arising out of crime in Crime No.47 of 2023 registered for offences under Sections 498A, 306 and 34 of the IPC is before this Court calling in question the entire proceedings.
+
+2. Sans details, facts germane are as follows:-
+
+The 2nd respondent is the complainant, father-in-law of the petitioner. The petitioner gets married to one Piyali Mukherjee ('the victim'), the daughter of the complainant on 05-02-2021. It appears that the relationship between the two turned completely sore and on several grievances, she commits suicide by hanging herself on 24-02-2023. The 2nd respondent/father then registers a complaint against the husband, mother-in-law and father-in-law of the deceased for having abetted the suicide of the victim on demand of dowry. The complaint is registered on 26-02-2023 which results in a crime in Crime No.47 of 2023. The police conduct investigation and file a charge sheet. While filing the charge sheet the father-in-law and mother-in-law of the deceased are dropped as nothing was found against them and charge sheet is filed only against the petitioner/husband. The matter is committed to the Court of Sessions where it is registered as S.C.No.859 of 2023. On 23-08-2023 the Court of Sessions directs the matter to be posted for framing of charges. It is at that juncture the petitioner knocks the doors of this Court in the subject petition.
+
+3. Heard Sri Sandesh J. Chouta, learned senior counsel appearing for the petitioner, Sri P. Thejesh, learned High Court Government Pleader appearing for respondent No.1 and Smt J. Deepa, learned counsel appearing for respondent No.2.
+
+4. The learned senior counsel Sri Sandesh J.Chouta submits that the victim by herself was suffering from depression. She has shot a video of her suicide, transcript of which clearly indicates that she is blaming none in the family. She further says that no action should be taken against the husband or in-laws as she is committing suicide on such depression. The learned senior counsel would further submit that there is neither goading, instigation nor proximity to the death of the victim. He would contend that the issue in the lis stands completely covered by what this Court has held in DAVID D’SOUZA v. STATE OF KARNATAKA [2024 SCC OnLine Kar.47]. The learned senior counsel submits that this Court in David D’Souza’s case has considered the entire spectrum of the law and, therefore, he would not rely on any other judgment qua the offence punishable under Section 306 of the IPC. Insofar as the offence under Section 498A of the IPC is concerned, the learned senior counsel would submit that there is not even a single ingredient of demand of dowry in the complaint, except harassment now and then, as noted by the victim in her diary. Insofar as Section 498A is concerned, the learned senior counsel would place reliance upon the judgment of the Apex Court in the case of ACHIN GUPTA v. STATE OF HARYANA [2024 SCC OnLine SC 759]. He would seek quashment of the proceedings placing reliance upon the aforesaid two judgments and on emphasizing the fact that the petitioner/husband has never instigated the victim to commit suicide.
+
+5. Per contra, the learned counsel Smt. J. Deepa appearing for the 2nd respondent/complainant would take this Court through the documents appended by the petitioner himself to the petition which are all charge sheet materials to contend that instigation, goading and all other necessary ingredients of Section 107 of the IPC have clearly become an offence under Section 306 of the IPC which punishes one who abets commission of suicide. She makes a particular reference to the transcript of the audio and the writings of the victim in her diary to contend that there is a death clip and other history notes of torture of the husband on the wife and him having extra-marital affair. It is these factors that led the victim to commit suicide. She would seek dismissal of the petition contending that these are all matters of trial.
+
+6. The learned High Court Government Pleader would also toe the lines of the learned counsel for the complainant in seeking dismissal of the petition.
+
+7. I have given my anxious consideration to the submissions made by the respective learned counsel and have perused the material on record.
+
+8. The afore-narrated facts are not in dispute. The relationship between the complainant and the petitioner is that of father-in-law and son-in-law. The daughter of the complainant who is the victim, gets married on 05-02-2021. After the marriage, the petitioner and the victim shifted to Bengaluru on avocation of the petitioner. It is the averment that intermittently the victim used to travel to Karimganj, her parents place and then come back to matrimonial house at Bengaluru. On the fateful day i.e., 24-02-2023 the victim hangs herself and commits suicide. Then her parents were informed and they came down and immediately register a complaint on 26-02-2023. The complaint was against all three i.e., the husband, father-in-law and mother-in-law of the deceased. The offence was instigation to commit suicide. The complaint so registered reads as follows:-
+
+“To                                                                        Date: 26-02-2023.
+The Police Inspector,
+Marathahalli Police Station
+Bangalore - 560 037.
+
+From
+Pronab Kumar Sharma, 70 years,
+S/o late Debendra Kumar Sharma
+Settlement Link Road
+Ward No.5, KMB, P/o P.S.Karimganj
+State: Assam, Pin-788 710,
+Phone # 9954845407, 8638041746
+Email# rajeshghosh308@gmail.com
+Mail2bindiyasharma@gmail.com
+Caste: Brahmin.
+
+Dear Sir,
+
+Subject: Complaint against Mayukh Mukherjee, Dehabrata Mukherjee and Swati Mukherjee for instigating Piyali Mukherjee to commit suicide.
+--
+
+I am writing this complaint in respect of suicide of my daughter Piyali (30 years) which was informed over the phone by the mother-in-law of my daughter on 24-02-2023 evening. I got the information from the Marathahalli Police Station. I requested police to preserve my daughter's dead body until I arrive. My daughter Piyali was married to Mayukh Mukherjee on Feb 5, 2021. They were living in Pune initially and moved to Bangalore in January 2022 and were residing at the below mentioned address since then - Flat 201, Block A, Sraddha Palmera Apartments, Varthur Hobli, Sy.Nos. 76/1B-76/2, Gear Road, Kaverappa layout, Kadubeesanahalli, Panathur, Bengaluru- 560 103.
+We visited the house and the room where my daughter hung herself and found a death note in a diary and a video on her phone which she captured before the death. Piyali found out my son-in-law Mayukh Mukherjee has an extra-marital affair and confronted him many times and asked him to change his behavior and live a happy married life with her. Piyali mentioned about this to her father-in-law and mother-in-law but both of them did not say a word of their son to make any changes and live life of a dutiful husband. All these things have put my daughter Piyali into immense mental harassment. In the death note, my daughter Piyali has mentioned of physical harassment also by the family which is his father Debabrata Mukherjee and mother Swati Mukherjee and Mayukh himself.
+Since the marriage in Feb, 2021 till now, there is also a mention about father-in-law Debabrata Mukherjee harassing my daughter by unnecessary blaming and accusing her on having eyes on their properties, when in fact my daughter had no interest on it as she was herself earning very well.
+The father-in-law has repeatedly harassed my daughter mentally and emotionally by making these false allegations and statements which has hurt my daughter immensely. Not only Piyali’s father-in-law and mother-in-law not take care of her, but also did not advise their son to stop his extra marital affair. Being elders of the family they did not advise Mayukh to live a happy married life for which the whole marriage had taken place.
+From reading through the death note, it is clear that these 3 people have harassed my daughter and provoked her and have abetted her to commit suicide. There constant harassment led her to take the ultimate step of giving away her life due to everyday harassment she was going through. My daughter had a very bad relationship in the marriage due to extra marital affair by my son-in-law and his irrational behavior towards my daughter by not even picking up her calls or responding to her messages and leaving her all alone in the
+
+My daughter was a very strong, well educated and self made person who was working in a reputed company, Amazon Bangalore, at a good position of a Trainer. She was working from home. My daughter even though was a strong lady was pushed to a point to take this extreme step of giving away her life due to the harassment of these 3 people.
+
+Piyali is my youngest daughter who is extremely talented and the loved child. She was a strong woman and these 3 people have forced her to take this step. Therefore, I am requesting the Police authorities to conduct investigation in the interest of my daughter and take necessary actions to bring justice to her as she is no more in this world due to these 3 people. All proofs about relationship and suicide are available in her phone and the death note in the diary. I was in Assam State when I was intimated about my daughter's death. I came yesterday late night to Bengaluru and now I am giving this complaint for necessary action.
+
+Thanking you,                                                            Sincerely,
+
+                                                                                         Sd/-
+
+                                                                    (Pronab Kumar Sharma)"
+
+The complainant narrates several instances that his daughter had narrated to him throughout. The issue was that the husband continued to have extra-marital affair. The investigation leads to discovery of material that the victim had left prior to the commission of suicide. Those materials are video clip/audio which is transcripted. Since video was in Bengali language all three minutes video was translated pursuant to a communication from the Investigating Officer. The translation Centre for Indian and Foreign languages attaches to it a complete transcript of the audio voice found in the video. The audio script assumes complete significance in the case at hand and reads as follows:-
+“This video is for you. I just want to say you one thing that I had really loved you, which you could not understand. I further state that before you had betrayed me by having an illicit relationship with another woman and also you have disrespected me all the time. I have even tried to understand all the issues of dispute that were happening between me and you. I have even requested you to visit a marriage counselor along with me and all these things I have even requested via messages but you have never bothered to understand me. You do not have any interest to keep this relation. I even took sleeping pills but nothing happened to me but because of that I am unable to speak properly. You do not have to look over my parents, my parents will settle themselves of their own and may be after some days you will also marry someone else. I may die today but I don’t want anything bad happens to you ad I have even wrote a note about the same. Further, even if I think you are guilty of whatever dispute has arose between me and you, for that I don’t want to punish you. I further state that I am responsible for my death and I know my elder sister will take care of my parents and before I die I am watching our picture several times which is kept in our bed room. I even tried to contact you several times and resolve the dispute between me and you but you don’t even have 2 minutes for me. Puneeth you were not like this after coming to Bangalore your priorities have changed. I further state that, I have never insisted you to stay away from your family or abandon your parents, in fact you have made many derogative and demeaning comments against your family, where I have patiently calmed you down and also asked you not to say or think like that against them. Like I stated how your family is important to you, similarly I am also important. I have left everything and come with you to stay together with you and lead our married life happily but you didn’t understand me. If you would have tried to rectify everything this divorce would not have happened and today whatever decision I have to take it is just because to avoid this situation that I am going through now. If I would have not taken this step you would have never realized what you have done towards me and I would have again pardoned you if you would have understood me and also avoided this divorce. But today I am killing myself as because I want to avoid this painful situation and this is my voluntary decision. Further when I die my parents will be upset and broken for many days but eventually everything will be normal someday. I had promised you that, until I die I will love you and I will love you forever. I thank you for showing me care and love before and now what you have done towards me you will have no regret. I am leaving forever. Bye.”
+                                                                                 (Emphasis added)
+The victim narrates that she is dying on that day. The reason for the death is the husband not changing himself from having a extramarital affair and, therefore, she dies. While so saying, she also says that she loves the husband and love him forever. She is killing herself to avoid any painful situation and it was a voluntary decision. The investigation leads to a diary which shows that the victim is in the habit of writing of the incidents. Though not complete narration of diary, certain pages of the diary are necessary to be noticed, and they read as follows:
+“When some person loses interest to carry on this life, that does not mean that person have lost power to fight back. That may also mean that person is unable to bear more pain in life and today my situation is very much same and now I cannot bear any more pain and now I am in much pain and agony. I further state that I am in this painful situation almost every day and no one will know what’s happening inside the four walls between the husband and the wife, that there is no relation between me and you and further only I can understand the amount of pain that I have to bear through, being a married woman having an unsuccessful married life. One person gets married, in order to leave a peaceful and happy life but whereas in front of myself my life has become a matter of joke. I think in this generation I am the first wife, who eve after knowing that her husband is having an extra-marital affair but still I have given a chance to you, in order to save the marriage but now everything has turned meaningless. It’s not that I have not tried after that and even now I am trying but I doubt how many days I can bear this pain. I have no reason to live anymore. I have further stated from the very beginning of the marriage that it’s one of my biggest wish to become a mother but when I got pregnant for the first time, he forced me to abort the baby showing that you have a financial issue.
+                                                          … … …
+I could not take it anymore and he is behaving in such a way that I feel like dying. But until now I was having lot of zeol to live this life. But, now I cannot take this anymore and the people those who have no feelings it’s hard to make them understand how I feel. I know by taking this extreme decision I am betraying my parents and it would be very painful for them but if I would have lived this life, at would be more painful for them.
+I don’t want to punish anyone, all of you life happily.
+Further Daddy I don’t have any agreed towards your property in Kolkata and that’s why I used to tell him that we will all stay in a rented house, which he misinterpreted or wrongly interpreted about me. And dad you are so matured, even after week is that the way you have scolded me I could not think about, further during that period of time even you had lost of quarrels with him where he told you whatever that came through his mouth, but nothing happened at that point of time, again you have consoled and convinced him and everything went calm for that point of time. There is big difference in calling me as your daughter and really accepting me as your daughter.
+
+... ... ...
+
+                                                                                  (Emphasis added)
+
+The rest of the material of the diary would not be germane at this juncture. Certain statements of witnesses are recorded namely of CW-1 to CW-13. The handwriting of the victim was sent for examination to Forensic Science Laboratory. It is confirmed that it is the hand writing of the victim. Even the audio and video is also confirmed that it is of the victim. Those documents are also appended to the petition. On the basis of the said documents, the police file a charge sheet before the concerned Court. The summary of the charge sheet reads as follows:
+
+"17. ಕೇಸಿನ ಸಂಕ್ಷಿಪ್ತ ಸಾರಾಂಶ
+
+ಸಾಕ್ಷಿ-1 ರವರ ಮಗಳಾದ ಮೃತೆ ಶ್ರೀಮತಿ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರು ದಿನಾಂಕ 05-02-2021 ರಂದು ದೋಷಾರೋಪಣ ಪಟ್ಟಿಯ ಕಾಲಂ ನಂ-12 ರಲ್ಲಿ, ನಮೂದಿಸಿರುವ ಎ-1 ಆರೋಪಿಯ ಜೊತೆಯಲಿ. ಹಿಂದು ಸಂಪ್ರದಾಯದ ಪ್ರಕಾರ ಮದುವೆಯಾಗಿದ್ದು, ನಂತರ ಸಾಕ್ಷಿ-1 ರವರ ಮಗಳು ಮೃತೆ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ಮತ್ತು ಎ1 ಆರೋಪಿಯು ಬೆಂಗಳೂರು ನಗರ ಮಾರತ್ನಹಳ್ಳಿ ಪೊಲೀಸ್ ಠಾಣೆಯ ಸರಹದ್ದಿಗೆ ಬರುವ ಕಾವೇರಪ್ಪ ಬಡಾವಣೆ ಶ್ರದ್ಧಾ ಪಾಲಮೇರಾ ಅಪಾಮೆರ್ಂಟ್ ನ 'ಎ' ಬ್ಯಾಕ್ 201 ರಲ್ಲಿ,
+
+ಜನವರಿ 2022ನೇ ಸಾಲಿನಿಂದ ವಾಸವಾಗಿದ್ದು, ಮದುವೆಯಾದ ನಂತರ ಎ-1 ಆರೋಪಿಯು ಸಾಕ್ಷಿ-1 ರವರ ಮಗಳಾದ ಮೃತೆ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರ ಜೊತೆಯಲ್ಲಿ.. ಸರಿಯಾಗಿ ಸಂಸಾರವನ್ನು ಮಾಡದೇ, ಬೇರೆ ಹೆಣ್ಣಿನ ಜೊತೆಯಲಿ, ಸಂಬಂಧವನ್ನು ಇಟ್ಟುಕೊಂಡಿದ್ದು ಈ ಸಂಬಂಧ ಮೃತೆ ಶ್ರೀಮತಿ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರು ತನ್ನ ಗಂಡ ಎ1 ಆರೋಪಿಯ ನಡವಳಿಕೆಯನ್ನು ಬದಲಾಯಸಿಕೊಂಡು ಉತ್ತಮ ಜೀವನವನ್ನು ಮಾಡಲು ಕೋರಿಕೊಂಡರು ಸಹ ಎ1 ಆರೋಪಿಯು ಮೃತಳ ಮಾತನನ್ನು ಕೇಳದಿದ್ದ ಕಾರಣ ಮೃತ ಶ್ರೀಮತಿ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರು ಪ್ರತಿದಿನ ಮಾನಸಿಕವಾಗಿ ನೊಂದುಹೋಗಿದ್ದು, ತದನಂತರ ಎ1 ಆರೋಪಿಯು ಶ್ರೀಮತಿ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರ ಫೋನ್ ಕರೆಗಳಿಗೂ ಸಂದೇಶಗಳಿಗೂ ಸಹ ಪ್ರತಿಕ್ರಿಯಿಸುತ್ತಿರಲಿಲ್ಲ. ಪ್ರತಿ ದಿನ ಮೃತ ಶ್ರೀಮತಿ ಪಿಯಾಲಿ ಮುಖರ್ಜಿ ರವರಿಗೆ ತನ್ನ ಗಂಡನಾದ ಎ1 ಆರೋಪಿಯು ನೀಡುವಂತಹ ಮಾನಸಿಕವಾಗಿ ಮತ್ತು ಭಾವನಾತ್ಮಕವಾಗಿ ಅನುಭವಿಸುತ್ತಿದ್ದ ಕಿರುಕುಳದ ಬಗ್ಗೆ ಪ್ರತಿ ದಿನ ಒಂದು ಡೈರಿಯಲಿ.., ಬರೆದು, ದಿನಾಂಕ 24-02-2023 ರಂದು ಸಾಕ್ಷಿ-1 ರವರ ಮಗಳಾದ ಮೃತ ಶ್ರೀಮತಿ ಸ್ವಾತಿ ಮುಖರ್ಜಿ ರವರು ತನ್ನ ಮನೆಯಲ್ಲಿ ನೇಣುಬಿಗಿದುಕೊಂಡು ಆತ್ಮಹತ್ಯೆ ಮಾಡಿಕೊಳ್ಳಲು ಕಾರಣವಾಗಿದ್ದು ತನಿಖೆಯಲ್ಲಿ ದೃಡಪಟ್ಟಿರುತ್ತದೆ. ಆದ್ದುರಿಂದ ಮೇಲ್ಕಂಡ ಕಲಂ ಪ್ರಕಾರ ಆರೋಪಿಯ ವಿರುದ್ಧ ದೋಷಾರೋಪಣ ಪಟ್ಟಿ.”
+
+While filing the charge sheet, the officer in-charge of the Police Station drops accused 2 and 3 holding that there was no evidence against them for the offences so alleged. Therefore, the charge sheet is filed only against the petitioner/husband. In the teeth of the aforesaid facts, whether it amounts to ingredients of Section 306 of the IPC is required to be noticed.
+9. Section 306 of the IPC punishes any person who abets commission of suicide. Therefore, abetment is the soul of Section 306. ‘Abetment’ is defined under Section 107 of the IPC. Therefore, it becomes necessary to notice both Sections 306 and 107 of the IPC. They read as follows:
+
+“306. Abetment of suicide.—If any person commits suicide, whoever abets the commission of such suicide, shall be punished with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.”
+
+… … …
+
+107. Abetment of a thing.—A person abets the doing of a thing, who—
+First.—Instigates any person to do that thing; or
+
+Secondly.—Engages with one or more other person or persons in any conspiracy for the doing of that thing, if an act or illegal omission takes place in pursuance of that conspiracy, and in order to the doing of that thing; or
+
+Thirdly.—Intentionally aids, by any act or illegal omission, the doing of that thing.
+
+Explanation 1.—A person who, by wilful misrepresentation, or by wilful concealment of a material fact which he is bound to disclose, voluntarily causes or procures, or attempts to cause or procure, a thing to be done, is said to instigate the doing of that thing.
+
+Illustration
+
+A, a public officer, is authorised by a warrant from a Court of Justice to apprehend Z. B, knowing that fact and also that C is not Z, wilfully represents to A that C is Z, and thereby intentionally causes A to apprehend C. Here B abets by instigation the apprehension of C.
+
+Explanation 2.—Whoever, either prior to or at the time of the commission of an act, does anything in order to facilitate the commission of that act, and thereby facilitates the commission thereof, is said to aid the doing of that act.”
+
+For an offence to become punishable under Section 306 of the IPC, it is necessary that it has the ingredients of Section 107 of the IPC to become abetment of suicide. The interpretation of abetment need not detain this Court for long or delve deep into the matter. Plethora of judgments are rendered by the Apex Court as to what constitutes abetment. All of which bear consideration in the judgment rendered in David D’Souza case supra. The judgments relied on in the case of David D’Souza are as follows:-
+
+(1) SWAMY PRAHALADDAS V. STATE OF M.P. [1995 Supp (3) SCC 438]
+
+(2) SANJU V. STATE OF M.P. [ (2002) 5 SCC 371]
+
+(3) S.S. CHHEENA V. VIJAY KUMAR MAHAJAN [ (2010) 12 SCC 190]
+
+(4) AMALENDU PAL V. STATE OF WEST BENGAL [ (2010) 1 SCC 707]
+
+(5) GURCHARAN SINGH V. STATE Of PUNJAB [ (2020) 10 SCC 200]
+
+(6) KANCHAN SHARMA v. STATE Of UTTAR PRADESH [2021 SCC OnLine SC 737]
+
+(7) DAXABEN v. STATE Of GUJARAT [2022 SCC OnLine SC 936]
+
+(8) KUMAR @ SHIVA KUMAR v. STATE OF KARNATAKA [2024 SCC OnLine SC 216]
+
+(9) MAHMOOD ALI v. STATE Of U.P. [2023 SCC OnLine SC 950]
+
+(10) STATE Of HARYANA v. BHAJAN LAL [1992 Supp (1) SCC 335]
+
+All the judgments so relied on by this Court in the aforesaid judgment were concerning statement being made by the accused to the victim to “go and die”. That would not amount to an offence under Section 306 of the IPC is what is held. To hold thus, this Court had considered the facts therein observing that there was neither instigation nor goading nor proximity with the crime.
+
+10. In the case at hand, it is not that there was no instigation or no goading. The issue in the lis concerns the happenings between the husband and the wife. The wife is crying foul right from the day of marriage or thereafter when they shifted to Bengaluru that the husband had extra-marital affair. If this were to be imaginary, it would have been an altogether different circumstance. The imagination has led to the victim scripting several pages in her diary and also shooting a video of her suicide. All the blame is on the husband. In the life of husband and wife it cannot be said that there should be minimum proximity. The wife being driven to the wall to an extent of commission of suicide cannot happen at the spur of the moment. It is a collection of agony that has resulted in the fateful incident. It is akin to the explosion of a dormant volcano. Instigation or otherwise of a husband for commission of suicide of the wife can only be deciphered in a full blown trial; it would undoubtedly require evidence, as the truth between the husband and the wife will not come out in a petition under Section 482 of the Cr.P.C. unless there is a trial conducted. Goading and instigation could be throughout the days. It is not that the marriage had taken place 10 years ago. The marriage prior to the death of the victim was 24 months old and the video and writings are clear that there was clear instigation on the part of the husband albeit prima facie, at this juncture. These are matters which require a full blown trial.
+
+11. None of the judgments that the learned senior counsel would seek to place reliance upon, which all have been considered in the case of David D’Souza, would become applicable to the facts of the case at hand. On the other hand, it becomes germane to notice the judgment of the Apex Court in the case of UDE SINGH v. STATE OF HARYANA [ (2019) 17 SCC 301]. The law concerning abetment is extensively analyzed in the case of UDE SINGH by the Apex Court from paragraphs 15 to 26 and they read as follows:
+
+“.... .... ....
+
+15. Thus, “abetment” involves a mental process of instigating a person in doing something. A person abets the doing of a thing when:
+he instigates any person to do that thing; or
+he engages with one or more persons in any conspiracy for the doing of that thing; or
+he intentionally aids, by acts or illegal omission, the doing of that thing.
+These are essential to complete the abetment as a crime. The word “instigate” literally means to provoke, incite, urge on or bring about by persuasion to do anything.
+
+16. In cases of alleged abetment of suicide, there must be a proof of direct or indirect act(s) of incitement to the commission of suicide. It could hardly be disputed that the question of cause of a suicide, particularly in the context of an offence of abetment of suicide, remains a vexed one, involving multifaceted and complex attributes of human behaviour and responses/reactions. In the case of accusation for abetment of suicide, the court would be looking for cogent and convincing proof of the act(s) of incitement to the commission of suicide. In the case of suicide, mere allegation of harassment of the deceased by another person would not suffice unless there be such action on the part of the accused which compels the person to commit suicide; and such an offending action ought to be proximate to the time of occurrence. Whether a person has abetted in the commission of suicide by another or not, could only be gathered from the facts and circumstances of each case.
+
+16.1. For the purpose of finding out if a person has abetted commission of suicide by another, the consideration would be if the accused is guilty of the act of instigation of the act of suicide. As explained and reiterated by this Court in the decisions above referred, instigation means to goad, urge forward, provoke, incite or encourage to do an act. If the persons who committed suicide had been hypersensitive and the action of the accused is otherwise not ordinarily expected to induce a similarly circumstanced person to commit suicide, it may not be safe to hold the accused guilty of abetment of suicide. But, on the other hand, if the accused by his acts and by his continuous course of conduct creates a situation which leads the deceased perceiving no other option except to commit suicide, the case may fall within the four corners of Section 306 IPC. If the accused plays an active role in tarnishing the self- esteem and self-respect of the victim, which eventually draws the victim to commit suicide, the accused may be held guilty of abetment of suicide. The question of mens rea on the part of the accused in such cases would be examined with reference to the actual acts and deeds of the accused and if the acts and deeds are only of such nature where the accused intended nothing more than harassment or snap show of anger, a particular case may fall short of the offence of abetment of suicide. However, if the accused kept on irritating or annoying the deceased by words or deeds until the deceased reacted or was provoked, a particular case may be that of abetment of suicide. Such being the matter of delicate analysis of human behaviour, each case is required to be examined on its own facts, while taking note of all the surrounding factors having bearing on the actions and psyche of the accused and the deceased.
+
+16.2. We may also observe that human mind could be affected and could react in myriad ways; and impact of one's action on the mind of another carries several imponderables. Similar actions are dealt with differently by different persons; and so far a particular person's reaction to any other human's action is concerned, there is no specific theorem or yardstick to estimate or assess the same. Even in regard to the factors related with the question of harassment of a girl, many factors are to be considered like age, personality, upbringing, rural or urban set-ups, education, etc. Even the response to the ill action of eve teasing and its impact on a young girl could also vary for a variety of factors, including those of background, self-confidence and upbringing. Hence, each case is required to be dealt with on its own facts and circumstances.
+17. Having taken an overall view of the applicable principles, we may notice that the real questions arising in this appeal are:
+17.1. Whether the accused persons are guilty of the acts and utterances attributed to them.
+
+17.2. If the answer to Question (i) is in the affirmative, as to whether such acts and utterances had only been of insult or intimidation or had been of instigation; and whether such acts and utterances amounted to abetment of suicide?
+
+18. Before entering into the questions aforesaid, it may be observed that the fact that the daughter of the complainant indeed committed suicide with hanging by neck is not of any dispute in this appeal. The fact has been established on record and the trial court as also the High Court have concurrently found this fact proved. No further dilation on this aspect of the matter is requisite. Similarly, a feeble suggestion on behalf of the accused persons that Accused 3 and 4 were not present in the village on 5-5-1996 does not carry any substance and the finding in that regard is also not required to be interfered with.
+
+19. Coming to the material points for determination in the matter, the question as to whether the accused persons were guilty of the actions and utterances imputed on them does not detain us much longer. The fact that they indeed did so and made such utterances is amply established in the testimony of the prosecution witnesses, particularly PW 1, PW 2 and PW 11, as noticed above. It is also established beyond doubt that such utterances were not of a solitary or one-off incident but the accused, working in unison, had continuously made the imputed utterances towards the daughter of the complainant and continuously taunted the girl, who committed suicide next day after her last encounter with the accused. In the given fact situation, the question is as to whether such actions and utterances of the accused persons lead to the offence of abetment of suicide or only to the offence of insult and/or intimidation?
+
+20. Having examined the record in its totality, we are clearly of the view that the actions and utterances of the accused, directed towards the deceased on continuous basis, had driven her to suicide; and accused persons are guilty of the offence of abetment of suicide.
+
+21. The relevant background aspects of the matter make it clear that the complainant (father of the deceased) and the accused persons, residing in the same village in the State of Haryana, were closely related as cousins but were estranged in relations; and were involved in several civil and criminal cases against each other. Admittedly, there was a property dispute between the parties that was later on compromised but, the relations of the parties did not improve. There was a criminal case by Accused 1 (since deceased) against the complainant and his brother, allegedly involving offence under Section 307 IPC. Then, there was another criminal case wherein wife of the complainant (PW 11 Smt Krishna) alleged that Accused 1 of this case had assaulted her with gandasa. The incident of 15-4-1996 (when the deceased girl was dragged by Accused 1) had allegedly taken place after evidence in the said criminal case lodged by the mother of the deceased girl. The parties, therefore, were not standing on good terms and there had been the elements of rather abject animosity towards each other. On the other hand, the position of the deceased girl had been that she was about 18 years of age; she had failed to clear her 10th standard examination and was practically a drop out from her studies; and she was engaged for the purpose of marriage but, six months before the incident in question, her engagement had broken. Accused 1 and 2 were uncles in her relation whereas, Accused 3 and 4 were her cousins.
+
+22. In the given set-up and the respective position of the parties, if Accused 1 continuously addressed or called the deceased girl as his "wife", in our view, the utterance was not merely of teasing but of demeaning and destroying the self-esteem of the young girl whose engagement had broken and whose uncle was mocking her to join him in matrimony. It was the act of humiliation of highest order for the girl, who had personally suffered the set-back of broken engagement, apart from that she was unable to clear even 10th standard examination. Obviously, she was being ridiculed and taunted for her broken engagement. The other accused persons chose to join Accused 1 and aggravated the humiliation of the girl by addressing her as younger brother's wife or aunt. There remains nothing to doubt that the accused persons were working with the common intention to harass and humiliate the girl with reference to her broken engagement. The significant part of the matter is that such taunting and humiliation of the deceased at the hands of the accused persons had not been a singular event or one-off affair but had been a continuous feature, as amply established by the prosecution witnesses. The incident of 5-5-1996 drew the final straw when the hapless girl received the same taunts from the accused persons and she even rebuked them. We find no reason to disbelieve the statement of PW 2 Jai Narain as regards the incident of 5-5-1996. Equally, there is no reason to disbelieve the statement of PW 11 Smt Krishna that her daughter wept the whole night after the said incident; and on being frustrated and exasperated with such humiliations, expressed her intention to end her life. The fact of the matter remains that the victim girl ended her life in the early morning very next day.
+
+23. Taking an overall view of the matter, we are satisfied that the present one had not been a case of a mere eve teasing, insult or intimidation but the continuous and repeated acts and utterances of the accused persons were calculated to bring disgrace to the village girl and to destroy her self-esteem; rather the acts and utterances were aimed at taking her to the brink of helplessness and to the vanishing point of tolerance. It had not been a case of mere intimidation or insult. The incessant intimidation and insult of the innocent girl had been of instigation; and such instigation clearly answers to the description of abetment of suicide. Therefore, in our view, Accused 1 and 3 have rightly been held guilty of offence of abetment of suicide.
+
+24.The contention of the appellants that their intention had never been to make her commit suicide is required to be rejected because, as noticed above, the hapless girl was intentionally chosen for humiliation by the accused, who were otherwise involved in several litigations with her parents. The accused persons also knew it that the father of the girl was posted in his duty outside the village. As noticed, the intention of the accused had only been to drive the deceased to the brink of helplessness and intolerance; they in fact succeeded in doing so on 5-5-1996, when the girl rebuked them for their utterances. However, the victim girl found no way out because the humiliation at the hands of the accused had been everyday affair; and, in the given set-up of the society she belonged to, any action against the accused by her family was being avoided for the sake of her honour. 
+
+25. The present case indeed represents a sordid state of affairs in relation to the young girl in the rural setting, whose honour and self-esteem got brutally violated by none other but her own relatives, who found her to be the soft target to settle their scores with her parents. The accused rather exhibited their denigrating mentality while targeting the young girl, who was otherwise required to be treated by them with affection and respect, for being their niece and their cousin. The facts of this case lead only to the conclusion that the accused persons had intentionally, with their incessant acts and utterances, goaded the victim girl to commit suicide. She indeed committed suicide within few hours of her last and unbearable encounter with the accused. The acts and deeds of the accused in the evening of 5-5-1996 had been too proximate to the event of suicide by 9 a.m. in the morning of 6-5-1996. As testified by PW 11 Smt Krishna, her daughter cried the whole night for being unable to bear the daily humiliation at the hands of the accused and ended her life in the morning.
+
+
+26. For what has been discussed hereinabove and having examined the matter in its totality, we find no reason to consider any interference in the impugned judgment and order dated 5-5-2008 [Hem Karan v. State of Haryana, 2008 SCC OnLine P&H 659] in relation to Appellants 1 and 3.""
+
+                                                                               (Emphasis supplied)
+
+The Apex Court, taking overall view of the matter before it, holds that it was not a matter of eve teasing of the victim girl. Insult, intimidation and utterances of the accused persons were calculated to bring disgrace and destroy her self-esteem. Continuance of repeated acts and utterances are what formed the crux of the judgment of the Apex Court in the case of UDE SINGH which would become applicable to the facts of the case at hand as well. Reference being made to another judgment of the Apex Court in the case of MAHENDRA K.C. v. STATE OF KARNATAKA [(2022) 2 SCC 129] which was also concerning an offence under Section 306 of the IPC would become apposite. The Apex Court holds as follows:
+
+“C. Analysis
+16. On reading the judgment [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395] of the Single Judge, it would appear that the Single Judge has failed to notice the distinction between a petition for quashing under Section 482 (which was being considered) and a criminal trial or an appeal against a conviction on a charge under Section 306. The Single Judge has transgressed the limits of the jurisdiction under Section 482 CrPC. The judgment is replete with hypotheses and surmises on the basis of which the Single Judge has reached an inference on facts. The Single Judge has tested the veracity of the allegations in the criminal complaint and in the suicide note left behind by the deceased without having the benefit of an evidentiary record which would be collected during the trial. At the stage when the High Court considers a petition for quashing under Section 482 CrPC, the test to be applied is whether the allegations in the complaint as they stand, without adding or detracting from the complaint, prima facie establish the ingredients of the offence alleged. At this stage, the High Court cannot test the veracity of the allegations nor for that matter can it proceed in the manner that a Judge conducting a trial would, on the basis of the evidence collected during the course of trial. The High Court in the present case has virtually proceeded to hold a trial, substituting its own perception for what it believed should or should not have been the normal course of human behaviour. This is clearly impermissible.
+
+.... .... ....
+
+18. In this backdrop, it is impossible on a judicious purview of the contents of the complaint and the suicide note for a judicial mind to arrive at a conclusion that a case for quashing the FIR had been established. In arriving at that conclusion, the Single Judge has transgressed the well-settled limitations on the exercise of the powers under Section 482 CrPC and has encroached into a territory which is reserved for a criminal trial.
+19. The High Court has the power under Section 482 to issue such orders as are necessary to prevent the abuse of legal process or otherwise, to secure the ends of justice. The law on the exercise of power under Section 482 to quash an FIR is well-settled. In State of Orissa v. Saroj Kumar Sahoo [State of Orissa v. Saroj Kumar Sahoo, (2005) 13 SCC 540: (2006) 2 SCC (Cri) 272] , a two-Judge Bench of this Court, observed that: (SCC pp. 547-48, para 8)
+“8. … While exercising the powers under the section, the court does not function as a court of appeal or revision. Inherent jurisdiction under the section though wide has to be exercised sparingly, carefully and with caution and only when such exercise is justified by the tests specifically laid down in the section itself. It is to be exercised ex debito justitiae to do real and substantial justice for the administration of which alone the courts exist. Authority of the court exists for advancement of justice and if any attempt is made to abuse that authority so as to produce injustice, the court has power to prevent abuse. It would be an abuse of process of the court to allow any action which would result in injustice and prevent promotion of justice. In exercise of the powers the court would be justified to quash any proceeding if it finds that initiation/continuance of it amounts to abuse of the process of court or quashing of these proceedings would otherwise serve the ends of justice. When no offence is disclosed by the report, the court may examine the question of fact. When a report is sought to be quashed, it is permissible to look into the materials to assess what the report has alleged and whether any offence is made out even if the allegations are accepted in toto.”
+20. These principles emanate from the decisions of this Court in State of Haryana v. Bhajan Lal [State of Haryana v. Bhajan Lal, 1992 Supp (1) SCC 335: 1992 SCC (Cri) 426] and State of M.P. v. Surendra Kori [State of M.P. v. Surendra Kori, (2012) 10 SCC 155: (2012) 4 SCC (Civ) 921 : (2013) 1 SCC (Cri) 247: (2012) 2 SCC (L&S) 940]. In Surendra Kori [State of M.P. v. Surendra Kori, (2012) 10 SCC 155: (2012) 4 SCC (Civ) 921: (2013) 1 SCC (Cri) 247: (2012) 2 SCC (L&S) 940], this Court observed: (Surendra Kori case [State of M.P. v. Surendra Kori, (2012) 10 SCC 155: (2012) 4 SCC (Civ) 921 : (2013) 1 SCC (Cri) 247: (2012) 2 SCC (L&S) 940], SCC p. 163, para 14)
+
+“14. The High Court in exercise of its powers under Section 482 CrPC does not function as a court of appeal or revision. This Court has, in several judgments, held that the inherent jurisdiction under Section 482 CrPC, though wide, has to be used sparingly, carefully and with caution. The High Court, under Section 482 CrPC, should normally refrain from giving a prima facie decision in a case where the entire facts are incomplete and hazy, more so when the evidence has not been collected and produced before the Court and the issues involved, whether factual or legal, are of wide magnitude and cannot be seen in their true perspective without sufficient material.”
+
+21. In Bhajan Lal [State of Haryana v. Bhajan Lal, 1992 Supp (1) SCC 335 : 1992 SCC (Cri) 426] , this Court laid down the principles for the exercise of the jurisdiction by the High Court in exercise of its powers under Section 482 CrPC to quash an FIR. Ratnavel Pandian, J. laid down the limits on the exercise of the power under Section 482 CrPC for quashing the FIR and observed : (SCC pp. 378-79, para 102)
+
+“102. In the backdrop of the interpretation of the various relevant provisions of the Code under Chapter XIV and of the principles of law enunciated by this Court in a series of decisions relating to the exercise of the extraordinary power under Article 226 or the inherent powers under Section 482 CrPC which we have extracted and reproduced above, we give the following categories of cases by way of illustration wherein such power could be exercised either to prevent abuse of the process of any court or otherwise to secure the ends of justice, though it may not be possible to lay down any precise, clearly defined and sufficiently channelised and inflexible guidelines or rigid formulae and to give an exhaustive list of myriad kinds of cases wherein such power should be exercised.”
+
+(1) Where the allegations made in the first information report or the complaint, even if they are taken at their face value and accepted in their entirety do not prima facie constitute any offence or make out a case against the accused.
+
+(2) Where the allegations in the first information report and other materials, if any, accompanying the FIR do not disclose a cognizable offence, justifying an investigation by police officers under Section 156(1) CrPC except under an order of a Magistrate within the purview of Section 155(2) CrPC.
+
+(3) Where the uncontroverted allegations made in the FIR or complaint and the evidence collected in support of the same do not disclose the commission of any offence and make out a case against the accused.
+
+(4) Where, the allegations in the FIR do not constitute a cognizable offence but constitute only a non-cognizable offence, no investigation is permitted by a police officer without an order of a Magistrate as contemplated under Section 155(2) CrPC.
+
+(5) Where the allegations made in the FIR or complaint are so absurd and inherently improbable on the basis of which no prudent person can ever reach a just conclusion that there is sufficient ground for proceeding against the accused.
+
+(6) Where there is an express legal bar engrafted in any of the provisions of the Code or the Act concerned (under which a criminal proceeding is instituted) to the institution and continuance of the proceedings and/or where there is a specific provision in the Code or the concerned Act, providing efficacious redress for the grievance of the aggrieved party.
+
+(7) Where a criminal proceeding is manifestly attended with mala fide and/or where the proceeding is maliciously instituted with an ulterior motive for wreaking vengeance on the accused and with a view to spite him due to private and personal grudge."
+
+The judgment in Bhajan Lal [State of Haryana v. Bhajan Lal, 1992 Supp (1) SCC 335 : 1992 SCC (Cri) 426] has been recently relied on by this Court in State of Telangana v. Managipet[State of Telangana v. Managipet, (2019) 19 SCC 87 : (2020) 3 SCC (Cri) 702] .
+
+22. Based on the above precedent, the High Court while exercising its power under Section 482 CrPC to quash the FIR instituted against the second respondent- accused should have applied the following two tests : (i) whether the allegations made in the complaint, prima facie constitute an offence; and (ii) whether the allegations are so improbable that a prudent man would not arrive at the conclusion that there is sufficient ground to proceed with the complaint. Before proceeding further, it is imperative to briefly discuss the law on the abetment of suicide to determine if a prima facie case under Section 306 IPC has been made out against the respondent- accused.
+
+23. Section 306 IPC provides for punishment of the abetment of suicide:
+
+“306. Abetment of suicide.—If any person commits suicide, whoever abets the commission of such suicide, shall be punished with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.”
+
+Section 107 IPC defines the expression “abetment”:
+“107. Abetment of a thing.—A person abets the doing of a thing, who—
+
+First.—Instigates any person to do that thing; or
+
+Secondly.—Engages with one or more other person or persons in any conspiracy for the doing of that thing, if an act or illegal omission lakes place in pursuance of that conspiracy, and in order to the doing of that thing; or
+
+Thirdly.—Intentionally aids, by any act or illegal omission, the doing of that thing.
+
+Explanation 1.—A person who by wilful misrepresentation, or by wilful concealment of a material fact which he is bound to disclose, voluntarily causes or procures, or attempts to cause or procure, a thing to be done, is said to instigate the doing of that thing.”
+
+24. The essence of abetment lies in instigating a person to do a thing or the intentional doing of that thing by an act or illegal omission. In Ramesh Kumar v. State of Chhattisgarh [Ramesh Kumar v. State of Chhattisgarh, (2001) 9 SCC 618 : 2002 SCC (Cri) 1088] , a three-Judge Bench of this Court, speaking through R.C. Lahoti, J. (as the learned Chief Justice then was), observed : (SCC p. 629, para 20)
+
+“20. Instigation is to goad, urge forward, provoke, incite or encourage to do "an act". To satisfy the requirement of instigation though it is not necessary that actual words must be used to that effect or what constitutes instigation must necessarily and specifically be suggestive of the consequence. Yet a reasonable certainty to incite the consequence must be capable of being spelt out. The present one is not a case where the accused had by his acts or omission or by a continued course of conduct created such circumstances that the deceased was left with no other option except to commit suicide in which case an instigation may have been inferred. A word uttered in the fit of anger or emotion without intending the consequences to actually follow cannot be said to be instigation."
+
+25. A two-Judge Bench of this Court in Chitresh Kumar Chopra v. State (NCT of Delhi) [Chitresh Kumar Chopra v. State (NCT of Delhi), (2009) 16 SCC 605 : (2010) 3 SCC (Cri) 367] , speaking through D.K. Jain, J., observed : (SCC pp. 611-12, paras 19-20)
+
+"19. As observed in Ramesh Kumar [Ramesh Kumar v. State of Chhattisgarh, (2001) 9 SCC 618 : 2002 SCC (Cri) 1088] , where the accused by his acts or by a continued course of conduct creates such circumstances that the deceased was left with no other option except to commit suicide, an "instigation" may be inferred. In other words, in order to prove that the accused abetted commission of suicide by a person, it has to be established that:
+
+(i) the accused kept on irritating or annoying the deceased by words, deeds or wilful omission or conduct which may even be a wilful silence until the deceased reacted or pushed or forced the deceased by his deeds, words or wilful omission or conduct to make the deceased move forward more quickly in a forward direction; and
+
+(ii) that the accused had the intention to provoke, urge or encourage the deceased to commit suicide while acting in the manner noted above. Undoubtedly, presence of mens rea is the necessary concomitant of instigation.
+
+20. In the background of this legal position, we may advert to the case at hand. The question as to what is the cause of a suicide has no easy answers because suicidal ideation and behaviours in human beings are complex and multifaceted. Different individuals in the same situation react and behave differently because of the personal meaning they add to each event, thus accounting for individual vulnerability to suicide. Each individual's suicidality pattern depends on his inner subjective experience of mental pain, fear and loss of self-respect. Each of these factors are crucial and exacerbating contributor to an individual's vulnerability to end his own life, which may either be an attempt for self-
+protection or an escapism from intolerable self.”
+
+                                                                           (emphasis in original)
+
+26. This has been reiterated in the decision in Amalendu Pal v. State of W.B. [Amalendu Pal v. State of W.B., (2010) 1 SCC 707: (2010) 1 SCC (Cri) 896] , where it has been observed : (SCC p. 712, para 12)
+
+“12. … It is also to be borne in mind that in cases of alleged abetment of suicide there must be proof of direct or indirect acts of incitement to the commission of suicide. Merely on the allegation of harassment without there being any positive action proximate to the time of occurrence on the part of the accused which led or compelled the person to commit suicide, conviction in terms of Section 306 IPC is not sustainable.”
+(See also in this context the judgments in Praveen Pradhan v. State of Uttaranchal [Praveen Pradhan v. State of Uttaranchal,(2012) 9 SCC 734: (2013)1 SCC (Cri) 146], Vaijnath Kondiba Khandke v. State of Maharashtra [Vaijnath Kondiba Khandke v. State of Maharashtra, (2018) 7 SCC 781: (2018) 3 SCC (Cri) 362], M. Arjunan v. State [M. Arjunan v. State, (2019) 3 SCC 315: (2019) 2 SCC (Cri) 219], Ude Singh v. State of Haryana [Ude Singh v. State of Haryana, (2019) 17 SCC 301:(2020) 3 SCC (Cri) 306], Rajesh v. State of Haryana [Rajesh v. State of Haryana, (2020) 15 SCC 359: (2020) 4 SCC (Cri) 75] and Gurcharan Singh v. State of Punjab [Gurcharan Singh v. State of Punjab, (2020) 10 SCC 200: (2021) 1 SCC (Cri) 417]. These decisions have been recently referred to in the judgment of this Court in Arnab Manoranjan Goswami v. State of Maharashtra [Arnab Manoranjan Goswami v. State of Maharashtra, (2021) 2 SCC 427: (2021) 1 SCC (Cri) 834] ).
+
+27. While adjudicating on an application under Section 482 CrPC, the High Court in the present case travelled far away from the parameters for the exercise of the jurisdiction. Essentially, the task before the High Court was to determine whether the allegations made in the first information report or the complaint, even if they are taken at their face value and accepted in their entirety did or did not prima facie constitute an offence or make out a case against the accused.
+
+28. Instead of applying this settled principle, the High Court has proceeded to analyse from its own perspective the veracity of the allegations. It must be emphasised that this is not a case where the High Court has arrived at a conclusion that the allegations in the FIR or the complaint are so absurd and inherently improbable on the basis of which no prudent person could ever reach a just conclusion that there is sufficient ground for proceeding against the accused. Nor is this a case where the criminal proceeding is manifestly mala fide or has been instituted with an ulterior motive of taking vengeance on the accused. On the contrary, the specific allegations in the FIR and in the complaint find due reflection in the suicide note and establish a prima facie case for abetment of suicide within the meaning of Sections 306 and 107 IPC. The entire judgment [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395] of the High Court consists of a litany of surmises and conjectures and such an exercise is beyond the domain of proceeding under Section 482 CrPC. The High Court has proceeded to scrutinise what has been disclosed during the investigation, ignoring that the investigation had been stayed by an interim order of the High Court, during the pendency of the proceedings under Section 482.
+
+29. The High Court observed that a prima facie case for the commission of offence under Section 306 IPC is not made out since : (i) the suicide note does not describe the specific threats; (ii) details of the alleged demand of Rs 8 lakhs from the deceased by the respondent-accused are not set out in the suicide note; and (iii) no material to corroborate the allegations detailed in the suicide note has been unearthed by the investigating agency. The High Court observed that since the deceased took considerable time to write a twelve page suicide note, "it would have been but natural for the author to set out the details". The High Court has evidently travelled far beyond the limits of its inherent power under Section 482 CrPC since instead of determining whether on a perusal of the complaint, a prima facie case is made out, it has analysed the sufficiency of the evidence with reference to the suicide note and has commented upon and made strong observations on the suicide note itself.
+
+30. Paras 32, 33, 34 and 39 of the order [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395] of the High Court are extracted below : (L. Bheema Naik case [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395] , SCC OnLine Kar)
+"32. In Para 21 [of the suicide/death note] [Ed. : As per para 31 of the impugned judgment of the High Court in L. Bheema Naik case, it is recorded as follows: "... The deceased has written a detailed death note consisting of 21 numbered and one unnumbered paragraphs. Out of 22 paragraphs, 20 paragraphs pertain to alleged dealings and the only probable portion of the death note, which could be relied upon to establish the culpability of the petitioner are Para 21...."] , a bald statement is made stating that because he is aware of all the above transaction, he was given a death threat. In the next sentence, he states that he has been psychologically/emotionally in trouble and hence, he is consuming poison and that the petitioner and his driver alone are responsible. For a person, who has detailed 20 transactions, it can be prudently expected of such a person to give details of the threat.
+
+33. In the next unnumbered paragraph, a totally different story/note is set out as a reason for the petitioner threatening the deceased. In the unnumbered paragraph, he states that there was shortage in the cash to the tune of Rs 8 lakhs and that the petitioner suspected him as being responsible for the same and hence, threatened him that if the deceased did not repay said Rs 8 lakhs, he would have the deceased killed at the hands of rowdies. Thereafter, in the next sentence he states that in view of the same, he has decided to consume poison and that the petitioner and his driver are responsible for the same.
+
+ 34. In Para 20 [of the suicide/death note], the deceased holds the petitioner responsible for withholding the salary for the last three months. The other paragraphs including Para 20 [of the suicide/death note] detail the properties said to have been amassed by the petitioner and other illegal transactions. After having perused and scrutinised the death note, a query was put to the learned High Court Government Pleader and the counsel appearing on behalf of 2nd respondent as to whether the investigation has thrown up any material that corroborates any of the allegations set out in the death note. The learned High Court Government Pleader would fairly submit that they have not been able unearth any material to corroborate any of the allegations.
+                                                          ***
+ 39. As discussed above, the death note contains no incriminating statement or material except for a bald and vague statement but that the accused had threatened him. Even the complaint does not disclose any details of the alleged threat nor does the complaint state that the deceased had on multiple occasions complained of having received threats from accused. Even the allegation of the demand for repayment of Rs 8 lakhs rings hollow as neither the prosecution nor the de facto complainant have been able to place an iota of material that the deceased was or had in fact been in possession of huge sum of money.”
+Further, the observation of the High Court that there is no material to corroborate the allegations made in the suicide note is erroneous since it is not a consideration for the High Court while exercising its power under Section 482 CrPC, particularly in view of the fact that the trial has not begun and the Single Judge had stayed the investigation in the criminal complaint.
+
+31. The Single Judge, other than deciding on the merits of the case while exercising the power under Section 482 CrPC, has also made observations diminishing the importance of mental health. The mental health of a person cannot be compressed into a one-size-fits-all approach. In para 37 of the impugned judgment [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395], the Single Judge observed: (L. Bheema Naik case [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395], SCC OnLine Kar)
+
+“37. It is not the case of the deceased that the accused had deprived him of his wealth or have committed acts that have shattered his hopes in life or separated him from his family and friends.”
+
+The Single Judge then makes the following observation in paras 41 and 43: (L. Bheema Naik case [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395], SCC OnLine Kar)
+
+“41. ... It is not the case of the prosecution that the deceased was running away from or escaping the petitioner or his henchmen, but as is his habit, to visit his parents and to spend time with his friends. If the deceased had really felt threatened, he would have definitely approached the police. It is not that he was naive or not worldly-wise. If his employment with the petitioner was true, then the Police Commissionerate was only a stone's throw away. It is not that the deceased was a weakling. The deceased by profession, is a driver. A profession where, accidents causing loss of life and limb are a daily occurrence and every driver is aware that he could be involved in an accident at any time.
+
+***
+
+43. His act of attending a relatives marriage in a different town and his interacting with friends and relatives are all actions of a normal person and not of a person under severe duress. The contention that this criminal case would jeopardise his career progression also cannot be brushed aside. It is also not forthcoming as to how he sourced the poison.”
+32. The Single Judge has termed a person who decided to commit suicide a "weakling" and has also made observations on
+
+how the behaviour of the deceased before he committed suicide was not that of a person who is depressed and suffering from mental health issues. Behavioural scientists have initiated the discourse on the heterogeneity of every individual and have challenged the traditional notion of "all humans behave alike". Individual personality differences manifest as a variation in the behaviour of people. Therefore, how an individual copes up with a threat—both physical and emotional, expressing (or refraining to express) love, loss, sorrow and happiness, varies greatly in view of the multi-faceted nature of the human mind and emotions. Thus, the observations describing the manner in which a depressed person ought to have behaved deeply diminishes the gravity of mental health issues.
+
+33. The High Court by its order [L. Bheema Naik v. State of Karnataka, 2020 SCC OnLine Kar 3395] has prevented the completion of the investigation in the complaint registered as Crime No. 565 of 2016 pending on the file of the IInd Additional Civil Judge (Junior Division) and JMFC Court, Maddur, Mandya District. The alleged suicide is of a person who was working as a driver of a Special Land Acquisition Officer, who is a public servant and against whom serious and grave allegations of amassing wealth disproportionate to the known sources of income were made by the deceased. The suicide note contains a detailed account of the role of the accused in the events which led to the deceased committing suicide. These are matters of investigation and possibly trial. The High Court stalled the investigation by granting an interim order of stay. If the investigation had been allowed to proceed, there would have been a revelation of material facts which would aid in the trial, for the alleged offence against the second respondent."
+
+                                                                            (Emphasis supplied)
+
+The Apex Court holds that in cases concerning abetment to suicide particularly of the person suffering from mental health issues should not be analyzed and assessed by the High Court in exercise of its jurisdiction under Section 482 of the CrPC. A learned Judge of this Court had held that a victim was on a weekly and was suffering from depression and mental health issues. This description of this Court to quash the proceedings did not auger well with the Apex Court. It sets aside the order passed by this Court and permitted investigation to be carried out. It is these two judgments of the Apex Court that would become applicable to the facts of the case at hand. Therefore, this Court is of the considered view that there is no warrant of interference insofar as the offence under Section 306 of the IPC is concerned.
+
+12. The other offence that remains is under Section 498A of the IPC. The reasons so rendered supra to affirm the offence of Section 306 of the IPC would become applicable to the offence under Section 498A of the IPC as well, as the allegation is cruelty meted out against the wife by the husband. Whether it is for demand of dowry or otherwise is a matter that has to be tried while trying the offence under Section 306 of the IPC. In the case of ACHIN GUPTA supra there was only a bald allegation of torture, abuse and beating after consumption of alcohol. The Apex Court holds that they were unsubstantiated, vague and bald allegations. If allegations had remained allegations in the case at hand, this Court would have undoubtedly come to the aid of the petitioner following the judgment of the Apex Court in the case of ACHIN GUPTA. The allegations have not remained as allegations. The wife has committed suicide. Therefore, the gravity of the allegations both under Sections 498A and 306 of the IPC get so much blown that the petitioner should come out clean in a full blown trial. Finding no merit in any of the submissions made by the learned senior counsel for the petitioner, there is no warrant of interference with the pending proceedings before the concerned Court.
+
+13. In the result, I proceed to pass the following:
+
+ORDER
+(i) The petition lacking in merit stands rejected.
+
+(ii) It is made clear that the observations made in the course of the order are only for the purpose of consideration of the case of petitioner under Section 482 of the Cr.P.C. and the same shall not bind or influence the proceedings pending against him before the concerned Court.
+
+Consequently, I.A.No.1 of 2023 also stands disposed.` },
+      {
+        id: "LAWWORLD 2024 KAR 0934", text: `IN THE HIGH COURT OF KARNATAKA AT BENGALURU
+DATED THIS THE 4TH DAY OF SEPTEMBER, 2024
+BEFORE
+THE HON'BLE MRS JUSTICE K.S. HEMALEKHA
+WRIT PETITION NO. 21188 OF 2024 (EXCISE-)
+BETWEEN:
+PUSHPARAJ ASSOCIATES,
+A REGISTERED PARTNERSHIP FIRM,
+NO.8/13, M.G. ROAD, MADIKERI,
+KODAGU DISTRICT - 571 201.
+
+REPRESENTED BY THE MANAGING PARTNER,
+SIDDALINGAIAH,
+S/O CHANDRASHEKAR COUSHETTY,
+AGED ABOUT 55 YEARS,
+R/AT NO.8/13, MUNISHWARA ROAD,
+M.G.ROAD, MADIKERI,
+KODAGU DISTRICT - 571 201.
+
+...PETITIONER
+
+(BY SRI. G.K. BHAT, SENIOR ADVOCATE FOR SMT. SUDHA D, ADVOCATE)
+
+AND:
+1. STATE OF KARNATAKA,
+BY ITS ADDITIONAL CHIEF SECRETARY,
+FINANCE DEPARTMENT, VIDHANA SOUDHA,
+BENGALURU - 560 001.
+
+2. THE EXCISE COMMISSIONER IN KARNATAKA,
+
+2ND FLOOR, TTMC, 'A' BLOCK,
+
+BMTC BUILDING, SHANTHINAGAR,
+
+BENGALURU - 560 027.
+
+3. THE DEPUTY COMMISSIONER,
+
+KODAGU DISTRICT,
+
+MADIKERI - 571 201.
+
+4. THE DEPUTY COMMISSIONER OF EXCISE,
+
+KODAGU DISTRICT,
+
+MADIKERI - 571 201.
+
+...RESPONDENTS
+
+(BY SRI. K. MANJUNATH, HCGP FOR R1 TO R4)
+
+THIS WRIT PETITION IS FILED UNDER ARTICLES 226 AND 227 OF THE CONSTITUTION OF INDIA PRAYING TO DIRECT THE R-4 TO RENEW THE LICENSE IN FORM CL-9 DATED 29.06.2023 BEARING NO. ES20230623887 VALID UP TO 30.06.2024 AS ANNEXURE-D AND LICENSE IN FORM CL-7 DATED 01.07.2023 BEARING NO. ES20230628721 VALID UP TO 30.06.2024 AS PER ANNEXURE-E RESPECTIVELY AND ETC., THIS PETITION, COMING ON FOR ORDERS, THIS DAY, ORDER WAS MADE THEREIN AS UNDER:
+
+CORAM: HON'BLE MRS JUSTICE K.S. HEMALEKHA
+
+*******
+
+ORAL ORDER
+Learned counsel for the petitioner has filed memo seeking to withdraw the writ petition.
+
+2. The memo is taken on record, which reads as under:
+
+"That in view of the subsequent development as the Respondent No. 4 has passed an Order a rejecting Application for grant of License in Form CL-9 and CL-7 of the Petitioner and on the ground of fresh cause of action, the Petitioner has filed a separate W.P. No 23713/2024(Excise). Hence, this Writ petition was not survive for consideration and Petitioner seek leave of this Hon'ble Court to withdrawn the same. It may be dismissed as not pressed."
+
+3. In light of the memo filed, the writ petition is  dismissed as withdrawn.` },
+      {
+        id: "LAWWORLD 2024 KAR 1153", text: `IN THE HIGH COURT OF KARNATAKA,
+KALABURAGI BENCH
+DATED THIS THE 8TH DAY OF NOVEMBER, 2024
+
+BEFORE
+
+THE HON'BLE MR. JUSTICE MOHAMMAD NAWAZ
+
+CRIMINAL PETITION NO.200120 OF 2024
+(482(Cr.PC)/528(BNSS))
+BETWEEN:
+PARVATI W/O SHARANAPPA,
+
+AGE: 84 YEARS, OCC: HOUSEHOLD WORK,
+
+R/O: H.NO.98, AARBOOL ONI,
+
+SHAHAPUR,
+
+DIST: YADGIRI-585223
+
+MALLIKARJUN ARBOL S/O SHARANAPPA,
+
+AGE: 64 YEARS, OCC: AGRICULTURE,
+
+R/O: H.NO.16-45, ANEGUNDI ONI,
+
+SHAHAPUR,
+
+DIST: YADGIRI-585223.
+
+...PETITIONERS
+
+(BY SRI. SANJAY A. PATIL, ADVOCATE)
+
+AND:
+1. THE STATE OF KARNATAKA
+
+THROUGH POLICE, SHAHAPUR POLICE STATION,
+
+TQ: SHAHAPUR,
+
+DIST: YADGIRI-585223.
+
+REPRESENTED BY
+
+ADDL. SPP,
+
+HIGH COURT OF KARNATAKA,
+
+KALABURAGI BENCH-585107.
+
+2. RAYAPPA S/O AYYAPPA JANGALI,
+
+AGE. 63 YEARS, OCC: HOUSE HELP-HIRED,
+
+R/O: RAKAMGERA,
+
+SHAHAPUR,
+
+DIST: YADGIRI-585223.
+
+…RESPONDENTS
+
+(BY SMT. ANITA M. REDDY, HCGP, FOR R1
+
+BY SRI. MAHADEV S. PATIL, ADVOCATE FOR R2)
+
+
+
+THIS CRIMINAL PETITION IS FILED UNDER SECTION 482
+OF CR.P.C. PRAYING TO A) QUASH THE IMPUNGED ORDER OF REFEERENCE DATED 09.03.2023 PASSED BY THE PRL CIVIL JUDGE AND JMFC COURT, SHAHAPUR IN PCR.NO.52/2023 ON ITS FILE AND CONSEQUENTIALY QUASH REGISTRATION OF FIR IN CRIME NO.268/2023 BY SHAHAPUR POLICE STATION DISTRICT YADGIR, FOR OFFENCES PUNISHABLE UNDER SECTIONS 420, 504 AND 506 READ WITH SECTION 34 OF IPC, PENDING ON THE FILE OF CIVIL JUDGE AND JMFC (JR. DN) COURT, SHAHAPUR.
+
+THIS PETITION, COMING ON FOR ADMISSION, THIS DAY, ORDER WAS MADE THEREIN AS UNDER:
+
+CORAM: HON'BLE MR. JUSTICE MOHAMMAD NAWAZ
+
+*******
+
+ORAL ORDER
+The order passed by the learned Magistrate referring the private complaint filed by respondent No.2 to the police for investigation under Section 156 (3) of Cr.P.C. and subsequent registration of FIR is questioned in this petition, on the ground that the dictum of the Hon’ble Apex Court, in the case of Priyanka Srivastava and another vs. State of Uttar Pradesh and others, reported in (2015) 6 SCC 287, has not been followed.
+
+02. In the complaint it is alleged that two cheques which were issued by the complainant towards security, were misused by the petitioners by filing a false case against them alleging offence punishable under Section 138 of N.I. Act etc., The complaint alleging offences punishable under Sections 420, 504 and 506 read with Section 34 of IPC, was referred to police for investigation under Section 156 (3) of Cr.P.C. by the learned Magistrate vide order dated 09.03.2023, consequent to which FIR in Crime No.268/2023 was registered at Shahapur Police Station.
+
+03. The Hon'ble Apex Court in the above referred decision at Paras No.29 to 31 has held as under:-
+
+"29. At this stage it is seemly to state that power under Section 156 (3) warrants application of judicial mind. A Court of law is involved. It is not the police taking steps at the stage of Section 154 of the Code. A litigant at his own whim cannot invoke the authority of the Magistrate. A principled and really grieved citizen with clean hands must have free access to invoke the said power. It protects the citizens but when pervert litigations takes this route to harass their fellow citizens, efforts are to be made to scuttle and curb the same.
+
+30. In our considered opinion, a stage has come in this country where Section 156 (3) Cr.P.C. applications are to be supported by an affidavit duly sworn by the applicant who seeks the invocation of the jurisdiction of the Magistrate. That apart, in an appropriate case, the learned Magistrate would be well advised to verify the truth and also can verify the veracity of the allegations. This affidavit can make the applicant more responsible. We are compelled to say so as such kind of applications are being filed in a routine manner without taking any responsibility whatsoever only to harass certain persons. That apart, it becomes more disturbing and alarming when one tries to pick up people who are passing orders under a statutory provision which can be challenged under the framework of the said Act or under Article 226 of the Constitution of India. But it cannot be done to take undue advantage in a criminal court as if somebody is determined to settle the scores.
+
+31. We have already indicated that there has to be prior applications under Sections 154 (1) and 154 (3) while filing a petition under Section 156 (3). Both the aspects should be clearly spelt out in the application and necessary documents to that effect shall be filed. The warrant for giving a direction that an application under Section 156 (3) be supported by an affidavit is so that the person making the application should be conscious and also endeavour to see that no false affidavit is made. It is because once an affidavit is found to be false, he will be liable for prosecution in accordance with law. This will deter him to casually invoke the authority of the Magistrate under Section 156 (3). That apart we have already stated that the veracity of the same can also be verified by the learned Magistrate, regard being had to the nature of allegations of the case. We are compelled to say so as a number of cases pertaining to fiscal sphere, matrimonial dispute / family disputes, commercial offences, medical negligence cases, corruption cases and the cases where there is abnormal delay / laches in initiating criminal prosecution, as are illustrated in Lalita Kumari are being filed. That apart the learned Magistrate would also be aware of the delay in lodging of the FIR."
+
+04. In the case on hand, the impugned order passed by the learned Magistrate shows that a submission was made by the learned counsel for complainant stating that police have not registered the case and in spite of submitting a complaint to the higher authorities, no case was registered. The learned Magistrate has then proceeded to refer the matter for investigation under Section 156 (3) of Cr. P.C.
+
+05. Learned counsel for respondent No.2 has contended that the postal receipt for having sent the complaint to higher authorities was in fact submitted along with the complaint, however, he admitted that there was no sworn affidavit filed by the complainant in support of the complaint, as held in the case of Priyanka Srivastava’s case.
+
+06. While referring to Priyanka Srivastava’s case, the Hon’ble Apex Court in another decision reported in (2022) 5 SCC 639 in the case of Babu Venkatesh and others vs. State of Karnataka and another, has reiterated the position of law, emphasizing the necessity to file an affidavit, so that the persons making application should be conscious and not make false affidavit, as if the affidavit is found to be false, the person would liable for prosecution in accordance with law.
+
+07. In the light of the above decisions, the impugned order dated 09.03.2023 passed by the Court of Prl. Civil Judge and JMFC, Shahapur in PCR.No.52/2023 and subsequent registration of FIR in Crime No.268/2023 at Shahapur Police Station, are set-aside.
+
+08. The complainant is at liberty to file a fresh complaint in accordance with law.` },
+      {
+        id: "LAWWORLD 2024 KAR 1227", text: `IN THE HIGH COURT OF KARNATAKA AT BENGALURU
+DATED THIS THE 4TH DAY OF DECEMBER, 2024
+BEFORE
+THE HON'BLE MR JUSTICE C M JOSHI
+REGULAR FIRST APPEAL NO. 323 OF 2009 (PAR)
+BETWEEN:
+
+SRI LAKSHMAN REDDY,
+S/O LATE GOVINDA REDDY,
+AGED ABOUT 53 YEARS,
+R/AT NO.136, DODDANEKUNDI VILLAGE,
+DODDANEKUNDI POST,
+BANGALORE-560 037.
+…APPELLANT
+
+(BY SRI ABHINAV R, ADVOCATE)
+
+AND:
+
+1. SMT. G DANAMMA,
+W/O JAYARAMREDDY,
+AGED ABOUT 55 YEARS,
+R/AT MUNEKOLALU,
+MARATHALLI POST,
+BANGALORE-560 037.
+2. SMT. KANTHAMMA,
+W/O NANJUNDAREDDY,
+AGED ABOUT 45 YEARS,
+R/AT NANJAPURA, JIGANI HOBLI,
+ANEKAL TQ., BANGALORE.
+3. SMT. PRAMEELA,
+W/O GOPAL REDDY,
+MAJOR.
+4. SMT. GAYATHRI,
+D/O LATE GOVINDAREDDY,
+MAJOR.
+5. SMT. SAROJAMMA,
+D/O LATE GOVINDAREDDY,
+MAJOR.
+RESPONDENTS 3 TO 5 ARE
+R/AT NO.136, DODDANEKUNDI VILLAGE,
+DODDANEKUNDI POST,
+BANGALORE-560 037.
+6. SRI JAYARAM REDDY,
+S/O LATE GOVINDAREDDY,
+MAJOR,
+R/AT NO.136, DODDANEKUNDI
+VILLAGE, DODDANEKUNDI POST,
+BANGALORE-560 037.
+SINCE DECEASED BY HIS LR'S.
+6(A) SMT. LOKMATHA,
+W/O JAYARAMA REDDY,
+AGED ABOUT 71 YEARS.
+6(B) SRI NATESH N.J,
+S/O. JAYARAMA REDDY,
+AGED ABOUT 34 YEARS.
+BOTH 6(A) & 6(B) ARE
+R/AT NO.158, NEAR CIRCLE,
+DODDANEKUNDI, BENGALURU-560 037.
+
+7. SRI NANJUNDAREDDY,
+SINCE DEAD BY HIS LR'S.
+
+(A) SMT. ANASUYA, W/O LATE NANJUNDAREDDY, MAJOR.
+(B) N RAVI, S/O LATE NANJUNDAREDDY, MAJOR.
+(C) ANIL, S/O LATE NANJUNDAREDDY, MAJOR.
+(D) SUNIL, S/O LATE NANJUNDAREDDY, MAJOR.
+
+ALL R/AT NO.136, DODDANEKUNDI
+VILLAGE AND POST,
+BANGALORE-560 037.
+
+8. SMT. NAGARATHNA,
+D/O LATE YASHODAMMA AND
+ANNAIAH REDDY,
+AGED ABOUT 34 YEARS.
+
+9. SMT. VANITHA,
+D/O LATE YASHODAMMA AND
+ANNAIAH REDDY,
+AGED ABOUT 30 YEARS.
+10. SRINIVASA REDDY,
+S/O LATE YASHODAMMA AND
+ANNAIAH REDDY,
+AGED ABOUT 32 YEARS.
+11. RAVINDRA,
+S/O LATE YASHODAMMA AND
+ANNAIAH REDDY,
+AGED ABOUT 29 YEARS.
+RESPONDENTS 8 TO 11 ARE THE R/OF HALANAYAKANAHALLI,
+VARTHUR HOBLI, A.KRISHNAPPA NAGARA,
+BANGALORE EAST TQ.
+
+12. SRI SUNDARARAMAREDDY,
+S/O LATE GOVINDAREDDY,
+AGED ABOUT 55 YEARS,
+R/OF B.GOVINDAREDDY LAYOUT,
+7TH CROSS, 3RD MAIN, BEHIND GOVT.
+SCHOOL, DODDANEKKUNDI VILLAGE
+AND POST, BANGALORE-37.
+
+13. SRI N.R.SRINATH,
+S/O LATE RAJAREDDY,
+AGED ABOUT 40 YEARS,
+R/AT BEHIND GOVT.SCHOOL,
+DODDANEKUNDI, BANGALORE-37.
+14. SRI KODANDA,
+S/O LATE RAMAIAH REDDY,
+AGED ABOUT 56 YEARS,
+R/AT NO.399, 1ST 'D' MAIN,
+DOMLUR LAYOUT, BANGALORE-71.
+15. SRI CHANDRASHEKAR,
+S/O LATE THIPPAREDDY,
+AGED ABOUT 53 YEARS,
+R/AT NO.89, KEMPAPURA,
+YEMALUR POST, BANGALORE-37.
+16. SMT. K.LAKSHMI,
+W/O B.S.SURESH,
+AGED ABOUT 43 YEARS,
+R/AT NO.454, BELLANDUR VILLAGE
+AND POST, BANGALORE-37.
+17. SRI SATISH NAYAK SHROFF,
+S/O DAMODAR NAYAK SHROFF,
+AGED ABOUT 39 YEARS.
+18. SMT APARNA NAYAK,
+W/O SATISH NAYAK SHROFF,
+AGED ABOUT 29 YEARS.
+
+RESPONDENT NOS. 17 & 18
+ARE R/AT NO.681, 1ST B MAIN,
+7TH BLOCK, BANASHANKARI III STAGE,
+II PHASE, BANGALORE-85.
+19. SRI B.SURESH,
+S/O S.BALASUNDARAM,
+AGED ABOUT 39 YEARS.
+20. SMT. SUJATHA,
+W/O B.SURESH,
+AGED ABOUT 31 YEARS,
+R/AT NO.8/1, 1ST CROSS,
+ARTILLARY ROAD, GOWTHAMAPURA,
+ULSOOR, BANGALORE-8.
+21. V.VENKATA KRISHNA REDDY,
+S/O VENKATARAMI REDDY,
+AGED ABOUT 42 YEARS,
+R/AT IN PENT HOUSE-1, VARS FERNDALE
+APARTMENTS, 1ST MAIN, KODIHALLI,
+BANGALORE-37.
+22. SMT. PRISHWA LAKRE VINCENT,
+MAJOR,
+R/OF B.GOVINDAREDDY LAYOUT,
+BEHIND GOVT. SCHOOL,
+DODDANEKKUNDI VILLAGE & POST,
+BANGALORE-37.
+...RESPONDENTS
+
+(BY SRI PRASANNA KUMAR R.S, ADVOCATE FOR R1 TO R5
+(NOC);
+SRI VISHWANATH SHETTY, ADVOCATE FOR R6 (A&B);
+SRI H.R ANANTHA KRISHNAMURTHY, ADVOCATE FOR R7
+(A-B) (NOC) [ABSENT];
+R7(C) & R7 (D) ARE SERVED;
+SRI JAYAPRAKASH, ADVOCATE FOR R8-R11;
+R12, R13, R16, R19 & R20 ARE SERVED;
+SRI S.M MANJUNATHA, ADVOCATE BY LAW PACK
+ASSOCIATES FOR R14 & R15 [ABSENT];
+SERVICE OF NOTICE TO R17, R18 & R22 ARE HELD
+SUFFICIENT BY WAY OF PAPER PUBLICATION V/O DATED
+06.02.2014;
+SRI A MADUSUDHANA RAO, ADVOCATE FOR R21)
+
+THIS RFA IS FILED U/S 96 OF CPC, AGAINST THE JUDGMENT AND DECREE DATED 22.11.2008, PASSED IN OS.NO.5761/2004 ON THE FILE OF THE XXXVIII ADDL. CITY CIVIL JUDGE, BANGALORE, PARTLY DECREEING THE SUIT FOR RELIEF OF REVOCATION OF PARTITION AND SEPARATE POSSESSION.
+
+THIS APPEAL HAVING BEEN HEARD AND RESERVED ON 22.10.2024, COMING ON FOR PRONOUNCEMENT OF JUDGMENT THIS DAY, THE COURT DELIVERED THE FOLLOWING: CORAM: HON'BLE MR JUSTICE C M JOSHI
+
+*******
+
+CAV JUDGMENT
+
+This appeal is filed by defendant No.3 in OS No.5761 of 2004 being aggrieved by the judgment and decree dated 22nd November 2008 passed by the learned XXXVIII Additional City Civil and Sessions Judge, Bangalore City.
+
+2. The parties would be referred to as per their ranks before the trial Court for the sake of convenience.
+
+3. The facts of the case as averred in the plaint are that, plaintiff Nos.1 to 5 before the trial Court who are respondent Nos.1 to 5 herein, claimed the relief of partition and the separate possession of their 1/9th share in the suit schedule properties and for other reliefs which are as below:
+
+a) for revocation of Partition Deed dated 20.06.2003.
+b) for partition of the suit schedule property by metes and bounds and to deliver their 1/9th share in the suit schedule property.
+c) for separate possession of the plaintiff’s share in the suit schedule property.
+d) and grant of permanent injunction, restraining the defendants from alienating or dispossessing the suit schedule property.
+e) for grant of such other relief or reliefs, as this Hon'ble court deems fit to grant under the circumstances of the case, in the interest of justice and equity.
+4. Initially, plaintiff Nos.1 and 2 had filed the suit and later, their sisters who were arrayed as defendant Nos. 5 to 7, got transposed themselves as plaintiff Nos. 3 to 5. It is the case of the plaintiffs that they are the daughters of defendant No.1 and their deceased father Govindareddy. It is stated that defendant Nos.1, 2, 3, husband of defendant No.4, defendant No.12 and another deceased Suresh Reddy were their brothers; mother of defendant No.8 to 10 Yashodamma, was another sister of the plaintiff. The family pedigree under Govindareddy is depicted as below:
+
+
+5. It is relevant to note that initially, the suit was filed against defendant Nos.1 to 12 and later defendant Nos.5 to 7 were transposed as the plaintiffs. Defendant Nos. 13 to 22 were impleaded before the trial Court since they were the purchasers of the properties from the brothers of the plaintiffs. The plaintiffs, contended that their father, late Govindareddy, was allotted the land bearing Sy.No.9/2 measuring 02 acres 27 guntas, situated at Doddanekkundi village, in a partition among his brothers; during his lifetime 10 guntas of land in Sy.No.9/2 was acquired by the Railways; and after the death of Govindareddy, the plaintiffs and defendant Nos. 1 to 12 had succeeded to the property. After death of Govindareddy, defendant No.1 Muniyamma got transferred the Katha (revenue entry) in respect of the said Sy.No.9/2 in her name. Later, 28 guntas of land in the said land was acquired by the Government for formation of the ring road. Therefore, only 01 acre, 27 guntas of land was available to them, as described at item No.1 in the schedule to the plaint. It is also the case of the plaintiffs that the defendant Nos.1 to 4 have received a compensation amount of Rs.4,20,826/- which was awarded for the acquisition of 28 guntas by the Government and the plaintiffs are also entitled for share in the same. It is contended that defendant Nos.1 to 7 colluding with each other have entered into a partition in the suit schedule properties among themselves under a registered partition deed dated 20-06-2003. In the said partition, the plaintiffs were excluded and therefore, the said partition is not binding on them.
+
+6. Later, when defendant Nos.5 to 7 were transposed as plaintiffs, it appears that they have also acceded to the said contention. Further, it is the case of the plaintiffs that after effecting the partition in the suit schedule properties, defendant Nos.1 to 4 have formed revenue sites in portions allotted to their share and sold the same to different people. Though the defendants were requested to effect partition and give share to plaintiffs, they failed and therefore, the plaintiffs are entitled for partition and legitimate share. Inter alia, the plaintiffs also contended that the suit schedule properties are the ancestral properties of Govindareddy, who is none other than the father of the plaintiffs and therefore, they being the members of the Hindu undivided family, they are entitled for partition.
+
+7. On issuance of summons, except defendant Nos. 18 and 22, all other defendants appeared before the trial Court.
+
+8. Defendant No.4 died, and his legal heirs were brought on record before the trial Court. In the meantime, defendant No.1 Muniyamma also died and her name was deleted from the cause title.
+
+9. Defendant Nos. 1 to 3 together filed the written statement and admitted the case of the plaintiffs that their father Govindareddy got item No.1 of the suit schedule property in a partition amongst his brothers dated 08-06-1972. They also admitted the relationship between the parties. They admitted that 28 guntas in Sy.No.9/2, was acquired by the Government for the formation of the ring road but contended that compensation was awarded, and such compensation was received by defendant No.1 Muniyamma and she had spent the same for the benefit of the family. They contended that item Nos.3 and 4 of the suit schedule properties are not the joint family properties and they were belonging exclusively to Govindareddy. Defendant Nos.2 and 3 also contended that since the marriages of the plaintiffs were performed prior to coming into force of the Hindu Succession (Karnataka Amendment) Act, 1990, the plaintiffs are not entitled for a share in the suit schedule properties. However, they admitted that there was a partition on 20-06-2003.
+
+10. Defendant No.4 in his written statement has taken up similar contentions and further contented that he is an illiterate and innocent person and taking undue advantage of the same, defendant Nos.2,3,6 and 12 have got his signature on the document and he was not given proper share in item No.1 of the suit schedule property.
+
+11. Defendant Nos. 8 to 11 in their written statement have admitted the case of the plaintiffs and they further contended that the their mother Yashodamma, who was the daughter of Govindareddy, is also entitled for equal share in the suit schedule properties and they sought for a decree in their favor.
+
+12. Defendant No.12 in his written statement contended that the suit schedule properties belonged to their father Govindareddy, and they are his self-acquired properties. It was contended that after death of Govindareddy, defendant Nos.1 to 4 had entered into a partition in which they have divided item No.1 of the suit schedule property and defendant Nos.1 to 4 did not include item No.3 and 4 properties in the partition dated 20.06.2003 and they refused to give their share to the daughters of Govindareddy and as such he had opposed the partition. He has taken up similar contention as that of the defendant No.4. He was also categorical in saying that the partition dated 20-06-2003, executed by him and defendant Nos.1 to 4 is not valid and the same is liable to be cancelled and that he is entitled for a share.
+
+13. Defendant Nos.13 to 16 and 19 to 21 in their written statements have contended that the marriages of the plaintiffs were performed earlier to the amended provisions of the Hindu Succession Act came into force and defendant Nos.1 to 7 had effected the partition in the suit schedule properties under the registered partition deed dated 20-06-2003 and therefore, they being the bona fide purchasers of portions of the suit schedule properties, and the inter-se dispute is not binding on them. They further contended that, if at all, there is any partition to be ordered, then the properties purchased by them must be allotted to their respective vendors in an equitable partition.
+
+14. Based on the above pleadings, the following issues were framed by the trial Court:
+
+1) Whether plaintiffs prove that suit schedule properties are the ancestral and joint family properties consisting of themselves and defendants No.1 to 7 and 12?
+2) Whether plaintiffs prove that they are entitled to a share in the suit properties and if so in which of the suit properties and to what share?
+3) Whether plaintiffs prove that the registered partition deed dated 20.06.2003 executed by defendants No.1 to 4 and 12 and plaintiff No.4 is null and void and not binding on them?
+4) Whether defendant No.12 proves that defendants No.1 to 4 has taken his signature on registered partition deed dated 20.06.2003 by force, and hence the same is not binding on him?
+5) Whether defendants No.2 and 3 prove that defendant No.1 deceased Smt. Muniyamma had received the entire compensation amount of Rs.4,30,826/- from Government and she had spent the said amount for discharging antecedent debts of the family and for the benefits of plaintiffs?
+6) Whether the Court fee paid by plaintiffs is proper and sufficient?
+7) Whether Court fee paid by defendant No.12 on the reliefs claimed by him in his written statement is proper and sufficient?
+8) Whether defendants No.13 to 21 prove that they are the bonafide purchasers of portions of item No.1 of suit schedule property for valuable consideration?
+9) To what reliefs parties are entitled to?
+10) What order or decree?
+
+15. Plaintiff No.1 was examined as PW1 and plaintiff No.4 was examined as PW2 and Exhibits P1 to P20 were marked in evidence. Defendant Nos. 3, 8, 12, 14, 15, 19,
+
+13, 16, 4b and 21 were examined as DWs. 1 to 10 and Exhibits D1 to D17 were marked on their behalf.
+
+16. After hearing the arguments by both the sides, the trial Court answered the above issues as below and decreed the suit holding that the plaintiffs, defendant No. 4A to 4E together and defendant Nos.8 to 11 together and defendant No.12 are entitled for partition and separate possession of their 1/10th share each in item Nos.1, 3 & 4 of the suit schedule properties by holding that the partition deed dated 20-06-2003 is liable to be cancelled;
+
+Issue No.1: In the affirmative
+Issue No.2: Partly in the affirmative, and further hold that plaintiffs are entitled to 1/10th share each in item Nos.1,3 and 4 of suit schedule properties.
+Issue No.3: In the affirmative.
+
+Issue No.4: In the negative.
+
+Issue No.5: In the affirmative.
+
+Issue No.6: In the negative.
+
+Issue No.7: In the negative.
+
+Issue No.8: In the affirmative.
+
+Issue No.9: Plaintiffs, defendant Nos.4 (a) to 4(e)
+
+together, defendant Nos. 8 to 11 together and defendant No.12 are entitled for partition and separate possession of their 1/10th share each in item Nos. 1,3 and 4 of suit schedule properties, plaintiffs are also entitled to the relief of cancellation of registered partition deed dated 20.06.2003.
+
+Issue No.10: As per final order.
+
+17. Being aggrieved by the said judgment, defendant No.3 has approached this Court in appeal.
+
+18. On issuance of notice, respondent Nos.1 to 5; R6(a) and (b); R7(a and b); R8 to R11; R14 and R15; and R21 appeared through their respective counsel. Despite the service of notice R7(c) and 7(d), R12, R13, R16, R19 and R20 remained absent and service of notice to R17, R18 and 22 are held sufficient.
+
+19. On appeal being admitted, the trial Court records have been secured. During the pendency of this appeal, respondent No.6/defendant No.2 died and his legal heirs are brought on the record.
+
+20. The arguments by learned counsel appearing for the appellant and the learned counsel appearing for the respective respondents were heard.
+
+21. The learned counsel appearing for the appellant submitted that the division of the shares by the trial Court is erroneous. It is submitted that the larger joint family comprising of two brothers of Govindareddy, that is Krishnareddy and Gurumurthy, entered a partition on 08-06-1972 under a registered Partition Deed. In the said partition, item No.1 was allotted to the share of Govindareddy and item Nos.3 and 4 were acquired by a smaller joint family comprising of Govindareddy and his five sons. He submitted that all the sons of Govindareddy were major as on the date of the partition effected through the registered partition deed dated 08-06-1972. Therefore, the joint family status remained amongst Govindareddy and his five sons. He submits that when there was a partition by metes and bounds under a registered Partition Deed dated 20-06-2003, (Exhibit-D12) between four sons of Govindareddy and plaintiff No.4, the said partition is prior to the Hindu Succession (Amendment) Act, 2005. As per Section 6(5) of the Hindu Succession Act, as amended in 2005, nothing contained in said Section applies to a partition effected prior to 20-12-2004. Therefore, he submitted that the partition cannot be questioned by the plaintiffs. It is contended that the sale deeds were executed pursuant to the partition in favour of various third parties and the same are not challenged and therefore, the suit is not maintainable. He further submitted that the calculation of the shares by the trial Court is not proper and correct and there should have been a notional partition immediately prior to the death of Govindareddy, so that, the members of the coparcenary are entitled for a share. Therefore, when Govindareddy died, in the notional partition, his five sons would have entitled for 1/6th share in the suit schedule properties and the 1/6th share that would be allotted to Govindareddy, in turn, will be divided by succession under Section 8 of the Hindu Succession Act, wherein the plaintiffs are entitled for 1/11th of 1/6th share in the suit schedule properties. It is submitted that defendant Nos.2,3, 4 and 12 would be entitled for 1/6th share in their individual capacity as coparceners under Section 6 of the Hindu Succession Act and 1/66th share in the estate of Govindareddy under Section 8 of the Hindu Succession Act. Therefore, the trial Court has erred in calculating the shares also.
+
+22. In this regard, the learned counsel appearing for the appellant has placed reliance on the judgments in the case of
+
+1. Valliammai Achi Vs. Nagappa Chettiar and another [AIR 1967 SC 1153];
+2. Vellikannu Vs. R. Singaperumal and another [(2005) 6 SCC 622];
+3. Shyam Narayan Prasad Vs. Krishna Prasad and others [AIR 2018 SC 3152];
+4. Arshnoor Singh Vs. Harpal Kaur and others [AIR 2019 SC 3098]. and
+5. Derha Vs. Vishal and another [(2023) 10 SCC 524].
+
+23. Per contra, the learned counsel appearing for the respondents submit that the trial Court has rightly concluded that the partition in the year 2003 is not binding on the plaintiffs since the plaintiffs were not included in the said partition, be that in respect of the share of Govindareddy in the coparcenery or in his individual property. He submits that defendant Nos.5 to 7 were later transposed as the plaintiffs and thereby, they have also acceded to the contention of plaintiff Nos.1 and 2 that the partition dated 20-06-2003 is sham and bogus and it is liable to be cancelled.
+
+24. Secondly, he submits that the calculation of the shares by the trial Court is proper since the partition among Govindareddy and his brothers has resulted in the suit schedule properties being his individual properties and therefore, no fault can be found in the calculation of the shares. Thus, he has supported the view taken by the trial Court.
+
+25. In this regard, the learned counsel for the respondents has also placed reliance on the judgments in the case of
+
+1. Commissioner of Wealth Tax, Kanpur and others Vs. Chander Sen and others [(1986) 3 SCC 567];
+2. Gurupad Khandappa Magdum Vs. Hirabai Khandappa Magdum and others [(1978) 3 SCC 383],
+3. Uttam Vs. Saubhag Singh and others [(2016) 4 SCC 68] and lastly
+4. Bhimsi Fakirappa, Bijjur dead by his LRs and others Vs. Nagesh Bhimppa Waddar and others [RFA No.23/2002 C.W. RFA No.1012/2001 DD 22.12.2022] rendered by a Division Bench of this Court.
+26. In the light of the above contentions urged by both the parties, the questions that need to be decided are:
+
+1. Whether the trial Court erred in holding that the plaintiffs are entitled for 1/10th share each in the suit schedule properties by holding that the suit schedule properties are to devolve u/s 8 of the Hindu Succession Act?
+
+2. Whether the judgment of the trial Court holding that the partition dated 20-06-2003 is liable to be cancelled is proper, and correct?
+
+Re.Point No.1:
+
+27. The learned counsel appearing for appellant argued that the trial Court erred in holding that the suit schedule properties would devolve upon the legal heirs of deceased Govindareddy under Section 8 of the Hindu Succession Act. It is his contention that there was a partition in the year 2003 among the legal heirs of Govindareddy and therefore, the said partition is saved under the provisions of Section 6(5) of the Hindu Succession Act as it stood amended in the year 2005. On that ground, he submits that nature of the suit schedule property was amenable for partition as per the Hindu Succession Act as it stood prior to the amendment.
+
+28. To fortify his argument, he submits that traditionally, a joint family comprises of male members who are the lineal decedents from common male ancestor together with their mother, wife and unmarried daughters. A Hindu coparcenary comprises of the propositus and the three lineal male decedents. Before 2005, a coparcenary included only the sons, grandsons and great-grandsons and therefore, the coparcenary is the custodian of the ancestral property. He submits that when the share is allotted in partition, whether the same would constitute a separate property in the hands of the person to whom it is allotted and whether sons, his lineal decedents can make a claim in relation to such property allotted in the partition is no more res-integra. He submits that the property being ancestral, will not loose the character of coparcenary property qua the sons of Govindareddy.
+
+29. It is pertinent to note that in the case on hand, the evidence on record shows that item No.1 i.e., 'Sy.No.9/2' and the house property at item No.3 which is described as "All that house property bearing No.158 measuring East to West 48 feet and North to South 44 feet situated in Dodddanekundi Village, Bangalore," was part of the Partition Deed of the year 1972 between Govindareddy and his brothers. The said Partition Deed is at Ex.P6 and it discloses that two other brothers of Govindareddy had separated much earlier and therefore, the partition was between Govindareddy and his brother Gurumurthy. In the said partition, the suit schedule property bearing Sy.No.9/2 and one of the house properties was allotted to Govindareddy. Though the document is not clear as to how the Sy.No.9/2 had come to them; it is not in dispute that the suit schedule property is ancestral property, and it devolved upon the said Govindareddy and Gurumurthy from their father Nanjareddy. The other brothers of Govindareddy and Gurumurthy i.e., Narayanareddy, Gurushamareddy and Krishnareddy have already separated as mentioned in Ex.P6. Therefore, it can safely be held that Govindareddy and Gurumurthy were the co-parceners, who remained joint till the partition in the year 1972 as per Ex. P6.
+
+30. When the partition took place in the year 1972 as per Ex.D12, Sy.No.9/2 and the house property at item No.3 came to the share of Govindareddy. The question is, whether this devolution of the property in favour of Govindareddy under Ex.D12 (also at Ex.P20) would result in the property being self acquired property of Govindareddy or whether it would remain to be ancestral property in the hands of Govindareddy and his sons?
+
+31. The trial Court has concluded that it attains the character of individual property of Govindareddy, by virtue of Partition Deed dated 1972. In the impugned judgment, in para 31 and 32, the trial Court observes as below:
+
+"31. From the laws laid down by their Lordships in the above said decisions, it is clear that the property inherited by a son from his father will be his individual property. He inherits the same as an individual and not as Kartha of his own family. Hence, the said property is not the coparcenery property of his sons and his sons will not acquire any right over the said property by birth. Hence, the properties which late Sri. Govinda Reddy and his brother Gurumurthy had inherited from their father, and in which they had effected partition under the partition deed dated 08.06.1972, are their individual properties and they will not become coparcenery properties of their sons i.e., defendant Nos.2 to 4 and 12. Though plaintiffs and defendant Nos. 1 to 4 and 8 to 12 have inherited the suit schedule properties from their ancestors, but, they are not the co-parcenery properties of defendant Nos. 2 to 4 and 12. The laws laid down by their Lordships in the decisions on which the learned Counsel for defendants relied are not aptly applicable to the facts of the present case. Under the circumstances and for the reasons discussed above, I hold that plaintiffs have proved that suit schedule properties (item Nos. 1, 3 and 4) are the ancestral and joint family properties consisting of themselves and defendant Nos. 1 to 4 and 12."
+
+32. As I have already stated above, the suit properties are individual or separate properties of late Sri Govinda Reddy and they are not co-parcenery properties of defendant Nos. 2 to 4 and 12. Hence, after the death of late Sri Govinda Reddy, plaintiffs, defendant Nos. 1 to 4, mother of defendant Nos. 8 to 11 late Smt. Yeshodamma and defendant No.12, being his Class I heirs, have succeeded to the suit properties (item Nos. 1, 3 and 4), and each of them are entitled for 1/11th share."
+
+(emphasis supplied)
+
+32. The said finding is assailed by the appellant herein who is defendant No.3 before the trial Court. The Shastric Hindu Law, prior to codification in the form of Hindu Succession Act, 1956, or its earlier avatars, recognized the Hindu coparcenary as the sole entity that would hold the title to the family property. The Law of Succession among Hindus flowed from the responsibility of the sons to perform the rituals for the Moksha of their ancestors, from the income generated from property. The successive enactments recognized the rights of women/daughters and right to property. Therefore, the enactments show the conceptual shift from the spiritual acts and obligations of sons towards property oriented, possessive, ownership-based rights and liabilities. Now,
+the question before this Court is whether the concept of coparcenary has died, extinguished by virtue of Section 8 of the Hindu Succession Act or whether it exists with certain conditions for succession?
+
+33. In the case of Valliammai Achi Vs. Nagappa Chettiar and another which is relied by the learned counsel for the appellant as referred supra, the Apex Court while dealing with the rights of father, who had inherited a property from his ancestors in willing away part of it to one of his son, in paras 10 and 11 observed as below:
+
+“10. ............ A father cannot turn joint family property into absolute property of his son by merely making a will, thus depriving sons of the son who might be born thereafter of their right in the joint family property. It is well settled that the share which a co-sharer obtains on partition of ancestral property is ancestral property as regards his male issues. They take an interest in it by birth whether they are in existence at the time of partition or are born subsequently: [see Hindu Law by Mulla, 13th Edn., p. 249, para 223(2)(4)]. If that is so and the character of the ancestral property does not change so far as sons are concerned even after partition, we fail to see how that character can change merely because the father makes a will by which he gives the residue of the joint family property (after making certain bequests) to the son. xxxxxx
+
+11. Further it is equally well settled that “under the Mitakshara law each son upon his birth takes an interest equal to that of his father in ancestral property, whether it be movable or immovable. It is very important to note that the right which the son takes at his birth in the ancestral property is wholly independent of his father. He does not claim though the father....” (see Mulla's Hindu Law, 13Th Edn., p. 251, para 224). It follows therefore that the character of the property did not change in this case because of the will of Pallaniappa's father and it would still be joint family property in the hands of Pallaniappa so far as his male issue was concerned. .......”
+
+(emphasis supplied)
+
+34. In the case of Vellikannu Vs. R. Singaperumal and another referred supra, the Apex Court in Para 11 noticed the accepted views of all Authors and referred to paras 284 and 285 of Hindu Law by Mulla, 15th Edition (1982) and in para 13, it was noted that, the right of the coparceners would be by birth. In para 15, the law laid down in several other judgments were also noticed. In para 11, it was observed as below:
+
+“11. .......... So far as the rights of coparceners in the Mitakshara law are concerned, the son acquires by birth or adoption a vested interest in all coparcenary property whether ancestral or not and whether acquired before or after his birth or adoption, as the case may be, as a member of a joint family. This is the view which has been accepted by all the authors of the Hindu law. In the famous principles of Mulla, 15th Edn. (1982) at pp. 284 and 285, the learned author has stated thus:
+
+"The essence of a coparcenary under the Mitakshara law is unity of ownership. The ownership of the coparcenary property is in the whole body of coparceners. According to the true notion of an undivided family governed by the Mitakshara law, no individual member of that family, whilst it remains undivided, can predicate, of the joint and undivided property, that he, that particular member, has a definite share, one-third or one-fourth. His interest is a fluctuating interest, capable of being enlarged by deaths in the family, and liable to be diminished by births in the family. It is only on a partition that he becomes entitled to a definite share. The most appropriate term to describe the interest of a coparcener in coparcenary property is 'undivided coparcenary interest'. The nature and extent of that interest is defined in Section 235. The rights of each coparcener until a partition takes place consist in a common possession and common enjoyment of the coparcenary property. As observed by the Privy Council in Katama Natchiar v. Rajah of Shivagunga [(1863) 9 MIA 543], 'there is community of interest and unity of possession between all the members of the family, and upon the death of any one of them the others may well take by survivorship that in which they had during the deceased's lifetime a common interest and a common possession'."
+
+By referring to Hindu Law by S.V. Gupte, Vol.1, 3rd Edition (1981) at P.162, it was observed that,
+
+".....till partition, the coparcener is entitled to joint possession and enjoyment of the joint family property and right to claim joint family property by survivorship and the right to demand partition of the joint family property."
+
+Then in para 13, by referring to Hindu Law by N.R. Raghavachariar, it observes while dealing with right by birth that, "every coparcener gets an interest by birth in the coparcenary property and this right by birth relates back to the date of conception".
+
+35. In the case of Shyam Narayan Prasad Vs. Krishna Prasad and others referred supra, in para 12 and 13, it was observed as below:
+
+"12. It is settled that the property inherited by a male Hindu from his father, father's father or father's father'sfather is an ancestral property. The essential feature of ancestral property, according to Mitakshara Law, is thatthe sons, grandsons, and great grandsons of the person who inherits it, acquire an interest and the rightsattached to such property at the moment of their birth. The share which a coparcener obtains on partition ofancestral property is ancestral property as regards his male issue. After partition, the property in the hands ofthe son will continue to be the ancestral property and the natural or adopted son of that son will take interestin it and is entitled to it by survivorship.
+
+13. In C. Krishna Prasad v. CIT [(1975) 1 SCC 160] , this Court was considering a similar question. In thesaid case, C. Krishna Prasad, the appellant along with his father Krishnaswami Naidu and brother C. Krishna Kumar formed Hindu Undivided Family up to 30-10-1958, when there was a partition between Krishnaswami Naidu and his two sons. A question arose as to whether an unmarried male Hindu on partition of a joint Hindu family can be assessed in the status of undivided family even though no other person besides him is a member of the family. It was held that the share which a coparcener obtains on partition is ancestral property as regards male issue. It was held as under:
+
+"The share which a coparcener obtains on partition of ancestral property is ancestral property as regards his male issue. They take an interest in it by birth, whether they are in existence at the time of partition or are born subsequently. Such share, however, is ancestral property only as regards his male issue. As regards other relations, it is separate property, and if the coparcener dies without leaving male issue, it passes to his heirs by succession (see p. 272 of Mulla's Principles of Hindu Law, 14th Edn.). A person who for the time being is the sole surviving coparcener is entitled to dispose of the coparcenary property as if it were his separate property. He may sell or mortgage the property without legal necessity or he may make a gift of it. If a son is subsequently born to him or adopted by him, the alienation, whether it is by way of sale, mortgage or gift, will nevertheless stand, for a son cannot object to alienations made by his father before he was born or begotten."
+
+(emphasis supplied)
+
+36. The Apex Court in the case of Arshnoor Singh Vs. Harpal Kaur and others referred supra, distinguishing the judgment in the case of Yudhis hter Vs. Ashok Kumar [(1987) 1 SCC 204)] has relied on the judgment in the case of Valliammai Achi (referred supra) and in that case held that the property which came to the share Dharam Singh through partition under a Court decree, among his brothers, remained coparcenary property qua his son, who had become a coparcener in the suit property on his birth in the year 1985.
+
+37. In the recent judgment in the case of Derha Vs. Vishal and another, referred supra, the Apex Court had an occasion to consider the nature of the properties acquired by one Phannuram in a partition among his nephew in 1964. The fact that there was partition between Phannuram and his brother's son Ramnath and sister-in- law was not in dispute. It was held in paras 9 as below:
+
+"9. Once it is held that the properties which were the subject matter of the partition suit were coparcenary properties, the only issue that remains is as to how the said properties were to be divided amongst the legal heirs of Phannuram upon his death in 1959, i.e., after the advent of the Hindu Succession Act, 1956 (for brevity, 'the Act of 1956'). Section 6 of the Act of 1956 would govern the situation, as rightly observed by the Chhattisgarh High Court. Section 6 of the Act of 1956, as it then stood, states that when a male Hindu died after the commencement of the Act of 1956, having at the time of his death an interest in Mitakshara coparcenary property, his interest in that property shall devolve by survivorship upon the surviving members of the coparcenary. However, the proviso thereto states that, if the deceased left behind him a surviving female relative specified in Class I of the Schedule or a male relative specified in that class who claimed through such female relative, the interest of the deceased in the Mitakshara coparcenary property shall devolve by testamentary or intestate succession, as the case may be, under the Act of 1956 and not by survivorship. Explanation 1 clarified that, for the purposes of Section 6, the interest of a Hindu Mitakshara coparcener shall be deemed to be the share in the property that would have been allotted to him if a partition of the property had taken place immediately before his death, irrespective of whether he was entitled to claim such partition or not."
+
+By observing as above, it was held that Phannuram and his son Vishal would get 1/2 share each and in the half share of Phannuram, his wife and all children would get equal share. The Apex Court in coming to such conclusion has also placed reliance on the judgment in the case of Gurupad Khandappa Magdum Vs. Hirabai Khandappa Magdum and others referred supra and has followed the ratio laid down therein.
+
+38. From the above observations by the Apex Court, it is clear that whenever there is a partition among the brothers in respect of the ancestral property held by them, the property would not change its nature but it remains as the ancestral property of smaller coparcenery of himself and his male children. Even if a son is born subsequent to such partition of the ancestral property, then he would get rights by birth. The entitlement for a share in the ancestral property cannot be denied.
+
+39. It is worth to note that the observations of the Apex Court in the decisions mentioned above, are flowing from the propositions laid down in the treatises on Hindu Law. In Article 221 of Hindu Law by Mulla, 21st Edition, Page 335 concerning the 'ancestral property', the Author has observed as below:
+
+"221. Ancestral Property - (1) ...... Thus, if A inherits property, whether movable or immovable, from his father or father's father, or father's father's father, it is ancestral property, as regards his male issue. If A has no son, son's son, or son's son's son in existence at the time when he inherits the property, he holds the property as absolute owner thereof, and he can deal with it as he pleases. However, if he has son's son' sons or sons' sons' sons in existence at the time, or if a son, son's son or son's son's son is born to him subsequently, they become entitled to an interest in it by the mere fact of their birth in the family, and A cannot claim to hold the property as absolute owner nor can he deal with the property as he likes. The position has been materially affected after s 8 of the Hindu Succession Act, 1956, came into force.
+
+A father cannot change the character of the joint family property into absolute property of his son by merely marking a will and bequeathing it or part of it to the son as if it was the self-acquired property of the father......
+
+(2) xxxxxx
+
+(3) Property inherited from collaterals - property inherited from females - Excluding the case of property inherited from a maternal grandfather, it may be said that the only property that can be called ancestral property is property inherited by a person from his father, father's father or father's father's father. Property inherited by a person from any other relation is his separate property, and his male issues do not take any interest in it by birth. Thus, property inherited by a person from collaterals, such as a brother, uncle, etc, or property inherited by him from a female, eg., his mother, is his separate property.
+
+(4) Share allotted on partition. - The share, which a coparcener obtains on partition of ancestral property, is ancestral property as regards his male issue. They take an interest in it by birth, whether they are in existence at the time of partition or are born subsequently. Such share, however, is ancestral property only as regards his male issue. As regards other relations, it is separate, and if the coparcener dies without leaving a male issue, it passes to his heirs by succession. Reference may also be made to notes under 8 of the Hindu Succession Act, 1956 and the Supreme court and High Court decisions as to ancestral property cited there."
+
+(emphasis supplied)
+
+The learned Author also observes that, in the recent judgment by Punjab and Haryana High Court, the propositions laid down in Article 321 and 322 of the treatise were incorrectly interpreted.
+
+40. Further, in the treatises on Mayne’s Hindu Law and Usage, 15th, Edition, in para 295, it is observed as below:
+
+"295. Where ancestral property has been divided between several joint owners, there can be no doubt that if any of them have male issue living at the time of the partition, the share which falls to him will continue to be ancestral property in his hands, as regards has male issue, for their rights had already attached upon it, and the partition only cuts off the claims of the dividing members. The father and his male issue still remain joint. The same rule would apply even where the partition had been made before the birth of male issue or before a son is adopted, for the share which is taken at a partition, by one of the coparceners is taken by him as representing his branch. It was held by the Andhra Pradesh High Court that where a father divided the family property between him and his sons, the share obtained by him was his self- acquired property which he could bequeath to his wife......"
+
+(emphasis supplied)
+
+41. The learned counsel appearing for the respondents contends that the provisions of Section 6 of the Hindu Succession Act, as it stood prior to the amendment is applicable, since there is a partition by a registered deed as per Ex. P20 (Ex.D12) dated 20-06-2003. Therefore, the explanation that the amended provisions will not be applicable if there is partition would aptly come in play. He submits that the Apex Court in the case of Gurupada Kandappa Magdum while giving effect to the provisions of Hindu Succession Act, 1956, has held that the interpretation of Section 6 will have to further the legislative intent regarding enlargement of the share of the female heirs. In the said judgment, it was held as below:
+
+"6. The Hindu Succession Act came into force on June 17, 1956. Khandappa having died after the commencement of that Act, to wit in 1960, and since he had at the time of his death an interest in Mitakshara coparcenary property, the preconditions of Section 6 are satisfied, and that section is squarely attracted. By the application of the normal rule prescribed by that section, Khandappa's interest in the coparcenary property would devolve by survivorship upon the surviving members of the coparcenary and not in accordance with the provisions of the Act. But, since the widow and daughter are amongst the female relatives specified in class I of the Schedule to the Act and Khandappa died leaving behind a widow and daughters, the proviso to Section 6 comes into play and the normal rule is excluded. Khandappa's interest in the coparcenary property would therefore devolve, according to the proviso, by intestate succession under the Act and not by survivorship. Testamentary succession is out of question as the deceased had not made a testamentary disposition though, under the explanation to Section 30 of the Act, the interest of a male Hindu in Mitakshara coparcenary property is capable of being disposed of by a will or other testamentary disposition.
+
+xxxxxxx
+
+10. Two things are thus clear: One, that in a partition of the coparcenary property Khandappa would have obtained a 1/4th share and two, that the share of the plaintiff in the 1/4th share is 1/6th, that is to say, 1/24th. So far there is no difficulty. The question which poses a somewhat difficult problem is whether the plaintiff's share in the coparcenary property is only 1/24th or whether it is 1/4th plus 1/24th, that is to say, 7/24th. The learned trial Judges relying upon the decision in Shiramabai which was later overruled by the Bombay High Court, accepted the former contention while the High Court accepted the latter. The question is which of these two views is to be preferred.
+
+11. We see no justification for limiting the plaintiff's share to 1/24th by ignoring the 1/4th share which she would have obtained had there been a partition during her husband's lifetime between him and his two sons. We think that in overlooking that 1/4th share, one unwittingly permits one's imagination to boggle under the oppression of the reality that there was in fact no partition between the plaintiff's husband and his sons. Whether a partition had actually taken place between the plaintiff's husband and his sons is beside the point for the purposes of Explanation 1. That Explanation compels the assumption of a fiction that in fact “a partition of the property had taken place”, the point of time of the partition being the one immediately before the death of the person in whose property the heirs claim a share.
+
+12. ...............Lord Asquith in his famous passage in East End Dwellings Co. Ltd. v. Finsbury Borough Council [1952 AC 109, 132 : (1951) 2 All ER 587] . He said:
+
+“If you are bidden to treat an imaginary state of affairs as real, you must also imagine as real the consequences and incidents which, if the putative state of affairs had in fact existed, must inevitably have flowed from or accompanied it; and if the statute says that you must imagine a certain state of affairs, it cannot be interpreted to mean that having done so, you must cause or permit your imagination to boggle when it comes to the inevitable corollaries of that state of affairs.”
+
+xxxxxxxxxxx
+
+14. The interpretation which we are placing upon the provisions of Section 6, its proviso and Explanation 1 thereto will further the legislative intent in regard to the enlargement of the share of female heirs, qualitatively and quantitatively.......”
+(emphasis supplied)
+
+42. It is pertinent to note that the Apex Court had state of affairs for the purpose of determining the share. It is equally important to note that, it never said or intended that the concept of coparcenary comes to an end. Therefore, this decision is not of any help to augment the argument of respondents.
+
+43. He further contends that the view taken by the Apex Court in the case of C.W.T. Kanpur Vs. Chander Sen and others referred supra, in para 12, 17 and 19 is that, when a male Hindu dies after commencement of the Act, his interest in the Mitakshara coparcenary property shall devolve under Section 6 by survivorship and if he leaves behind a female heir, it shall devolve under Section 8 of the Act.
+
+44. A Division Bench of this Court in a recent judgment in the case of Jayashree Jayanth Vs N Krishnaswamy and others [RFA No. 1226 of 2016 DD 22-10-2024] has clarified the ratio laid in Chandersen's case, wherein it is observed as below.
+
+"24. If the facts are put to analysis, it becomes very evident that the Hindu Undivided Family consisting of Chander Sen and his father disrupted when partition took place on 10.10.1961. The partnership business that was commenced by them after the partition was not the family business. A sum of Rs.1,85,043/- belonged to Rangilal as the books of accounts showed that it was credit balance in the account of Rangilal. That means this sum exclusively belonged to Rangilal and it devolved on his son Chander Sen in accordance with section 8 of Hindu Succession Act. This sum was not part of the Joint Family property. In para 7 of the judgment it is clearly observed that the amount could not be said to belong to Joint Hindu Family and qua Chander Sen and his sons it was separate property of Rangilal. On Rangilal’s death amount passed on to his son Chander Sen by inheritance. It was in this context that the Hon’ble Supreme Court noticed the effect of section 8 making an observation that son alone would inherit the property of a male Hindu. When Rangilal died, Chander Sen had a son. The presence of Chander Sen’s son did not have the effect of succession by Chander Sen to the said sum to make it a property of joint family. If Shastric Law had been applied, because of presence of Chander Sen’s son at the time of Rangilal’s death, the money that Chander Sen inherited would have become joint family property. But by virtue of section 4 of Hindu Succession Act, it was held that section 8 would come into picture in this kind of situation and Shastric Hindu Law was not applicable. Unfortunately this position is wrongly applied to give a meaning that even devolution by survivorship of a coparcenary property is governed by section 8 which exclusively deals with inheritance of self acquired or separate property of a male Hindu. However it is true that whenever notional partition is effected to determine the share of the deceased male Hindu, since it becomes separate property of the deceased, the devolution of such interest takes place according to section 8."
+
+45. After observing so, it also considered various judgments of the Apex Court and concluded that whenever devolution of separate or self acquired property of male Hindu takes place, Section 8 is applicable, not Section 6. But wherever Rule of Survivorship is applicable, Section 8 has no applicability. Therefore, the case of Chander Sen has no applicability to the case on hand.
+
+46. Regarding the proposition laid down in the case of Uttam Vs. Soubhagsingh referred supra, the Division Bench observed as below:
+
+"31. Lastly in Uttam, the principles culled out are found in para 18 and they are:
+
+(i) When a male Hindu dies after the commencement of the Hindu Succession Act, 1956, having at the time of his death an interest in Mitakshara coparcenary property, his interest in the property will devolve by survivorship upon the surviving members of the coparcenary (vide Section 6).
+
+(ii) To proposition (i), an exception is contained in Section 30 Explanation of the Act, making it clear that notwithstanding anything contained in the Act, the interest of a male Hindu in Mitakshara coparcenary property is property that can be disposed of by him by will or other testamentary disposition.
+
+(iii) A second exception engrafted on proposition (i) is contained in the proviso to Section 6, which states that if such a male Hindu had died leaving behind a female relative specified in Class I of the Schedule or a male relative specified in that class who claims through such female relative surviving him, then the interest of the deceased in the coparcenary property would devolve by testamentary or intestate succession, and not by survivorship.
+
+(iv) In order to determine the share of the Hindu male coparcener who is governed by Section 6 proviso, a partition is effected by operation of law immediately before his death. In this partition, all the coparceners and the male Hindu's widow get a share in the joint family property.
+
+(v) On the application of Section 8 of the Act, either by reason of the death of a male Hindu leaving self-acquired property or by the application of Section 6 proviso, such property would devolve only by intestacy and not survivorship.
+
+(vi) On a conjoint reading of Sections 4, 8 and 19 of the Act, after joint family property has been distributed in accordance with Section 8 on principles of intestacy, the joint family property ceases to be joint family property in the hands of the various persons who have succeeded to it as they hold the property as tenants-in-common and not as joint tenants."
+
+32. The above principles make two aspects clear, firstly that devolution of Mithakshara coparcenary property takes place by survivorship, and section 8 is applicable while distributing the notional share of the deceased male Hindu. The last paragraph in Uttam shows findings on facts of that case, it is not a ratio.
+
+33. The conclusion therefore is that even if the above three decisions had been brought to the notice of the coordinate bench, the legal position would not have changed. This observation is necessary to be made here because judgment in Pushpalatha was authored by one of us."
+
+After saying as above, the Court gave an illustration also, to demonstrate the manner of devolution of the property.
+
+47. It is significant to note that the exception contained in the proviso to Section 6 of the Hindu Succession Act, states that, if a male Hindu had died leaving behind female relative specified in Class I of the schedule or a male relative specified in that Class who claims through such female relative surviving him then the interest of the deceased in the coparcenary property would devolve by testamentary or intestate succession and not by survivorship. This would show that the nature of the property to be a coparcenary property would not change but it must be partitioned among the coparceners engrafting a notional share to the deceased male Hindu; and his interest in it only would devolve by intestate succession. Such intestate succession would be as per Section 8 of the Act. Therefore, at any rate, 'the interest of the deceased male Hindu in the coparcenary property' alone would be devolving as per Section 8 but not the entire property. The provisions are very clear in saying that it is only the interest in the coparcenary property but not the entire property.
+
+48. There is one another reason to hold that the concept of coparcenary has not been abrogated or shelved. It is worth to note that by the Amending Act of 2005, the provisions of Section 6 of the Hindu Succession Act, were amended. Both versions of Section 6 read as below:
+
+Before amendment:
+
+"6. Devolution of interest in coparcenary property. —When a male Hindu dies after the commencement of this Act, having at the time of his death an interest in a Mitakshara coparcenary property, his interest in the property shall devolve by survivorship upon the surviving members of the coparcenary and not in accordance with this Act :
+
+Provided that, if the deceased had left him surviving a female relative specified in Class I of the Schedule or a male relative specified in that class who claims through such female relative, the interest of the deceased in the Mitakshara coparcenary property shall devolve by testamentary or intestate succession, as the case may be, under this Act and not by survivorship.
+
+Explanation 1.—For the purposes of this section, the interest of a Hindu Mitakshara coparcener shall be deemed to be the share in the property that would have been allotted to him if a partition of the property had taken place immediately before his death, irrespective of whether he was entitled to claim partition or not.
+
+Explanation 2.—Nothing contained in the proviso to this section shall be construed as enabling a person who had separated himself from the coparcenary before the death of the deceased or any of his heirs to claim on intestacy a share in the interest referred to therein.
+
+After amendment:
+
+"6. Devolution of interest in coparcenary property. —
+
+(1) On and from the commencement of the Hindu Succession (Amendment) Act, 2005, in a Joint Hindu family governed by the Mitakshara law, the daughter of a coparcener shall, —
+
+(a)by birth become a coparcener in her own right in the same manner as the son;
+
+(b)have the same rights in the coparcenary property as she would have had if she had been a son;
+
+(c)be subject to the same liabilities in respect of the said coparcenary property as that of a son, and any reference to a Hindu Mitakshara coparcener shall be deemed to include a reference to a daughter of a coparcener:
+
+Provided that nothing contained in this sub-section shall affect or invalidate any disposition or alienation including any partition or testamentary disposition of property which had taken place before the 20th day of December, 2004.
+
+(2) Any property to which a female Hindu becomes entitled by virtue of sub-section (1) shall be held by her with the incidents of coparcenary ownership and shall be regarded, notwithstanding anything contained in this Act or any other law for the time being in force in, as property capable of being disposed of by her by testamentary disposition.
+
+(3)Where a Hindu dies after the commencement of the Hindu Succession (Amendment) Act, 2005, his interest in the property of a Joint Hindu family governed by the Mitakshara law, shall devolve by testamentary or intestate succession, as the case may be, under this Act and not by survivorship, and the coparcenary property shall be deemed to have been divided as if a partition had taken place and,—
+
+(a)the daughter is allotted the same share as is allotted to a son;
+
+(b)the share of the pre-deceased son or a pre- deceased daughter, as they would have got had they been alive at the time of partition, shall be allotted to the surviving child of such pre- deceased son or of such pre-deceased daughter; and
+
+(c)the share of the pre-deceased child of a pre- deceased son or of a pre-deceased daughter, as such child would have got had he or she been alive at the time of the partition, shall be allotted to the child of such pre-deceased child of the pre-deceased son or a pre-deceased daughter, as the case may be.
+
+Explanation. —For the purposes of this sub-section, the interest of a Hindu Mitakshara coparcener shall be deemed to be the share in the property that would have been allotted to him if a partition of the property had taken place immediately before his death, irrespective of whether he was entitled to claim partition or not.
+
+(4) After the commencement of the Hindu Succession (Amendment) Act, 2005, no court shall recognise any right to proceed against a son, grandson or great-grandson for the recovery of any debt due from his father, grandfather or great- grandfather solely on the ground of the pious obligation under the Hindu law, of such son, grandson or great-grandson to discharge any such debt:
+
+Provided that in the case of any debt contracted before the commencement of the Hindu Succession (Amendment) Act, 2005, nothing contained in this sub-section shall affect—
+
+(a)the right of any creditor to proceed against the son, grandson or great-grandson, as the case may be; or
+
+(b)any alienation made in respect of or in satisfaction of, any such debt, and any such right or alienation shall be enforceable under the rule of pious obligation in the same manner and to the same extent as it would have been enforceable as if the Hindu Succession (Amendment) Act, 2005 had not been enacted.
+
+Explanation. —For the purposes of clause (a), the expression “son”, “grandson” or “great-grandson” shall be deemed to refer to the son, grandson or great-grandson, as the case may be, who was born or adopted prior to the commencement of the Hindu Succession (Amendment) Act, 2005.
+(5) Nothing contained in this section shall apply to a partition, which has been effected before the 20th day of December, 2004.
+
+Explanation. —For the purposes of this section “partition” means any partition made by execution of a deed of partition duly registered under the Registration Act, 1908 (16 of 1908) or partition effected by a decree of a court."
+
+Thus, it is clear that the daughter, who could not be a coparcener as per old law, is conferred with the same rights as coparcener. This would inevitably indicate that the rights in coparcenary property, which was restricted to male members only, has been enlarged to daughters also.
+
+49. Thereafter, the Apex Court in the case of Vineeta Sharma Vs. Rakesh Sharma [(2020)9 SCC 1] has laid down the way the amended provisions of Section 6 would operate, which reads as below:
+
+"133. The severance of status may take place from the date of filing of a suit; however, a decree is necessary for working out the results of the same, and there may be a change of rights during the pendency of the suit for allotting definite shares till final decree is passed. There are cases in which partition can be reopened on the ground of fraud or mistake, etc. or on certain other permissible grounds. In appropriate cases, it can be reopened at the instance of minor also.
+
+xxxx
+
+135. A special definition of partition has been carved out in the Explanation. The intendment of the provisions is not to jeopardise the interest of the daughter and to take care of sham or frivolous transaction set up in defence unjustly to deprive the daughter of her right as coparcener and prevent nullifying the benefit flowing from the provisions as substituted. The statutory provisions made in Section 6(5) change the entire complexion as to partition. However, under the law that prevailed earlier, an oral partition was recognised. In view of change of provisions of Section 6, the intendment of the legislature is clear and such a plea of oral partition is not to be readily accepted. The provisions of Section 6(5) are required to be interpreted to cast a heavy burden of proof upon proponent of oral partition before it is accepted such as separate occupation of portions, appropriation of the income, and consequent entry in the revenue records and invariably to be supported by other contemporaneous public documents admissible in evidence, may be accepted most reluctantly while exercising all safeguards. The intendment of Section 6 of the Act is only to accept the genuine partitions that might have taken place under the prevailing law and are not set up as a false defence and only oral ipse dixit is to be rejected outrightly. The object of preventing, setting up of false or frivolous defence to set at naught the benefit emanating from amended provisions, has to be given full effect. Otherwise, it would become very easy to deprive the daughter of her rights as a coparcener. When such a defence is taken, the court has to be very extremely careful in accepting the same, and only if very cogent, impeccable, and contemporaneous documentary evidence in shape of public documents in support are available, such a plea may be entertained, not otherwise. We reiterate that the plea of an oral partition or memorandum of partition, unregistered one can be manufactured at any point in time, without any contemporaneous public document needs rejection at all costs. We say so for exceptionally good cases where partition is proved conclusively, and we caution the courts that the finding is not to be based on the preponderance of probabilities in view of provisions of gender justice and the rigour of very heavy burden of proof which meets the intendment of Explanation to Section 6(5). It has to be remembered that the courts cannot defeat the object of the beneficial provisions made by the Amendment Act.
+
+The exception is carved out by us as earlier executionof a registered document for partition was notnecessary, and the court was rarely approached for thesake of family prestige. It was approached as a lastresort when parties were not able to settle their familydispute amicably. We take note of the fact that evenbefore 1956, partition in other modes than envisagedunder Section 6(5) had taken place.
+
+137. Resultantly, we answer the reference as under:
+137.1. The provisions contained in substitutedSection 6 of the Hindu Succession Act, 1956 conferstatus of coparcener on the daughter born before orafter the amendment in the same manner as son withsame rights and liabilities.
+
+137.2. The rights can be claimed by the daughterborn earlier with effect from 9-9-2005 with savings asprovided in Section 6(1) as to the disposition oralienation, partition or testamentary disposition whichhad taken place before the 20th day of December,2004.
+
+137.3. Since the right in coparcenary is by birth, itis not necessary that father coparcener should be livingas on 9-9-2005.
+
+137.4. The statutory fiction of partition created bythe proviso to Section 6 of the Hindu Succession Act,1956 as originally enacted did not bring about theactual partition or disruption of coparcenary. The fictionwas only for the purpose of ascertaining share ofdeceased coparcener when he was survived by a femaleheir, of Class I as specified in the Schedule to the 1956Act or male relative of such female. The provisions ofthe substituted Section 6 are required to be given fulleffect. Notwithstanding that a preliminary decree hasbeen passed, the daughters are to be given share incoparcenary equal to that of a son in pendingproceedings for final decree or in an appeal.
+
+137.5. In view of the rigour of provisions of the Explanation to Section 6(5) of the 1956 Act, a plea of oral partition cannot be accepted as the statutory recognised mode of partition effected by a deed of partition duly registered under the provisions of the Registration Act, 1908 or effected by a decree of a court. However, in exceptional cases where plea of oral partition is supported by public documents and partition is finally evinced in the same manner as if it had been affected (sic effected) by a decree of a court, it may be accepted. A plea of partition based on oral evidence alone cannot be accepted and to be rejected outrightly.”
+
+50. This would show that if there is no partition as required under Section 6(5) of the amended provisions of the Hindu Succession Act, then the daughters would also become coparceners in their individual capacity since 1956 when the Act came into force. There is no such exclusive prospectivity.
+
+51. From the above discussion, it is clear that when there is partition of ancestral property, it would not change the nature of ancestrality of property. But the devolution of property happens as per rules setout in Section 8 of Hindu Succession Act. The property remains to be ancestral in the hands of such sharers and his descendants.
+
+52. Resultantly, the following aspects would emerge:
+
+a) When there is a partition among the brothers in respect of the ancestral properties, (particularly when there is notional partition on account of application of proviso to Section 6 of unamended Act) they continue to be the ancestral properties among the smaller coparcenery of each of such brothers, though there is severance among the brothers interse.
+
+b) The property will not change the character of the ancestral property among such sharers of the partition and even if a son is born, then the sons surviving as well as born subsequently would get a share as coparceners.
+
+c) If there is a partition as contemplated under Section 6(5) of Hindu Succession Act, prior to coming into force of Amending Act of 2005, the female heirs are entitled to a share, in the notional share that was to be allotted to their father. The concept of notional partition as laid down under the Proviso to Section 6 of the Hindu Succession Act, would come in play.
+
+(d) In case, the partition is effected by the father, who is the karta, during his life time among all the members of the coparcenery in respect of properties acquired by the coparcenery, then each of the sharer would get the property in his individual capacity and the property loses the character of the ancestral property. This is because the coparcenery itself disrupts completely.
+
+e) Now by Amending Act of 2005, female heirs are also given the status of coparcener, subject to certain conditions as mentioned in Section 6(5).
+
+53. In the instant case, no-doubt the partition of the year 1972 among Govindareddy and Gurumurthy resulted in the suit item Nos. 1 and 3 being allotted to Govindareddy and Govindareddy did not effect the partition till his death in the year 1987. Therefore, the coparcenery consisting of Govindareddy and his sons continued till his death in the year 1987. When he died, the coparcenery of the sons of Govindareddy, i.e., defendant Nos.1 to 4, 12 would continue, wherein the plaintiffs and other daughters of Govindareddy along with defendant No.1 were members. Thus, it is evident that the suit schedule item Nos.1 and 3 properties are the ancestral properties in the hands of the children of Govindareddy.
+
+54. The sum and substance of the above discussion is that if this Court comes to the conclusion that there is a partition in the year 2003, obviously which is a division, then the suit schedule property would have to devolve as per the extant law. In other words, there shall be a notional partition at the time of death of Govindareddy and a share must be given to him along with his wife and sons. In the share that has to be allotted to Govindareddy, the members of the joint family i.e., Class I heirs would get equal share. If this Court comes to the conclusion that the partition of the year 2003 is invalid, then by operation of the amended provisions of Section 6 of the Hindu Succession Act, and by virtue of the propositions laid down in the case of Vineeta Sharma, referred supra, the sons and daughters of Govindareddy would get equal share. For aforesaid reasons Point No. 1 is answered in the affirmative.
+
+55. Having answered the point No. 1 as above, we now proceed to consider the next question as to whether the partition of the year 2003 as per Ex.P20 (Ex.D12) would hold good or not?
+
+Re.Point No.2
+
+56. This point need not hold this Court for long. It is pertinent to note that the relationship between the plaintiffs and defendants is not in dispute. Defendant No.4 has categorically stated in his written statement that partition dated 20-06-2003 is not subscribed by him consciously. He alleged that he being illiterate, his signature was taken by defendant Nos.1 to 3 forcibly and therefore, it is not binding on him.
+
+57. The ocular evidence of PW1-Dhanamma, who is none else than plaintiff No.1, would show that she admits that a partition has been entered between her mother, brothers and sister Gayatri on 20-06-2003. It is not only once, but in paras 5, 14, and in the cross-examination dated 17-10-2008, she has admitted that there was a partition on 20-06-2003. It must be observed that PW1 was not a party to the said partition. Among the plaintiffs, it was only plaintiff No.4 (PW.2) who was a party to it.
+
+58. The testimony of PW2, Gayatri, would indicate that she alleges that her signature was forcibly taken on the partition deed by taking her to Sub-Registrar's office. She states that after such registration of the Deed at Ex.P20, she went to enquire about her share, but she was beaten up by her brothers. However, she admits that she did not file any complaint to the police alleging any fraud and misrepresentation. The lengthy cross-examination of PW2 would indicate that she did not take any action in respect of the alleged fraud. Obviously, her contention about such fraud and misrepresentation is bereft of any pleadings. Therefore, the ocular evidence does not establish that the signature of PW.4 was taken forcibly on Ex.P20.
+
+59. It is also pertinent to note that the plaintiffs pray for revocation of the Partition Deed at Ex.P20. Though the prayer is not happily worded, the trial Court has considered the same as cancellation. The trial Court granted the relief of cancellation of partition deed on the ground that when Govindareddy died, the entire suit schedule property being the individual property of Govindareddy, it would devolve upon the Class I heirs and therefore, the sons, wife and one unmarried daughter of Govindareddy could not have entered a partition by excluding the other married daughters. It did not touch upon the question whether the partition was fraudulent or otherwise. Therefore, the impugned judgment does not delve with the contention of plaintiff No.4 and defendant No.12 who alleged that it was fraudulent.
+
+60. It must be observed that the partition deed which is at Ex.P20 states that married daughters are not entitled to the share under the Hindu Succession Act, as it stood amended under Karnataka Amendment Act, as on 20-06-2003, the partition is effected only among the sons, wife and unmarried daughter of Govindareddy. However, Ex.P20, does not mention anything about the notional partition in which Govindareddy would have entitled for a share. It totally excludes the married daughters.
+
+61. It is necessary to note that PW.2 by transposing herself as plaintiff No.4, has spoken about the fraud and misrepresentation in executing Ex.P20, which is not borne out of the pleadings. The entire reading of the plaint would show that what the original plaintiff Nos. 1 and 2 contended was that the partition under Ex.P20 being behind their back, it does not bind them and therefore, it has to be revoked. There cannot be any doubt that when the plaintiff Nos.1 to 3 and 5 were not parties to Ex.P20, there was no necessity for them to seek for cancellation of the partition deed, but they could have sought for partition by ignoring Ex.P20. Therefore, in the absence of convincing evidence, supported by a pleading about the fraud alleged by the plaintiff No.4, the partition deed at Ex.P20 cannot be cancelled, but the plaintiffs are entitled for ignoring the same in seeking their share.
+
+62. Defendant No.12 has also sought for cancellation of the partition deed since his signature was taken on Ex.P20 by threat. In para 36 of the impugned judgment, the trial Court considers his contention and rejects the claim that Ex.P20 is not binding on him. Obviously, rejecting the claim of defendant No.12 regarding cancellation of the partition deed and decreeing the suit holding that Ex.P20 is liable to be cancelled would be contradictory. As noted supra, instead of holding that the partition deed is not binding on the non-parties to such deed, the trial Court has granted the relief of cancellation instead of revocation as prayed.
+
+63. Be that as it may. Ex.P20 was validly entered into by plaintiff No.4, her brothers and mother. It was registered before the Sub Registrar. There is no evidence to show that the document was fraudulently entered or is an outcome of threat and coercion. Evidently, Ex.P20 does not recognize the share of Govindareddy immediately prior to his death in the year 1987 and totally excludes the married daughters. The legislative intent of the 1956 Act was not to shunt out the daughters from the share in the joint family property. What the Act intended, as it stood prior to amendment, is that the daughters are entitled for a share in the interest of the deceased in the coparcenery property. Therefore, Ex.P20 overlooks the share entitled by the daughters even as per the pre-amended Act. Therefore, the plaintiffs are entitled for a share, in the share of Govindareddy in the coparcenery property. In that view of the matter, the Partition Deed has to be upheld as evidence of partition, but not in respect of the shares allotted to the parties. Under these circumstances, Ex.P20 will hold good only in respect of the plaintiff No.4 and defendant Nos.1 to 4 and 12 and any other parties claiming under them. Consequently point No.2 is answered in the negative.
+
+64. The upholding of the partition in the year 2003 and holding of the suit schedule item Nos.1 and 3 properties to be the ancestral properties would result in a partition under Section 6 of the Hindu Succession Act, prior to amendment. In other words, in the notional partition, which must be considered immediately prior to the death of Govindareddy in the year 1987, he would have entitled for 1/6th share and his sons and wife would have got 1/6th share each. Since we are calculating the share after the death of defendant No.1, the share would be reduced to 1/5th share each. The said 1/5th share of Govindareddy has to be shared among all the 4 sons and 6 daughters of Govindareddy. The sons would get 1/5 + (1/5 x 1/10=1/50)= 11/50th share each. The daughters would get 1/50th share each.
+
+65. The compensation amount received by defendant No.1 (i.e, item No. 2 of suit schedule) is utilized by her for the marriage of her daughters. The suit schedule item No. 4 house property bearing No.166 situated in Doddanekkundi Village, Bangalore was the property purchased by deceased brother of plaintiffs viz., Sri Suresh. He died intestate as a bachelor. Therefore, the said property would devolve on defendant No.1, Muniyamma as class I heir. Hence, all her children would get equal share, i.e., 1/10th in the same. Hence, the appeal succeeds in part and the following order is passed:
+
+ORDER
+
+The appeal is allowed in part.
+
+It is ordered that plaintiff Nos.1 to 5 and mother of defendant Nos. 8 to 11 are entitled for 1/50th share each in suit schedule item Nos. 1 and 3 properties. They are also entitled for 1/10th share each in suit schedule item No.4 property.
+
+Defendant Nos.2 to 4 and 12 are entitled for 11/50th share in item Nos.1 and 3 properties and 1/10th share in item No.4 property.
+
+The judgment and decree passed by the trial Court stands modified accordingly.
+
+The parties to the suit being siblings, costs made easy.` }
+    ];
+    let index = 0;
+
+    function load() {
+      document.getElementById('jid').innerText = judgments[index].id;
+      ['headnote', 'commentary', 'caseinfo', 'citations'].forEach(id => document.getElementById(id).value = '');
+    }
+    load();
+
+    function copyJudgment() {
+      navigator.clipboard.writeText(judgments[index].text);
+      alert('Judgment copied to clipboard');
+    }
+
+    function submitNext() {
+      const ids = ['headnote', 'commentary', 'caseinfo', 'citations'];
+      for (const id of ids) {
+        const txt = document.getElementById(id).value.trim();
+        if (!txt) {
+          alert('Please paste all four JSON responses before continuing.');
+          return;
+        }
+        try { JSON.parse(txt); } catch (e) {
+          alert('Invalid JSON in ' + id);
+          return;
+        }
+      }
+      alert('Judgment ' + judgments[index].id + ' submitted.');
+      if (index < judgments.length - 1) {
+        index++;
+        load();
+      } else {
+        alert('All judgments completed.');
+      }
+    }
+  </script>
+</body>
+
+</html>
