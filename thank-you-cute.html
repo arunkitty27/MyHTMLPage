@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thank You</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  position:relative;background:
+  radial-gradient(circle at 15% 20%,#ffe1eb 0,transparent 28%),
+  radial-gradient(circle at 85% 80%,#dcecff 0,transparent 30%),
+  linear-gradient(135deg,#fff9fc,#f8f5ff,#f4fbff);
+  font-family:"Arial Rounded MT Bold","Trebuchet MS",sans-serif;
+}
+.thank-you{
+  position:relative;z-index:20;font-size:clamp(60px,11vw,125px);font-weight:900;
+  color:transparent;background:linear-gradient(90deg,#ff86ad,#c28cff,#72c8ff,#ff86ad);
+  background-size:300% 100%;background-clip:text;-webkit-background-clip:text;
+  animation:appear 1.2s cubic-bezier(.2,1.4,.4,1) forwards,gradient 5s linear 1.2s infinite,floatText 4s ease-in-out 1.2s infinite;
+}
+@keyframes appear{0%{opacity:0;transform:scale(.5) translateY(30px);letter-spacing:20px;filter:blur(10px)}70%{transform:scale(1.08)}100%{opacity:1;transform:scale(1);letter-spacing:-3px;filter:blur(0)}}
+@keyframes gradient{from{background-position:0}to{background-position:300%}}
+@keyframes floatText{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+.bear{position:absolute;z-index:15;width:125px;height:135px;animation:bearFloat 3.5s ease-in-out infinite}
+.bear.left{left:7%;bottom:13%}.bear.right{right:7%;top:15%;transform:scale(.88);animation-delay:1s}
+.head{position:absolute;width:100px;height:92px;left:12px;top:22px;background:#c98d68;border-radius:48% 48% 45% 45%;box-shadow:inset -7px -8px 0 rgba(130,75,50,.12),0 8px 15px rgba(100,70,60,.12)}
+.ear{position:absolute;width:38px;height:38px;top:2px;background:#b87958;border-radius:50%}
+.ear:after{content:"";position:absolute;width:20px;height:20px;left:9px;top:9px;background:#edb09b;border-radius:50%}
+.left-ear{left:8px}.right-ear{right:8px}
+.muzzle{position:absolute;width:53px;height:38px;left:24px;bottom:9px;background:#edc19d;border-radius:50%}
+.eye{position:absolute;width:9px;height:12px;top:38px;background:#49322c;border-radius:50%}
+.left-eye{left:27px}.right-eye{right:27px}
+.eye:after{content:"";position:absolute;width:3px;height:3px;top:2px;left:2px;background:white;border-radius:50%}
+.nose{position:absolute;width:13px;height:9px;left:19px;top:7px;background:#49322c;border-radius:50%}
+.mouth{position:absolute;width:15px;height:8px;left:19px;top:15px;border-bottom:2px solid #49322c;border-radius:0 0 50% 50%}
+.body{position:absolute;width:82px;height:58px;left:22px;top:90px;background:#c98d68;border-radius:45px 45px 35px 35px;box-shadow:0 7px 12px rgba(100,70,60,.1)}
+.belly{position:absolute;width:48px;height:37px;left:17px;top:12px;background:#edc19d;border-radius:50%}
+.arm{position:absolute;width:27px;height:43px;top:94px;background:#b97e5e;border-radius:50%}
+.left-arm{left:7px;transform:rotate(25deg)}.right-arm{right:7px;transform:rotate(-25deg)}
+.bow{position:absolute;z-index:30;top:76px;left:47px}
+.bow:before,.bow:after{content:"";position:absolute;width:23px;height:18px;background:#ff9cbd;border-radius:50% 50% 50% 10%}
+.bow:before{transform:rotate(25deg);left:-19px}.bow:after{transform:rotate(-25deg) scaleX(-1);left:1px}
+.bow-center{position:absolute;width:10px;height:10px;left:-4px;top:4px;background:#ff719f;border-radius:50%}
+
+.heart{position:absolute;z-index:25;color:#ff8eb2;font-size:var(--size);bottom:var(--bottom);left:var(--left);opacity:0;animation:flyHeart var(--duration) ease-in var(--delay) infinite}
+.heart:nth-of-type(1){--size:17px;--left:13%;--bottom:17%;--duration:4.5s;--delay:0s}
+.heart:nth-of-type(2){--size:12px;--left:20%;--bottom:25%;--duration:5s;--delay:1s}
+.heart:nth-of-type(3){--size:22px;--left:25%;--bottom:12%;--duration:5.5s;--delay:2s}
+.heart:nth-of-type(4){--size:15px;--left:73%;--bottom:19%;--duration:4.7s;--delay:.7s}
+.heart:nth-of-type(5){--size:20px;--left:80%;--bottom:30%;--duration:5.3s;--delay:1.5s}
+.heart:nth-of-type(6){--size:13px;--left:87%;--bottom:12%;--duration:4.8s;--delay:2.5s}
+.heart:nth-of-type(7){--size:10px;--left:42%;--bottom:8%;--duration:4s;--delay:1.2s}
+@keyframes flyHeart{0%{opacity:0;transform:translateY(0) translateX(0) rotate(-15deg) scale(.5)}15%{opacity:.9}50%{opacity:1;transform:translateY(-180px) translateX(25px) rotate(15deg) scale(1)}80%{opacity:.7}100%{opacity:0;transform:translateY(-350px) translateX(-20px) rotate(-20deg) scale(.5)}}
+.star{position:absolute;color:#ffd27d;font-size:18px;animation:twinkle 2.5s ease-in-out infinite}
+.one{top:18%;left:30%}.two{top:65%;right:27%;animation-delay:.8s}.three{top:25%;right:10%;animation-delay:1.4s}.four{bottom:18%;left:35%;animation-delay:.4s}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.6) rotate(0)}50%{opacity:1;transform:scale(1.3) rotate(20deg)}}
+.bubble{position:absolute;width:var(--size);height:var(--size);left:var(--left);bottom:-50px;border-radius:50%;background:var(--color);opacity:.35;animation:bubbleUp var(--duration) linear var(--delay) infinite}
+@keyframes bubbleUp{from{transform:translateY(0)}to{transform:translateY(-110vh) translateX(40px)}}
+@keyframes bearFloat{0%,100%{margin-top:0}50%{margin-top:-10px}}
+@media(max-width:600px){.thank-you{font-size:58px}.bear{transform:scale(.65)}.bear.left{left:-8%;bottom:8%}.bear.right{right:-8%;top:9%}}
+</style>
+</head>
+<body>
+<div class="bubble" style="--size:25px;--left:8%;--color:#ffc3d8;--duration:9s;--delay:0s"></div>
+<div class="bubble" style="--size:15px;--left:22%;--color:#cbb7ff;--duration:11s;--delay:2s"></div>
+<div class="bubble" style="--size:30px;--left:45%;--color:#b9e4ff;--duration:13s;--delay:1s"></div>
+<div class="bubble" style="--size:18px;--left:70%;--color:#ffd6a8;--duration:10s;--delay:3s"></div>
+<div class="bubble" style="--size:25px;--left:90%;--color:#ffbcd2;--duration:12s;--delay:1s"></div>
+
+<div class="heart">♥</div><div class="heart">♥</div><div class="heart">♥</div>
+<div class="heart">♥</div><div class="heart">♥</div><div class="heart">♥</div><div class="heart">♥</div>
+
+<div class="star one">✦</div><div class="star two">✧</div><div class="star three">✦</div><div class="star four">✧</div>
+
+<div class="bear left">
+  <div class="ear left-ear"></div><div class="ear right-ear"></div>
+  <div class="head"><div class="eye left-eye"></div><div class="eye right-eye"></div>
+    <div class="muzzle"><div class="nose"></div><div class="mouth"></div></div>
+  </div>
+  <div class="body"><div class="belly"></div></div>
+  <div class="arm left-arm"></div><div class="arm right-arm"></div>
+  <div class="bow"><div class="bow-center"></div></div>
+</div>
+
+<div class="bear right">
+  <div class="ear left-ear"></div><div class="ear right-ear"></div>
+  <div class="head"><div class="eye left-eye"></div><div class="eye right-eye"></div>
+    <div class="muzzle"><div class="nose"></div><div class="mouth"></div></div>
+  </div>
+  <div class="body"><div class="belly"></div></div>
+  <div class="arm left-arm"></div><div class="arm right-arm"></div>
+</div>
+
+<h1 class="thank-you">Thank You</h1>
+</body>
+</html>
