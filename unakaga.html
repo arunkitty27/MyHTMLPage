@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;500;600&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{
+    background:
+        radial-gradient(circle at 50% 50%,rgba(170,120,35,.10),transparent 45%),
+        #020202;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Noto Serif Tamil",serif;color:#d8ad55;
+    position:relative;
+}
+.glow{
+    position:absolute;width:550px;height:550px;border-radius:50%;
+    background:radial-gradient(circle,rgba(210,160,55,.08),transparent 68%);
+    animation:glowPulse 10s ease-in-out infinite;pointer-events:none;
+}
+@keyframes glowPulse{
+    0%,100%{transform:scale(.9);opacity:.6}
+    50%{transform:scale(1.1);opacity:1}
+}
+.poem-container{
+    position:relative;width:min(920px,90vw);padding:58px 60px;
+    text-align:center;border-radius:30px;
+    border:1px solid rgba(212,166,72,.13);
+    background:rgba(0,0,0,.20);
+    box-shadow:0 0 80px rgba(190,140,40,.04);
+    animation:containerAppear 2s ease-out forwards;
+    z-index:2;
+}
+@keyframes containerAppear{
+    from{opacity:0;transform:scale(.985)}
+    to{opacity:1;transform:scale(1)}
+}
+.poem{
+    font-size:clamp(20px,2.25vw,30px);
+    line-height:2.15;font-weight:500;color:#d9ae55;
+    text-shadow:0 0 10px rgba(216,173,85,.12);
+    text-align:center;
+}
+.line{display:block;margin:7px 0}
+.word{display:inline-block;white-space:nowrap;margin-right:.32em}
+.char{
+    display:inline-block;opacity:0;transform:translateY(13px);
+    animation:letterAppear 1.25s cubic-bezier(.22,.75,.25,1) forwards;
+    animation-delay:var(--delay);
+}
+@keyframes letterAppear{
+    0%{opacity:0;transform:translateY(13px)}
+    45%{opacity:.65;transform:translateY(-2px)}
+    75%{opacity:.9;transform:translateY(1px)}
+    100%{opacity:1;transform:translateY(0)}
+}
+.heart{
+    position:absolute;bottom:-30px;color:rgba(218,169,76,.22);
+    font-size:16px;pointer-events:none;z-index:1;
+    animation:floatHeart linear infinite;
+}
+@keyframes floatHeart{
+    0%{transform:translate3d(0,20px,0) rotate(-8deg) scale(.7);opacity:0}
+    12%{opacity:.5}
+    40%{transform:translate3d(28px,-180px,0) rotate(10deg) scale(.95)}
+    70%{transform:translate3d(-22px,-370px,0) rotate(-7deg) scale(1.05);opacity:.22}
+    100%{transform:translate3d(15px,-600px,0) rotate(8deg) scale(.8);opacity:0}
+}
+.particle{
+    position:absolute;width:2px;height:2px;border-radius:50%;
+    background:rgba(225,181,92,.35);
+    animation:particleRise linear infinite;pointer-events:none;
+}
+@keyframes particleRise{
+    0%{transform:translateY(50px);opacity:0}
+    20%{opacity:.4}
+    80%{opacity:.15}
+    100%{transform:translateY(-550px);opacity:0}
+}
+@media(max-width:600px){
+    .poem-container{width:94vw;padding:38px 16px;border-radius:25px}
+    .poem{font-size:17px;line-height:2.15}
+    .word{margin-right:.22em}
+}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="heart" style="left:5%;animation-duration:24s;animation-delay:-8s">♡</div>
+<div class="heart" style="left:17%;animation-duration:28s;animation-delay:-17s;font-size:12px">♡</div>
+<div class="heart" style="left:30%;animation-duration:25s;animation-delay:-5s">♥</div>
+<div class="heart" style="left:48%;animation-duration:30s;animation-delay:-21s;font-size:11px">♡</div>
+<div class="heart" style="left:66%;animation-duration:27s;animation-delay:-13s">♡</div>
+<div class="heart" style="left:81%;animation-duration:29s;animation-delay:-20s;font-size:13px">♥</div>
+<div class="heart" style="left:94%;animation-duration:23s;animation-delay:-6s">♡</div>
+
+<div class="particle" style="left:10%;bottom:5%;animation-duration:18s;animation-delay:-4s"></div>
+<div class="particle" style="left:24%;bottom:12%;animation-duration:22s;animation-delay:-9s"></div>
+<div class="particle" style="left:39%;bottom:5%;animation-duration:19s;animation-delay:-13s"></div>
+<div class="particle" style="left:58%;bottom:8%;animation-duration:24s;animation-delay:-17s"></div>
+<div class="particle" style="left:74%;bottom:14%;animation-duration:20s;animation-delay:-6s"></div>
+<div class="particle" style="left:89%;bottom:4%;animation-duration:23s;animation-delay:-11s"></div>
+
+<div class="poem-container">
+    <div class="poem" id="poem"></div>
+</div>
+
+<script>
+const poemLines=[
+"கவிதை எழுதுகிறாள் என்று நினைத்தேன் — தமிழ் எழுதுகிறாள் என்று உணர்ந்தேன்,",
+"அவள் வரிகளில் தொலைந்தபின், அவளிடமே தொலைந்துவிட்டேன்,",
+"சொற்களை அவள் எழுதுகிறாளா… இல்லை, சொற்களே அவளை எழுதுகிறதா?",
+"அவள் கவிதையை ரசிக்க வந்தேன் — கவிஞையையே ரசித்துவிட்டேன்."
+];
+
+const poem=document.getElementById("poem");
+
+function splitTamil(text){
+    const result=[]; let current="";
+    for(const character of [...text]){
+        const code=character.codePointAt(0);
+        const isCombining=code>=0x0B80&&code<=0x0BFF;
+        if(isCombining&&current) current+=character;
+        else{if(current)result.push(current);current=character}
+    }
+    if(current)result.push(current);
+    return result;
+}
+
+let delay=2.2;
+
+poemLines.forEach(lineText=>{
+    const line=document.createElement("span");
+    line.className="line";
+
+    lineText.split(" ").forEach(wordText=>{
+        const word=document.createElement("span");
+        word.className="word";
+
+        splitTamil(wordText).forEach(character=>{
+            const letter=document.createElement("span");
+            letter.className="char";
+            letter.textContent=character;
+            letter.style.setProperty("--delay",delay+"s");
+            word.appendChild(letter);
+
+            delay+=.13;
+            if(character==="—"||character==="…"||character===","||character==="?")
+                delay+=.30;
+        });
+
+        line.appendChild(word);
+        delay+=.055;
+    });
+
+    poem.appendChild(line);
+    delay+=1.1;
+});
+</script>
+</body>
+</html>
