@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>♡</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Noto+Serif+Tamil:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      background: #ffffff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+    }
+
+
+    /* =========================================
+       SOFT BACKGROUND GLOW
+    ========================================= */
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+
+      border-radius: 50%;
+
+      filter: blur(75px);
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+    body::before {
+      width: 220px;
+      height: 220px;
+
+      background: rgba(255, 190, 210, 0.18);
+
+      top: 5%;
+      left: 3%;
+
+      animation: breathe 6s ease-in-out infinite;
+    }
+
+    body::after {
+      width: 260px;
+      height: 260px;
+
+      background: rgba(230, 205, 150, 0.13);
+
+      bottom: 0;
+      right: 3%;
+
+      animation: breathe 7s ease-in-out infinite reverse;
+    }
+
+
+    @keyframes breathe {
+
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.55;
+      }
+
+      50% {
+        transform: scale(1.18);
+        opacity: 1;
+      }
+    }
+
+
+    /* =========================================
+       POEM CONTAINER
+    ========================================= */
+
+    .poem {
+
+      width: min(960px, 92vw);
+
+      text-align: center;
+
+      position: relative;
+
+      z-index: 10;
+
+      padding: 35px 25px;
+    }
+
+
+    /* =========================================
+       POEM LINES
+    ========================================= */
+
+    .line {
+
+      display: block;
+
+      margin: 16px 0;
+
+      font-family:
+        "Noto Serif Tamil",
+        serif;
+
+      font-size: clamp(20px, 3vw, 30px);
+
+      line-height: 2.08;
+
+      font-weight: 400;
+
+      color: #171717;
+
+      letter-spacing: 0.15px;
+
+      /*
+        Thin golden polished edge
+      */
+
+      text-shadow:
+        0.8px 0.8px 0 #c8a84e,
+        -0.25px -0.25px 0 #f3df91,
+        1px 2px 5px rgba(177, 135, 35, 0.22);
+    }
+
+
+    /* =========================================
+       WORD STREAMING
+    ========================================= */
+
+    .word {
+
+      display: inline-block;
+
+      opacity: 0;
+
+      transform:
+        translateY(16px)
+        scale(0.95);
+
+      filter: blur(7px);
+
+      animation:
+        writeWord 0.8s
+        cubic-bezier(.22,.75,.2,1)
+        forwards;
+
+      margin-right: 7px;
+    }
+
+
+    @keyframes writeWord {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(16px)
+          scale(0.95);
+
+        filter: blur(7px);
+      }
+
+      55% {
+        opacity: 0.75;
+
+        filter: blur(1.5px);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        filter: blur(0);
+      }
+    }
+
+
+    /* =========================================
+       RED POETIC WORDS
+    ========================================= */
+
+    .red {
+
+      color: #a51632;
+
+      text-shadow:
+        0.8px 0.8px 0 #c9a84d,
+        -0.3px -0.3px 0 #f2d77b,
+        1px 2px 5px rgba(170, 120, 20, 0.30);
+    }
+
+
+    /* =========================================
+       THANK YOU KAVI
+    ========================================= */
+
+    .thank-you {
+
+      margin-top: 35px;
+
+      font-family:
+        "Kalam",
+        cursive;
+
+      font-size: clamp(23px, 3vw, 32px);
+
+      color: #a51632;
+
+      opacity: 0;
+
+      transform:
+        translateY(18px)
+        scale(0.94);
+
+      filter: blur(6px);
+
+      text-shadow:
+        0.8px 0.8px 0 #c8a84e,
+        -0.3px -0.3px 0 #f4df91,
+        1px 2px 6px rgba(170, 120, 20, 0.28);
+
+      animation:
+        thankYouAppear 1.3s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+    }
+
+
+    @keyframes thankYouAppear {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(18px)
+          scale(0.94);
+
+        filter: blur(6px);
+      }
+
+      60% {
+        opacity: 0.8;
+
+        filter: blur(1px);
+      }
+
+      100% {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        filter: blur(0);
+      }
+    }
+
+
+    /* =========================================
+       FLYING HEART PARTICLES
+    ========================================= */
+
+    .heart {
+
+      position: fixed;
+
+      bottom: -40px;
+
+      left: var(--x);
+
+      z-index: 3;
+
+      pointer-events: none;
+
+      font-family: Arial, sans-serif;
+
+      font-size: var(--size);
+
+      color: var(--heart-color);
+
+      opacity: 0;
+
+      filter:
+        drop-shadow(
+          0 0 5px
+          rgba(210, 30, 70, 0.30)
+        );
+
+      animation:
+        flyHeart
+        var(--duration)
+        var(--delay)
+        linear
+        infinite;
+    }
+
+
+    @keyframes flyHeart {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          translate3d(0, 0, 0)
+          rotate(0deg)
+          scale(0.5);
+      }
+
+      8% {
+        opacity: 0.8;
+      }
+
+      25% {
+
+        transform:
+          translate3d(
+            var(--drift1),
+            -25vh,
+            0
+          )
+          rotate(12deg)
+          scale(0.9);
+      }
+
+      50% {
+
+        transform:
+          translate3d(
+            var(--drift2),
+            -52vh,
+            0
+          )
+          rotate(-14deg)
+          scale(1.1);
+      }
+
+      75% {
+
+        transform:
+          translate3d(
+            var(--drift3),
+            -78vh,
+            0
+          )
+          rotate(15deg)
+          scale(0.85);
+      }
+
+      100% {
+
+        opacity: 0;
+
+        transform:
+          translate3d(
+            var(--drift4),
+            -115vh,
+            0
+          )
+          rotate(-18deg)
+          scale(0.5);
+      }
+    }
+
+
+    /* =========================================
+       GOLDEN SPARKLES
+    ========================================= */
+
+    .sparkle {
+
+      position: fixed;
+
+      z-index: 2;
+
+      pointer-events: none;
+
+      color: #d1a832;
+
+      font-size: var(--spark-size);
+
+      opacity: 0;
+
+      animation:
+        sparkle
+        var(--spark-duration)
+        var(--spark-delay)
+        ease-in-out
+        infinite;
+    }
+
+
+    @keyframes sparkle {
+
+      0% {
+
+        opacity: 0;
+
+        transform:
+          scale(0)
+          rotate(0deg);
+      }
+
+      40% {
+
+        opacity: 0.8;
+
+        transform:
+          scale(1.3)
+          rotate(45deg);
+      }
+
+      70% {
+
+        opacity: 0.35;
+
+        transform:
+          scale(0.8)
+          rotate(90deg);
+      }
+
+      100% {
+
+        opacity: 0;
+
+        transform:
+          scale(0)
+          rotate(130deg);
+      }
+    }
+
+
+    /* =========================================
+       TOP HEART
+    ========================================= */
+
+    .top-heart {
+
+      position: fixed;
+
+      top: 7%;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        translateY(8px);
+
+      font-family: "Kalam", cursive;
+
+      font-size: 28px;
+
+      color: #a51632;
+
+      opacity: 0;
+
+      z-index: 20;
+
+      animation:
+        topHeartAppear
+        1.5s
+        1s
+        ease
+        forwards;
+    }
+
+
+    @keyframes topHeartAppear {
+
+      to {
+
+        opacity: 0.75;
+
+        transform:
+          translateX(-50%)
+          translateY(0)
+          scale(1);
+      }
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 600px) {
+
+      .poem {
+
+        width: 95vw;
+
+        padding: 25px 10px;
+      }
+
+      .line {
+
+        font-size: 18px;
+
+        line-height: 2.15;
+
+        margin: 11px 0;
+      }
+
+      .word {
+
+        margin-right: 4px;
+      }
+
+      .thank-you {
+
+        margin-top: 25px;
+
+        font-size: 25px;
+      }
+
+      .top-heart {
+        top: 4%;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- Small decorative heart -->
+  <div class="top-heart">♡</div>
+
+
+  <!-- Poem -->
+  <div class="poem" id="poem"></div>
+
+
+  <script>
+
+
+    /* =========================================
+       POEM
+    ========================================= */
+
+    const lines = [
+
+      "உன்னுடன் பேசும் பொழுதெல்லாம், மனதின் சுமைகள் மழையாய் கரைகின்றன,",
+
+      "உன் நட்பின் நிழலில், நீண்ட இரவுகளும் நிலவொளியாய் மாறுகின்றன.",
+
+      "மறக்க நினைத்த வலிகள் எல்லாம், உன் வார்த்தைகளில் வழி தொலைகின்றன,",
+
+      "என் வாழ்வில் நீ விட்டுச் செல்லும் அமைதிக்கு, நன்றிகள் மட்டும் கவிதையாய் மலர்கின்றன."
+
+    ];
+
+
+    const poem =
+      document.getElementById("poem");
+
+
+    let delay = 1.8;
+
+
+    /* =========================================
+       STREAM EACH WORD
+    ========================================= */
+
+    lines.forEach((text, lineIndex) => {
+
+      const line =
+        document.createElement("div");
+
+      line.className = "line";
+
+
+      const words =
+        text.split(" ");
+
+
+      words.forEach((word) => {
+
+        const span =
+          document.createElement("span");
+
+        span.className = "word";
+
+        span.textContent = word;
+
+
+        /* Selected words in red */
+
+        const cleanWord =
+          word.replace(/[,.!?]/g, "");
+
+
+        const redWords = [
+
+          "நட்பின்",
+          "நிலவொளியாய்",
+          "வலிகள்",
+          "அமைதிக்கு",
+          "கவிதையாய்"
+
+        ];
+
+
+        if (
+          redWords.includes(cleanWord)
+        ) {
+
+          span.classList.add("red");
+
+        }
+
+
+        span.style.animationDelay =
+          `${delay}s`;
+
+
+        line.appendChild(span);
+
+
+        delay += 0.18;
+
+      });
+
+
+      poem.appendChild(line);
+
+
+      /* Pause between lines */
+
+      delay += 0.55;
+
+    });
+
+
+    /* =========================================
+       THANK YOU KAVI
+    ========================================= */
+
+    const thankYou =
+      document.createElement("div");
+
+    thankYou.className =
+      "thank-you";
+
+    thankYou.textContent =
+      "Thank you Kavi.. ❤️";
+
+
+    /*
+      It appears only after
+      the poem has completely streamed.
+    */
+
+    thankYou.style.animationDelay =
+      `${delay + 0.4}s`;
+
+
+    poem.appendChild(thankYou);
+
+
+    /* =========================================
+       FLYING HEARTS
+    ========================================= */
+
+    const heartSymbols = [
+
+      "♡",
+      "♥",
+      "♡",
+      "❤",
+      "♡",
+      "♥"
+
+    ];
+
+
+    for (let i = 0; i < 42; i++) {
+
+      const heart =
+        document.createElement("div");
+
+      heart.className =
+        "heart";
+
+
+      heart.textContent =
+        heartSymbols[
+          Math.floor(
+            Math.random() *
+            heartSymbols.length
+          )
+        ];
+
+
+      heart.style.setProperty(
+        "--x",
+        `${Math.random() * 100}vw`
+      );
+
+
+      heart.style.setProperty(
+        "--size",
+        `${8 + Math.random() * 17}px`
+      );
+
+
+      heart.style.setProperty(
+        "--duration",
+        `${7 + Math.random() * 9}s`
+      );
+
+
+      heart.style.setProperty(
+        "--delay",
+        `${Math.random() * -14}s`
+      );
+
+
+      heart.style.setProperty(
+        "--drift1",
+        `${-40 + Math.random() * 80}px`
+      );
+
+
+      heart.style.setProperty(
+        "--drift2",
+        `${-80 + Math.random() * 160}px`
+      );
+
+
+      heart.style.setProperty(
+        "--drift3",
+        `${-120 + Math.random() * 240}px`
+      );
+
+
+      heart.style.setProperty(
+        "--drift4",
+        `${-160 + Math.random() * 320}px`
+      );
+
+
+      /* Mostly red, occasional gold */
+
+      heart.style.setProperty(
+        "--heart-color",
+
+        Math.random() > 0.82
+          ? "#d1a832"
+          : "#c2183a"
+      );
+
+
+      document.body.appendChild(heart);
+
+    }
+
+
+    /* =========================================
+       GOLDEN SPARKLES
+    ========================================= */
+
+    for (let i = 0; i < 30; i++) {
+
+      const sparkle =
+        document.createElement("div");
+
+      sparkle.className =
+        "sparkle";
+
+
+      sparkle.textContent =
+        Math.random() > 0.5
+          ? "✦"
+          : "✧";
+
+
+      sparkle.style.left =
+        `${Math.random() * 100}vw`;
+
+
+      sparkle.style.top =
+        `${Math.random() * 100}vh`;
+
+
+      sparkle.style.setProperty(
+        "--spark-size",
+        `${7 + Math.random() * 10}px`
+      );
+
+
+      sparkle.style.setProperty(
+        "--spark-duration",
+        `${2 + Math.random() * 3}s`
+      );
+
+
+      sparkle.style.setProperty(
+        "--spark-delay",
+        `${Math.random() * -4}s`
+      );
+
+
+      document.body.appendChild(
+        sparkle
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
