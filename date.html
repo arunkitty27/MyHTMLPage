@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Oru Chinna Question ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    font-family: "Trebuchet MS", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 15% 15%, #fff5f8 0%, transparent 35%),
+        radial-gradient(circle at 85% 85%, #ffd6e5 0%, transparent 35%),
+        linear-gradient(135deg, #ffd9e6, #fff5f8);
+
+    color: #552c3d;
+}
+
+
+/* Floating hearts */
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    opacity: 0.45;
+    animation: floatUp 9s linear infinite;
+    z-index: 0;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2.5s;
+}
+
+.heart:nth-child(3) {
+    left: 55%;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(4) {
+    left: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .45;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+
+/* Card */
+
+.card {
+    width: min(90%, 550px);
+    padding: 48px 38px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    border-radius: 32px;
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 25px 70px rgba(120, 50, 80, .18);
+
+    position: relative;
+    z-index: 5;
+
+    animation: appear .8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* Emoji */
+
+.top {
+    font-size: 52px;
+    margin-bottom: 14px;
+
+    animation: gentleFloat 2s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* Heading */
+
+h1 {
+    font-size: clamp(32px, 7vw, 45px);
+    color: #d94f7d;
+    margin-bottom: 16px;
+}
+
+.intro {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #704457;
+    margin-bottom: 25px;
+}
+
+
+/* Main flirty dialogue */
+
+.dialogue {
+    background: #fff1f6;
+    border-radius: 22px;
+
+    padding: 23px 20px;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    margin-bottom: 27px;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(230,100,140,.08);
+}
+
+.dialogue b {
+    color: #d64275;
+}
+
+
+/* Question */
+
+.question {
+    font-size: 26px;
+    font-weight: bold;
+    color: #c93668;
+
+    margin-bottom: 25px;
+}
+
+
+/* Buttons area */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+
+    height: 62px;
+
+    position: relative;
+}
+
+
+/* Buttons */
+
+button {
+    border: none;
+
+    border-radius: 50px;
+
+    padding: 14px 30px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        left .25s ease,
+        top .25s ease;
+}
+
+
+/* Yes */
+
+#yesBtn {
+    background:
+        linear-gradient(135deg, #ed5c8b, #d93d70);
+
+    color: white;
+
+    box-shadow:
+        0 8px 22px rgba(217,61,112,.25);
+}
+
+#yesBtn:hover {
+    transform: translateY(-3px) scale(1.06);
+
+    box-shadow:
+        0 12px 28px rgba(217,61,112,.35);
+}
+
+
+/* No */
+
+#noBtn {
+    background: #f1edf0;
+    color: #777;
+
+    position: relative;
+}
+
+
+/* Hint */
+
+.hint {
+    font-size: 12px;
+    color: #a78391;
+
+    margin-top: 17px;
+}
+
+
+/* Success */
+
+#success {
+    display: none;
+}
+
+.success-heart {
+    font-size: 65px;
+    margin-bottom: 12px;
+
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+#success h2 {
+    color: #d94376;
+
+    font-size: 38px;
+
+    margin-bottom: 16px;
+}
+
+.success-text {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.date-card {
+    margin-top: 23px;
+
+    padding: 20px;
+
+    border-radius: 21px;
+
+    background: #fff1f6;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+}
+
+
+/* Mobile */
+
+@media(max-width:500px) {
+
+    .card {
+        padding: 38px 22px;
+    }
+
+    .intro {
+        font-size: 16px;
+    }
+
+    .dialogue {
+        font-size: 17px;
+    }
+
+    .question {
+        font-size: 22px;
+    }
+
+    button {
+        padding: 13px 24px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- Floating hearts -->
+
+<div class="heart">♡</div>
+<div class="heart">♡</div>
+<div class="heart">♥</div>
+<div class="heart">♡</div>
+
+
+<div class="card">
+
+
+<!-- ================= MAIN ================= -->
+
+<div id="main">
+
+    <div class="top">
+        😉
+    </div>
+
+
+    <h1>
+        Oru Chinna Question...
+    </h1>
+
+
+    <p class="intro">
+        Konjam yosichu sollu...
+        aana romba yosika vendam. 😌
+    </p>
+
+
+    <div class="dialogue">
+
+        <b>
+            Unakku date venuma nu therila…
+        </b>
+
+        <br>
+
+        aana enakku nee venum nu
+        konjam clear-ah theriyudhu. 😉
+
+    </div>
+
+
+    <div class="question">
+
+        So... date-ku varuviya? ❤️
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button id="yesBtn" onclick="sayYes()">
+            Varuven 😉❤️
+        </button>
+
+        <button
+            id="noBtn"
+            onmouseenter="moveNo()"
+            onclick="moveNo()">
+
+            Paakalam 😌
+
+        </button>
+
+    </div>
+
+
+    <div class="hint">
+        *“Paakalam” nu solli escape aaga mudiyadhu. 😏*
+    </div>
+
+</div>
+
+
+
+<!-- ================= YES ================= -->
+
+<div id="success">
+
+    <div class="success-heart">
+        ❤️
+    </div>
+
+
+    <h2>
+        Good choice. 😉
+    </h2>
+
+
+    <p class="success-text">
+
+        Ippo date plan panradhu
+        en responsibility. 😌
+
+        <br><br>
+
+        <b>
+            Nee just look pretty.
+        </b>
+
+    </p>
+
+
+    <div class="date-card">
+
+        📍 Oru nice place
+
+        <br>
+
+        🍝 Nalla food
+
+        <br>
+
+        🎶 Good vibes
+
+        <br>
+
+        😉 Konjam flirting
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+const noBtn =
+    document.getElementById("noBtn");
+
+
+/*
+    The No button moves only a small distance
+    around its original position.
+    It can NEVER disappear off-screen.
+*/
+
+function moveNo() {
+
+    const positions = [
+
+        { x: -45, y: 0 },
+        { x: 45, y: 0 },
+        { x: -35, y: -18 },
+        { x: 35, y: -18 },
+        { x: -30, y: 18 },
+        { x: 30, y: 18 }
+
+    ];
+
+    const random =
+        positions[
+            Math.floor(
+                Math.random() * positions.length
+            )
+        ];
+
+    noBtn.style.left =
+        random.x + "px";
+
+    noBtn.style.top =
+        random.y + "px";
+}
+
+
+/* YES */
+
+function sayYes() {
+
+    document.getElementById("main")
+        .style.display = "none";
+
+    document.getElementById("success")
+        .style.display = "block";
+
+
+    /* Subtle heart celebration */
+
+    for (let i = 0; i < 25; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML =
+            ["❤️", "♡", "💕", "✨"]
+            [
+                Math.floor(
+                    Math.random() * 4
+                )
+            ];
+
+        heart.style.position = "fixed";
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.top = "-20px";
+
+        heart.style.fontSize =
+            (16 + Math.random() * 18) + "px";
+
+        heart.style.pointerEvents =
+            "none";
+
+        heart.style.zIndex = "999";
+
+        document.body.appendChild(heart);
+
+
+        heart.animate(
+
+            [
+                {
+                    transform:
+                        "translateY(0)",
+                    opacity: 0
+                },
+
+                {
+                    transform:
+                        "translateY(110vh)",
+                    opacity: .8
+                },
+
+                {
+                    transform:
+                        "translateY(110vh)",
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration:
+                    3000 + Math.random() * 2000,
+
+                easing:
+                    "ease-out"
+            }
+
+        );
+
+
+        setTimeout(
+            () => heart.remove(),
+            5000
+        );
+    }
+}
+
+</script>
+
+</body>
+</html>
