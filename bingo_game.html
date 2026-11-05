@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bingo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Hide number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .bingo-letter {
+            transition: all 0.3s ease;
+            opacity: 0.3;
+            transform: scale(0.9);
+        }
+
+        .bingo-letter.lit {
+            opacity: 1;
+            transform: scale(1.1);
+            color: #fbbf24; /* amber-400 */
+            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            animation: bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0.9); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1.1); }
+        }
+
+        .cell {
+            aspect-ratio: 1 / 1;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .cell-input {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            border: 2px solid #e2e8f0;
+            outline: none;
+            background-color: #f8fafc;
+        }
+
+        .cell-input:focus {
+            border-color: #667eea;
+            background-color: #fff;
+        }
+
+        .cell-play {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            user-select: none;
+            color: #475569;
+        }
+
+        .cell-play:hover:not(.marked) {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+        }
+
+        .cell-play.marked {
+            background-color: #cbd5e1;
+            color: #94a3b8;
+        }
+
+        /* Strike-out effect */
+        .cell-play.marked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background-color: #ef4444; /* red-500 */
+            transform: translateY(-50%) rotate(-15deg);
+            border-radius: 2px;
+            animation: strike 0.2s ease-out forwards;
+        }
+
+        @keyframes strike {
+            0% { width: 0; }
+            100% { width: 80%; }
+        }
+
+        #messageBox {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        #messageBox.show {
+            opacity: 1;
+        }
+
+        /* Winner modal */
+        #winModal {
+            display: none;
+        }
+        #winModal.show {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-4">
+
+    <!-- Main Container -->
+    <div id="bingoApp" class="w-full max-w-lg bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-6 md:p-8">
+        
+        <!-- BINGO Letters Display -->
+        <div class="flex justify-between items-center mb-6 px-4 bg-white/20 rounded-xl py-3 shadow-inner">
+            <span class="bingo-letter text-4xl md:text-5xl font-bold text-white" id="letter-0">B</span>
+            <span class="bingo-letter text-4xl md:text-5xl font-bold text-white" id="letter-1">I</span>
+            <span class="bingo-letter text-4xl md:text-5xl font-bold text-white" id="letter-2">N</span>
+            <span class="bingo-letter text-4xl md:text-5xl font-bold text-white" id="letter-3">G</span>
+            <span class="bingo-letter text-4xl md:text-5xl font-bold text-white" id="letter-4">O</span>
+        </div>
+
+        <!-- Message Box (replaces alert) -->
+        <div id="messageBox" class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-center font-semibold text-sm hidden">
+            Message goes here
+        </div>
+
+        <!-- Grid Container -->
+        <div id="gridContainer" class="grid grid-cols-5 gap-2 md:gap-3 mb-6">
+            <!-- Grid cells generated by JS -->
+        </div>
+
+        <!-- Controls -->
+        <div id="setupControls" class="flex flex-col sm:flex-row gap-3">
+            <button onclick="randomizeBoard()" class="flex-1 bg-white text-indigo-600 font-bold py-3 px-4 rounded-xl shadow hover:bg-gray-50 transition active:scale-95">
+                Randomize
+            </button>
+            <button onclick="startGame()" class="flex-1 bg-green-500 text-white font-bold py-3 px-4 rounded-xl shadow hover:bg-green-600 transition active:scale-95">
+                Start Game
+            </button>
+        </div>
+
+        <div id="playControls" class="hidden flex-col sm:flex-row gap-3">
+            <div class="flex-1 text-center bg-white/20 rounded-xl py-3 text-white font-semibold">
+                Lines completed: <span id="linesCount" class="font-bold text-xl ml-1 text-yellow-300">0</span>
+            </div>
+            <button onclick="takeScreenshot()" class="flex-1 bg-blue-500 text-white font-bold py-3 px-2 rounded-xl shadow hover:bg-blue-600 transition active:scale-95 text-sm sm:text-base">
+                Screenshot
+            </button>
+            <button onclick="resetGame()" class="flex-1 bg-red-500 text-white font-bold py-3 px-2 rounded-xl shadow hover:bg-red-600 transition active:scale-95 text-sm sm:text-base">
+                Reset
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Win Modal -->
+    <div id="winModal" class="fixed inset-0 bg-black/60 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 text-center max-w-sm w-full shadow-2xl transform scale-100">
+            <h2 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 mb-4">BINGO!</h2>
+            <p class="text-xl text-gray-700 mb-8 font-medium">You completed 5 lines! You win!</p>
+            <button onclick="closeWinModal()" class="w-full bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95 mb-3">
+                Preview Board
+            </button>
+            <button onclick="closeModalAndReset()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95">
+                Play Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const GRID_SIZE = 25;
+        let gameState = 'setup'; // 'setup' or 'play'
+        let boardValues = Array(GRID_SIZE).fill('');
+        let markedCells = Array(GRID_SIZE).fill(false);
+
+        const gridContainer = document.getElementById('gridContainer');
+        const setupControls = document.getElementById('setupControls');
+        const playControls = document.getElementById('playControls');
+        const messageBox = document.getElementById('messageBox');
+        const linesCountDisplay = document.getElementById('linesCount');
+        const winModal = document.getElementById('winModal');
+
+        // Initialize setup grid
+        function initSetup() {
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < GRID_SIZE; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.min = '1';
+                input.max = '25';
+                input.className = 'cell-input';
+                input.dataset.index = i;
+                input.value = boardValues[i] || '';
+                
+                // Clear message on input
+                input.addEventListener('input', () => hideMessage());
+                
+                cell.appendChild(input);
+                gridContainer.appendChild(cell);
+            }
+        }
+
+        // Randomize the numbers 1-25
+        function randomizeBoard() {
+            const numbers = Array.from({length: 25}, (_, i) => i + 1);
+            // Fisher-Yates shuffle
+            for (let i = numbers.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+            }
+            
+            const inputs = document.querySelectorAll('.cell-input');
+            inputs.forEach((input, index) => {
+                input.value = numbers[index];
+            });
+            hideMessage();
+        }
+
+        function showMessage(msg) {
+            messageBox.textContent = msg;
+            messageBox.classList.remove('hidden');
+            // Small delay to allow CSS transition to apply
+            setTimeout(() => messageBox.classList.add('show'), 10);
+        }
+
+        function hideMessage() {
+            messageBox.classList.remove('show');
+            setTimeout(() => messageBox.classList.add('hidden'), 300); // match transition
+        }
+
+        // Validate and switch to play mode
+        function startGame() {
+            const inputs = document.querySelectorAll('.cell-input');
+            let vals = [];
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const val = parseInt(input.value);
+                if (isNaN(val) || val < 1 || val > 25) {
+                    isValid = false;
+                }
+                vals.push(val);
+            });
+
+            if (!isValid) {
+                showMessage("Please fill all boxes with numbers from 1 to 25.");
+                return;
+            }
+
+            const uniqueVals = new Set(vals);
+            if (uniqueVals.size !== 25) {
+                showMessage("Numbers must be unique. Each number from 1-25 can only be used once.");
+                return;
+            }
+
+            // Validation passed!
+            boardValues = vals;
+            markedCells = Array(GRID_SIZE).fill(false);
+            gameState = 'play';
+            
+            setupControls.classList.add('hidden');
+            playControls.classList.remove('hidden');
+            hideMessage();
+            renderPlayBoard();
+            updateBingoLetters(0);
+        }
+
+        // Render the clickable playing board
+        function renderPlayBoard() {
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < GRID_SIZE; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                const btn = document.createElement('div');
+                btn.className = `cell-play ${markedCells[i] ? 'marked' : ''}`;
+                btn.textContent = boardValues[i];
+                btn.onclick = () => toggleMark(i);
+                
+                cell.appendChild(btn);
+                gridContainer.appendChild(cell);
+            }
+        }
+
+        // Toggle cell state and check win
+        function toggleMark(index) {
+            if (gameState !== 'play') return;
+            
+            markedCells[index] = !markedCells[index];
+            renderPlayBoard(); // Re-render to show/hide strikeout
+            checkWinCondition();
+        }
+
+        // Check horizontal, vertical, and diagonal lines
+        function checkWinCondition() {
+            let linesCompleted = 0;
+            
+            // Check Rows
+            for (let row = 0; row < 5; row++) {
+                let complete = true;
+                for (let col = 0; col < 5; col++) {
+                    if (!markedCells[row * 5 + col]) complete = false;
+                }
+                if (complete) linesCompleted++;
+            }
+
+            // Check Columns
+            for (let col = 0; col < 5; col++) {
+                let complete = true;
+                for (let row = 0; row < 5; row++) {
+                    if (!markedCells[row * 5 + col]) complete = false;
+                }
+                if (complete) linesCompleted++;
+            }
+
+            // Check Diagonals
+            let diag1 = true; // Top-left to bottom-right (0, 6, 12, 18, 24)
+            let diag2 = true; // Top-right to bottom-left (4, 8, 12, 16, 20)
+            
+            for (let i = 0; i < 5; i++) {
+                if (!markedCells[i * 5 + i]) diag1 = false;
+                if (!markedCells[i * 5 + (4 - i)]) diag2 = false;
+            }
+            
+            if (diag1) linesCompleted++;
+            if (diag2) linesCompleted++;
+
+            // Cap display at 5 lines just in case multiple finish simultaneously
+            const displayLines = Math.min(linesCompleted, 5);
+            
+            linesCountDisplay.textContent = linesCompleted;
+            updateBingoLetters(displayLines);
+
+            if (displayLines >= 5 && gameState !== 'won') {
+                gameState = 'won';
+                setTimeout(() => {
+                    winModal.classList.add('show');
+                }, 400); // Short delay to let the animation play
+            }
+        }
+
+        function updateBingoLetters(count) {
+            for (let i = 0; i < 5; i++) {
+                const letterEl = document.getElementById(`letter-${i}`);
+                if (i < count) {
+                    // Only add 'lit' if it doesn't already have it to prevent animation restart
+                    if (!letterEl.classList.contains('lit')) {
+                        letterEl.classList.add('lit');
+                    }
+                } else {
+                    letterEl.classList.remove('lit');
+                }
+            }
+        }
+
+        function resetGame() {
+            gameState = 'setup';
+            boardValues = Array(GRID_SIZE).fill('');
+            markedCells = Array(GRID_SIZE).fill(false);
+            
+            playControls.classList.add('hidden');
+            setupControls.classList.remove('hidden');
+            linesCountDisplay.textContent = '0';
+            
+            updateBingoLetters(0);
+            initSetup();
+        }
+
+        function closeModalAndReset() {
+            winModal.classList.remove('show');
+            resetGame();
+        }
+
+        function closeWinModal() {
+            winModal.classList.remove('show');
+        }
+
+        function takeScreenshot() {
+            const captureArea = document.getElementById('bingoApp');
+            // Use html2canvas to capture the board
+            html2canvas(captureArea, {
+                backgroundColor: '#764ba2', // Fallback background color to match gradient end
+                scale: 2 // Higher resolution image
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Bingo-Board.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            initSetup();
+        };
+    </script>
+</body>
+</html>
