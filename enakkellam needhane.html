@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry 🥺💖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* Using a cute rounded font that supports Tamil beautifully */
+            font-family: 'Baloo Thambi 2', 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #ffe6ea 0%, #fdfbfb 100%);
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Floating Hearts Animation */
+        .floating-emoji {
+            position: fixed;
+            bottom: -10vh;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Text Reveal Animation */
+        .reveal-word {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            display: inline-block;
+        }
+
+        .reveal-word.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gentle pulse for the final apology text */
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-soft {
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen relative selection:bg-rose-300 selection:text-rose-900">
+
+    <!-- Main Content Card -->
+    <main class="relative z-10 w-full max-w-[90%] md:max-w-xl mx-auto my-8 p-8 md:p-12 rounded-[2rem] bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_0_rgba(255,182,193,0.3)] text-center flex flex-col items-center justify-center">
+        
+        <!-- Header Emojis -->
+        <div class="text-4xl md:text-5xl mb-4 space-x-2 reveal-word" id="header-emojis">
+            🥺 🙏 😭
+        </div>
+
+        <h1 class="text-2xl md:text-3xl font-bold text-rose-500 mb-6 reveal-word" id="header-title">
+            I'm So Sorry... 💕
+        </h1>
+
+        <!-- Tamil Lyrics Container -->
+        <div id="lyrics-container" class="text-xl md:text-3xl font-semibold text-rose-800 leading-relaxed md:leading-loose space-y-2 md:space-y-4 w-full">
+            <!-- Words will be injected here by JavaScript -->
+        </div>
+
+        <!-- Footer Note -->
+        <div id="footer-note" class="mt-8 pt-6 border-t border-rose-200/50 text-rose-600 font-bold text-lg md:text-xl pulse-soft opacity-0 transition-opacity duration-1000">
+            Please forgive me 💖✨
+        </div>
+    </main>
+
+    <script>
+        // Array of lines to display
+        const lyrics = [
+            "நீ வேணும் நான் வாழ,",
+            "நீ வேணும் கண் மூட,",
+            "வருவேனே உயிரை தருவேனே,",
+            "எனக்கெல்லாம் அடியே இனி நீதானே 🥺💖"
+        ];
+
+        const container = document.getElementById('lyrics-container');
+        const headerEmojis = document.getElementById('header-emojis');
+        const headerTitle = document.getElementById('header-title');
+        const footerNote = document.getElementById('footer-note');
+
+        // Timing variables
+        let initialDelay = 800;
+        let wordDelay = 350; // Delay between each word
+        let lineDelay = 800; // Extra delay at the end of each line
+
+        // Function to start the text streaming effect
+        function startStreamingText() {
+            // Reveal headers first
+            setTimeout(() => {
+                headerEmojis.classList.add('visible');
+            }, 200);
+            setTimeout(() => {
+                headerTitle.classList.add('visible');
+            }, 500);
+
+            let currentDelay = initialDelay;
+
+            lyrics.forEach((line, lineIndex) => {
+                const lineWrapper = document.createElement('div');
+                lineWrapper.className = 'flex flex-wrap justify-center gap-x-2';
+                
+                const words = line.split(' ');
+                
+                words.forEach((word, wordIndex) => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.textContent = word;
+                    wordSpan.className = 'reveal-word drop-shadow-sm';
+                    
+                    lineWrapper.appendChild(wordSpan);
+
+                    // Trigger the fade-in animation
+                    setTimeout(() => {
+                        wordSpan.classList.add('visible');
+                    }, currentDelay);
+
+                    currentDelay += wordDelay;
+                });
+
+                container.appendChild(lineWrapper);
+                currentDelay += lineDelay; // Pause before the next line starts
+            });
+
+            // Reveal the footer note after all lyrics are done
+            setTimeout(() => {
+                footerNote.classList.remove('opacity-0');
+                footerNote.classList.add('opacity-100');
+            }, currentDelay + 500);
+        }
+
+        // Function to create floating background emojis (hearts, stars, etc.)
+        function createFloatingEmoji() {
+            const emojis = ['💖', '💕', '🌸', '✨', '🤍', '🥺', '🦋'];
+            const element = document.createElement('div');
+            
+            // Randomly select an emoji
+            element.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            element.className = 'floating-emoji text-2xl md:text-4xl';
+            
+            // Randomize starting position (horizontal)
+            const leftPosition = Math.random() * 100;
+            element.style.left = `${leftPosition}vw`;
+            
+            // Randomize animation duration between 6s and 12s
+            const duration = Math.random() * 6 + 6;
+            element.style.animationDuration = `${duration}s`;
+            
+            // Randomize size slightly
+            const scale = Math.random() * 0.5 + 0.8;
+            element.style.transform = `scale(${scale})`;
+
+            document.body.appendChild(element);
+
+            // Remove element from DOM after animation completes to prevent clutter
+            setTimeout(() => {
+                element.remove();
+            }, duration * 1000);
+        }
+
+        // Initialize animations on load
+        window.onload = () => {
+            startStreamingText();
+            
+            // Generate initial batch of floating emojis
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createFloatingEmoji, Math.random() * 3000);
+            }
+
+            // Continuously generate new floating emojis
+            setInterval(createFloatingEmoji, 800);
+        };
+    </script>
+</body>
+</html>
