@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>11:11 Wish</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% 50%, #160e29 0%, #0d0818 60%, #06040b 100%);
+      min-height: 100vh;
+      overflow: hidden;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Soft pulse for the cute button */
+    @keyframes gentle-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 25px rgba(244, 114, 182, 0.35), 0 0 50px rgba(251, 191, 36, 0.2);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(244, 114, 182, 0.55), 0 0 70px rgba(251, 191, 36, 0.35);
+      }
+    }
+
+    .pulse-btn {
+      animation: gentle-pulse 3s infinite ease-in-out;
+    }
+
+    /* Floating hearts animation */
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.6) rotate(0deg);
+      }
+      30% {
+        opacity: 0.8;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-160px) scale(1.2) rotate(25deg);
+      }
+    }
+
+    .floating-heart {
+      position: absolute;
+      pointer-events: none;
+      animation: floatUp 3.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    /* Text glow */
+    .glow-text {
+      text-shadow: 0 0 25px rgba(251, 191, 36, 0.4), 0 0 50px rgba(244, 114, 182, 0.3);
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen px-6 text-slate-100 relative">
+  <!-- Subtle Canvas for Floating Dust / Stars -->
+  <canvas id="stars" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- Centered Interactive Container -->
+  <main class="relative z-10 w-full max-w-sm flex flex-col items-center justify-center text-center">
+
+    <!-- INITIAL STATE: Cute Wish Button -->
+    <div id="initial-state" class="transition-all duration-700 flex flex-col items-center">
+      <button id="wish-btn" class="pulse-btn group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-500/20 via-purple-500/20 to-amber-500/20 hover:from-rose-500/30 hover:to-amber-500/30 border border-rose-300/40 backdrop-blur-xl flex items-center gap-3 active:scale-95 transition-transform duration-300">
+        <span class="text-xl group-hover:scale-125 transition-transform duration-300">✨</span>
+        <span class="text-rose-100 font-medium tracking-wide text-sm sm:text-base">Tap to see my wish</span>
+        <span class="text-lg group-hover:scale-125 transition-transform duration-300">💌</span>
+      </button>
+      <p class="text-[11px] text-purple-200/40 tracking-widest uppercase mt-4 font-light">
+        My 11:11 wish for you
+      </p>
+    </div>
+
+    <!-- REVEALED STATE: Clean, Romantic Message -->
+    <div id="reveal-state" class="hidden opacity-0 scale-95 transition-all duration-1000 flex flex-col items-center">
+      <!-- Timestamp Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-300/20 bg-amber-300/5 backdrop-blur-md mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-ping"></span>
+        <span class="text-xs tracking-[0.25em] text-amber-200/90 font-medium uppercase">
+          11.11.2026 • 11:11
+        </span>
+      </div>
+
+      <!-- Main Romance Message -->
+      <h2 class="font-cormorant text-3xl sm:text-4xl text-rose-100/90 italic font-light leading-snug mb-3">
+        My wish is you.
+      </h2>
+
+      <p class="font-cormorant text-2xl sm:text-3xl text-amber-100 font-normal leading-relaxed glow-text mb-4">
+        I want to be with you for a lifetime.<br>
+        Forever and always.
+      </p>
+
+      <!-- Sweet personal note -->
+      <p class="text-rose-200/90 font-medium tracking-wide text-lg sm:text-xl mb-6">
+        I love you baby 💖
+      </p>
+
+      <!-- Little Heart -->
+      <div class="text-2xl animate-bounce pt-1">
+        ❤️
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // 1. Subtle Background Stars
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({ length: 45 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.4,
+        alpha: Math.random() * 0.7 + 0.3,
+        speed: Math.random() * 0.015 + 0.005,
+        theta: Math.random() * Math.PI * 2
+      }));
+    }
+
+    function renderStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const s of stars) {
+        s.theta += s.speed;
+        const a = s.alpha * (0.4 + 0.6 * Math.sin(s.theta));
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 230, 200, ${a})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(renderStars);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    renderStars();
+
+    // 2. Sweet, Soft Music-Box / Crystal Harp Sound (Pure & Romantic)
+    function playChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const actx = new AudioCtx();
+        if (actx.state === 'suspended') actx.resume();
+
+        // Delicate, soft music-box arpeggio (C6, E6, G6, B6, C7)
+        const notes = [1046.50, 1318.51, 1567.98, 1975.53, 2093.00];
+
+        notes.forEach((freq, idx) => {
+          const osc = actx.createOscillator();
+          const gain = actx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, actx.currentTime + idx * 0.12);
+
+          const startTime = actx.currentTime + idx * 0.12;
+          // Very gentle attack and natural dreamy bell-like exponential decay
+          gain.gain.setValueAtTime(0.0001, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.08, startTime + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 1.6);
+
+          osc.connect(gain);
+          gain.connect(actx.destination);
+
+          osc.start(startTime);
+          osc.stop(startTime + 1.8);
+        });
+      } catch (e) {}
+    }
+
+    // 3. Floating Hearts Spawner
+    function spawnHearts() {
+      const symbols = ['💖', '✨', '💕', '❤️', '🤍'];
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          const h = document.createElement('div');
+          h.className = 'floating-heart text-xl';
+          h.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+          h.style.left = `calc(50% + ${(Math.random() - 0.5) * 160}px)`;
+          h.style.top = `calc(50% + ${(Math.random() - 0.5) * 80}px)`;
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 3200);
+        }, i * 180);
+      }
+    }
+
+    // 4. Reveal Interaction
+    const wishBtn = document.getElementById('wish-btn');
+    const initialState = document.getElementById('initial-state');
+    const revealState = document.getElementById('reveal-state');
+
+    wishBtn.addEventListener('click', () => {
+      playChime();
+
+      // Soft sprinkle of gold and rose sparkles
+      confetti({
+        particleCount: 45,
+        spread: 60,
+        origin: { y: 0.55 },
+        colors: ['#fbbf24', '#f43f5e', '#fda4af', '#fef08a']
+      });
+
+      spawnHearts();
+
+      // Fade out the initial button
+      initialState.style.opacity = '0';
+      initialState.style.transform = 'scale(0.85)';
+
+      setTimeout(() => {
+        initialState.classList.add('hidden');
+        revealState.classList.remove('hidden');
+
+        // Smooth fade and pop in for the message
+        requestAnimationFrame(() => {
+          revealState.classList.remove('opacity-0', 'scale-95');
+          revealState.classList.add('opacity-100', 'scale-100');
+        });
+      }, 450);
+
+      if (navigator.vibrate) {
+        navigator.vibrate([40, 60, 40]);
+      }
+    });
+  </script>
+</body>
+</html>
