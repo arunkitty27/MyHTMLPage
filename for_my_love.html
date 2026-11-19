@@ -87,12 +87,18 @@
       position: relative;
       z-index: 1;
       width: 100%;
-      padding: clamp(5.5rem, 17vh, 9rem) clamp(2.2rem, 12vw, 4.5rem);
+      padding: clamp(4.25rem, 14vh, 7.5rem) clamp(1.35rem, 7vw, 2.25rem);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+    }
+
+    @media (min-width: 601px) {
+      .poem-safe-zone {
+        padding: clamp(4.5rem, 13vh, 7.5rem) 8.5%;
+      }
     }
 
     /* ==========================================================================
@@ -101,8 +107,8 @@
     .tamil-poem {
       font-family: 'Noto Serif Tamil', serif;
       font-weight: 600;
-      font-size: clamp(1.02rem, 3.6vw, 1.32rem);
-      line-height: 2.05;
+      font-size: clamp(1.35rem, 5vw, 1.75rem);
+      line-height: 1.88;
       letter-spacing: 0; /* Keeps Tamil ligatures and vowel signs intact */
       color: #2B1911;
       text-align: center;
@@ -111,14 +117,14 @@
 
     @media (min-width: 601px) {
       .tamil-poem {
-        font-size: clamp(1.06rem, 2.2vh, 1.32rem);
+        font-size: clamp(1.48rem, 3.15vh, 2.05rem);
       }
     }
 
     .poem-line {
       display: block;
-      margin-bottom: 1.05rem;
-      min-height: 2.05em;
+      margin-bottom: 1.25rem;
+      min-height: 1.88em;
     }
 
     .poem-line:last-child {
@@ -155,7 +161,7 @@
        5. STATIC CLOSING REVEAL ("I love you Paalgova 😘")
        ========================================================================== */
     .finale-signature {
-      margin-top: 2.1rem;
+      margin-top: clamp(1.85rem, 3.4vh, 2.75rem);
       opacity: 0;
       transform: translateY(8px);
       transition:
@@ -172,7 +178,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-weight: 600;
-      font-size: clamp(1.3rem, 4.6vw, 1.75rem);
+      font-size: clamp(1.75rem, 6.4vw, 2.35rem);
       line-height: 1.3;
       color: #3A2218;
       letter-spacing: 0.01em;
@@ -180,7 +186,7 @@
 
     @media (min-width: 601px) {
       .signature-text {
-        font-size: clamp(1.38rem, 2.9vh, 1.75rem);
+        font-size: clamp(1.95rem, 4.1vh, 2.75rem);
       }
     }
 
